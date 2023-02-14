@@ -5,11 +5,12 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -65,9 +66,16 @@ class User
         return $this;
     }
 
+     /**
+     * @see UserInterface
+     */
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -77,6 +85,9 @@ class User
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -113,9 +124,14 @@ class User
         return $this;
     }
 
-    public function getUsername(): ?string
+   /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->username;
+        return (string) $this->username;
     }
 
     public function setUsername(string $username): self
@@ -147,6 +163,25 @@ class User
         $this->naissance = $naissance;
 
         return $this;
+    }
+       /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     /**
