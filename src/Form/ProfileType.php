@@ -12,8 +12,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class RegistrationFormType extends AbstractType
+class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,30 +22,10 @@ class RegistrationFormType extends AbstractType
             ->add('fullname')
             ->add('email')
             ->add('username')
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('image', FileType::class, [
+                'label' => 'Image (JPG, PNG or GIF file)',
                 'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
+                'required' => true,
             ])
             ->add('naissance',DateType::class, [
                 'widget' => 'choice',
@@ -53,6 +34,7 @@ class RegistrationFormType extends AbstractType
                 'months' => range(1, 12),
                 'days' => range(1, 31),
             ]);
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void
