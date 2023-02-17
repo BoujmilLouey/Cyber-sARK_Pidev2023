@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,93 +16,95 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $reference = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    private ?\DateTimeInterface $dateCommande = null;
 
     #[ORM\Column]
-    private ?float $montant = null;
+    private ?float $montantCOmmande = null;
 
-    #[ORM\OneToOne(mappedBy: 'id_commande', cascade: ['persist', 'remove'])]
-    private ?LigneCommande $ligneCommande = null;
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: LigneCommande::class)]
+    private Collection $ligneCommandes;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?user $id_user = null;
+    private ?User $user = null;
+
+    public function __construct()
+    {
+        $this->ligneCommandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getReference(): ?string
+    public function getDateCommande(): ?\DateTimeInterface
     {
-        return $this->reference;
+        return $this->dateCommande;
     }
 
-    public function setReference(string $reference): self
+    public function setDateCommande(\DateTimeInterface $dateCommande): self
     {
-        $this->reference = $reference;
+        $this->dateCommande = $dateCommande;
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getMontantCOmmande(): ?float
     {
-        return $this->date;
+        return $this->montantCOmmande;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setMontantCOmmande(float $montantCOmmande): self
     {
-        $this->date = $date;
+        $this->montantCOmmande = $montantCOmmande;
 
         return $this;
     }
 
-    public function getMontant(): ?float
+    /**
+     * @return Collection<int, LigneCommande>
+     */
+    public function getLigneCommandes(): Collection
     {
-        return $this->montant;
+        return $this->ligneCommandes;
     }
 
-    public function setMontant(float $montant): self
+    public function addLigneCommande(LigneCommande $ligneCommande): self
     {
-        $this->montant = $montant;
-
-        return $this;
-    }
-
-    public function getLigneCommande(): ?LigneCommande
-    {
-        return $this->ligneCommande;
-    }
-
-    public function setLigneCommande(?LigneCommande $ligneCommande): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($ligneCommande === null && $this->ligneCommande !== null) {
-            $this->ligneCommande->setIdCommande(null);
+        if (!$this->ligneCommandes->contains($ligneCommande)) {
+            $this->ligneCommandes->add($ligneCommande);
+            $ligneCommande->setCommande($this);
         }
 
-        // set the owning side of the relation if necessary
-        if ($ligneCommande !== null && $ligneCommande->getIdCommande() !== $this) {
-            $ligneCommande->setIdCommande($this);
+        return $this;
+    }
+
+    public function removeLigneCommande(LigneCommande $ligneCommande): self
+    {
+        if ($this->ligneCommandes->removeElement($ligneCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($ligneCommande->getCommande() === $this) {
+                $ligneCommande->setCommande(null);
+            }
         }
 
-        $this->ligneCommande = $ligneCommande;
-
         return $this;
     }
 
-    public function getIdUser(): ?user
+    public function getUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?user $id_user): self
+    public function setUser(?User $user): self
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
+    public function __toString() {
+        return $this->user;
+    }
+
 }

@@ -1,5 +1,0 @@
-framework:
-    assets:
-        packages:
-            images:
-                base_path: 'FrontOffice/assets/images'

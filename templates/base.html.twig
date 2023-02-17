@@ -123,13 +123,12 @@
                     </a>
                 </li>
                 
-                {% if app.user %}
+                
                 <li>
-                    <a href="{{ path('profile', {'username': app.user.username})}}" data-toggle="modal" data-target="#modalLogin"> 
+                    <a href="login" data-toggle="modal" data-target="#modalLogin">
                         <span class="fa fa-user"></span>
                     </a>
                 </li>
-                {% endif %}
                 
                 
                 <li>
@@ -190,7 +189,7 @@
         <div class="container">
             <div class="nk-nav-table">
                 
-                <a href="home" class="nk-nav-logo">
+                <a href="index.html" class="nk-nav-logo">
                     <img src="{{ asset('FrontOffice/assets/images/logo.png')}}" alt="GoodGames" width="199">
                 </a>
                 
@@ -312,12 +311,6 @@
                 
             </a>
         </li>
-        <li>
-            <a href="register">
-                Join Us
-                
-            </a>
-        </li>
         <li class=" nk-drop-item">
             <a href="tournaments.html">
                 Tournaments
@@ -345,7 +338,7 @@
                     </ul>
         </li>
         <li class=" nk-drop-item">
-            <a href="store.html">
+            <a href="/produit">
                 Store
                 
             </a><ul class="dropdown">
@@ -386,17 +379,7 @@
                 
             </a>
         </li>
-
                     </ul>
-
-        {% if app.user %}
-        <li>
-            <a href="logout">
-                Logout 
-                
-            </a>
-        </li>
-        {% endif %}
         </li>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
@@ -434,7 +417,7 @@
 <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
     <div class="nano">
         <div class="nano-content">
-            <a href="home" class="nk-nav-logo">
+            <a href="index.html" class="nk-nav-logo">
                 <img src="{{ asset('FrontOffice/assets/images/logo.png')}}" alt="" width="120">
             </a>
             <div class="nk-navbar-mobile-content">

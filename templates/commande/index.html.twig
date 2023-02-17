@@ -1,0 +1,48 @@
+{% extends 'base_BACK.html.twig' %}
+    {% block body %}
+
+        <center><h1>Les commandes</h1></center>
+        <tr>
+            
+            </a>
+        </tr>
+        <tr>
+           
+            </a>
+        </tr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantité</th>
+                <th>IdCommande</th>
+                <th>IdProduit</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for commandes in commandes %}
+                <tr>
+                    <td>{{ commandes.id}}</td>
+                   <td>{{ commandes.Quantite  }}</td>
+                    <td>{{ commandes.commande.id }}</td>
+                    <td>{{ commandes.produit.id }}</td>
+                    <td>{{ commandes.Price }}</td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+{% endblock %}
+
