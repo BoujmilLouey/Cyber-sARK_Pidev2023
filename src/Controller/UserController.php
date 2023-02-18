@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserRoleType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,5 +75,25 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/editroles/{id}', name: 'app_user_edit_roles', methods: ['GET', 'POST'])]   
+    public function editUserRoles(Request $request, User $user)
+    {
+        $form = $this->createForm(UserRoleType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $user->setRoles(array_unique($user->getRoles()));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_user_index');
+        }
+
+        return $this->render('user/edit_roles.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
