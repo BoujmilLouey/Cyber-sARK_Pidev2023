@@ -8,6 +8,10 @@ parameters:
     
 
 services:
+    app.validator.image_dimensions:
+        class: App\Validator\Constraints\ImageDimensionsValidator
+        tags:
+            - { name: validator.constraint_validator }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
