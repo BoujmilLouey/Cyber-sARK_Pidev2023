@@ -500,7 +500,7 @@
                         <!-- START: Add to Cart -->
                         <div class="nk-gap-2"></div>
                         <form action="#" class="nk-product-addtocart">
-                            <div class="nk-product-price">dt {{produit.prix}}</div>
+                            <div class="nk-product-price">{{produit.prix}} Dinars</div>
                             <div class="nk-gap-1"></div>
                             <div class="input-group">
                                 <input type="number" class="form-control" value="1" min="1" max="21">
@@ -512,9 +512,13 @@
 
                         <!-- START: Meta -->
                         <div class="nk-product-meta">
-                            
-                            <div><strong>Categories</strong>: 
-                            
+                            <div class="row">
+                            <div><strong>Categories : </strong>
+                            {# {% for produit in produits %} #}
+                                 
+                                <p>{{produit.categorie.type}}</p>
+                            {# {% endfor %} #}
+                            </div>
                         </div>
                         <!-- END: Meta -->
                     </div>
@@ -536,19 +540,24 @@
                 {% for produit in produits %}
                 <div class="col-md-6">
                     <div class="nk-product-cat">
-                        <a class="nk-product-image" href="store-product.html">
-                             <img src="{{ asset(produit.image, 'images') }}" alt="She was bouncing" > 
+                   
+                        <a class="nk-product-image" >
+                        <div class="row">
+                             <img src="{{ asset(produit.image, 'images') }}" href="app_store_show" > 
+                             
                         </a>
                         <div class="nk-product-cont">
                              <h5 class="mb-0" style="margin: 0px">{{produit.nom }}</h5>
-                            
+                            </div>
                             <div class="nk-product-rating" data-rating="3"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
                             <div class="nk-gap-1"></div>
                             <h5 class="mb-0" >{{produit.reference}}</h5>
+                               <h5 class="mb-0" style="margin: 12px">{{produit.prix  }} Dinars</h5>
                             <div class="row">
-                            <h5 class="mb-0" style="margin: 12px">{{produit.prix }}</h5>
-                            <div style="margin: 8px" color="red">Dinars</div>
+                            
+                            
                             </div>
+                         
                         </div>
                     </div>
                 </div>
@@ -592,16 +601,13 @@
     <h4 class="nk-widget-title"><span><span class="text-main-1">Category</span> Menu</span></h4>
     <div class="nk-widget-content">
         <ul class="nk-widget-categories">
-            <li><a href="#">RTS</a></li>
-            <li><a href="#">Action</a></li>
-            <li><a href="#">RPG</a></li>
-            <li><a href="#">MMO</a></li>
-            <li><a href="#">MOBA</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Indie</a></li>
-            <li><a href="#">Strategy</a></li>
-            <li><a href="#">Racing</a></li>
-            <li><a href="#">Simulator</a></li>
+            <li><a href="#"> Accessories and Peripherals</a></li>
+            <li><a href="#"> Laptop</a></li>
+            <li><a href="#"> Computer Component</a></li>
+             <li><a href="#">Desktop Computer</a></li>
+              <li><a href="#">Internal Disks</a></li>
+            
+           
         </ul>
     </div>
 </div>

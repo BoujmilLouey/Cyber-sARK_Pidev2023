@@ -32,5 +32,15 @@ class ProduitUserController extends AbstractController
             'produits' => $produitRepository->findAll(),
         ]);
     }
+
+
+    #[Route('/id/{id}', name: 'app_store1_show', methods: ['GET'])]
+    public function show1(Produit $produit,ProduitRepository $produitRepository): Response
+    {
+        return $this->render('produituser/show.html.twig', [
+            'produit' => $produit,
+            'produits' => $produitRepository->findAll(),
+        ]);
+    }
   
 }

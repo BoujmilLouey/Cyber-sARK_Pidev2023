@@ -21,14 +21,13 @@ class ProduitType extends AbstractType
                 'label' => 'Product Name',
                 
             ])
-            ->add('reference',null,[
+            ->add('reference'
+            ,null,[
                 'label' => 'Reference'
-            ])
+            ]
+            )
 
-            ->add('image', FileType::class, [
-                'label' => 'Image (JPG, PNG or GIF file)',
-               
-            ])
+            ->add('image')
             ->add('prix',NumberType::class, [
                 'label' => 'Product Price',
                 
@@ -47,8 +46,7 @@ class ProduitType extends AbstractType
                 'label' => 'Product Description',
                
             ])
-            ->add('id_categorie_produit',null,[
-                'label' => 'Categorie'])
+            ->add('categorie')
         ;
 
 

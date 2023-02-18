@@ -26,11 +26,15 @@ class CategorieProduit
     private ?string $reference = null;
 
     #[ORM\OneToMany(mappedBy: 'id_categorie_produit', targetEntity: Produit::class)]
+    private Collection $produit;
+
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
     private Collection $produits;
 
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->produit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,29 +74,34 @@ class CategorieProduit
         return $this->produits;
     }
 
-    public function addProduit(Produit $produit): self
+    
+    
+    public function __toString()
+{
+    return $this->type;
+}
+
+   
+
+    public function addProduits(Produit $produits): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits->add($produit);
-            $produit->setIdCategorieProduit($this);
+        if (!$this->produits->contains($produits)) {
+            $this->produits->add($produits);
+            $produits->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): self
+    public function removeProduits(Produit $produits): self
     {
-        if ($this->produits->removeElement($produit)) {
+        if ($this->produits->removeElement($produits)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getIdCategorieProduit() === $this) {
-                $produit->setIdCategorieProduit(null);
+            if ($produits->getCategorie() === $this) {
+                $produits->setCategorie(null);
             }
         }
 
         return $this;
     }
-    public function __toString()
-{
-    return $this->type;
-}
 }

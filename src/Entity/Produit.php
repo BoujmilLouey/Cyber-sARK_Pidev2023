@@ -16,7 +16,7 @@ class Produit
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank (message:"Please enter product name")]
    
-    #[Assert\Length (min:2 , max:30, minMessage:"Your product name must be at least 2 caracteres", maxMessage:"Your product name characters max is 30")]
+    #[Assert\Length (min:2 , max:300, minMessage:"Your product name must be at least 2 caracteres", maxMessage:"Your product name characters max is 300")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
@@ -42,11 +42,13 @@ class Produit
     #[Assert\NotBlank (message:"Please enter product description")]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'produits')]
-    private ?categorieproduit $id_categorie_produit = null;
+  
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    private ?CategorieProduit $categorie = null;
 
     public function getId(): ?int
     {
@@ -125,17 +127,7 @@ class Produit
         return $this;
     }
     
-    public function getIdCategorieProduit(): ?categorieproduit
-    {
-        return $this->id_categorie_produit;
-    }
-
-    public function setIdCategorieProduit(?CategorieProduit $id_categorie_produit): self
-    {
-        $this->id_categorie_produit = $id_categorie_produit;
-
-        return $this;
-    }
+  
 
     public function getImage(): ?string
     {
@@ -145,6 +137,18 @@ class Produit
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategorieProduit
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?CategorieProduit $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
