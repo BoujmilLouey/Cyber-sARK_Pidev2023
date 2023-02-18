@@ -13,7 +13,6 @@
     <link rel="icon" type="image/png" href="{{ asset('FrontOffice/assets/images/favicon.png')}}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
 
     <!-- START: Styles -->
 
@@ -191,15 +190,78 @@
         <div class="container">
             <div class="nk-nav-table">
                 
-                <a href="/" class="nk-nav-logo">
+                <a href="home" class="nk-nav-logo">
                     <img src="{{ asset('FrontOffice/assets/images/logo.png')}}" alt="GoodGames" width="199">
                 </a>
                 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
                     
-       
         <li class=" nk-drop-item">
-            <a href="">
+            <a href="elements.html">
+                Features
+                
+            </a><ul class="dropdown">
+                        
+        <li>
+            <a href="elements.html">
+                Elements (Shortcodes)
+                
+            </a>
+        </li>
+        <li class=" nk-drop-item">
+            <a href="forum.html">
+                Forum
+                
+            </a><ul class="dropdown">
+                        
+        <li>
+            <a href="forum.html">
+                Forum
+                
+            </a>
+        </li>
+        <li>
+            <a href="forum-topics.html">
+                Topics
+                
+            </a>
+        </li>
+        <li>
+            <a href="forum-single-topic.html">
+                Single Topic
+                
+            </a>
+        </li>
+                    </ul>
+        </li>
+        <li>
+            <a href="widgets.html">
+                Widgets
+                
+            </a>
+        </li>
+        <li>
+            <a href="coming-soon.html">
+                Coming Soon
+                
+            </a>
+        </li>
+        <li>
+            <a href="offline.html">
+                Offline
+                
+            </a>
+        </li>
+        <li>
+            <a href="404.html">
+                404
+                
+            </a>
+        </li>
+                    </ul>
+        </li>
+        <li class=" nk-drop-item">
+            <a href="blog-list.html">
                 Blog
                 
             </a><ul class="dropdown">
@@ -244,25 +306,6 @@
         </li>
                     </ul>
         </li>
-        {% if app.user %}
-        {% if 'ROLE_ADMIN' in app.user.roles %}
-        <li>
-            <a href="/admin">
-                AdminTab
-                
-            </a>
-        </li>
-        {% endif %}
-        {% if 'ROLE_COACH' in app.user.roles %}
-        <li>
-            <a href="">
-                CoachingTAB
-                
-            </a>
-        </li>
-        {% endif %}
-        {% endif %}
-        
         <li>
             <a href="login">
                 Login
@@ -302,13 +345,13 @@
                     </ul>
         </li>
         <li class=" nk-drop-item">
-            <a href="store.html">
+            <a href="/store">
                 Store
                 
             </a><ul class="dropdown">
                         
         <li>
-            <a href="store.html">
+            <a href="/store">
                 Store
                 
             </a>

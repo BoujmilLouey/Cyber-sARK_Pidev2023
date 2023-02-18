@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\Produit;
 use App\Repository\CategorieProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CategorieProduitRepository::class)]
 class CategorieProduit
 {
@@ -16,9 +16,13 @@ class CategorieProduit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"Please enter product Type")]
+    #[Assert\Length (min:2 , max:30, minMessage:"Your product Type must be at least 2 caracteres", maxMessage:"Your product Type characters max is 30")]
     private ?string $type = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255)] 
+    #[Assert\NotBlank (message:"Please enter product Reference")]
+    #[Assert\Length (min:2 , max:30, minMessage:"Your product reference must be at least 2 caracteres", maxMessage:"Your product reference characters max is 30")]
     private ?string $reference = null;
 
     #[ORM\OneToMany(mappedBy: 'id_categorie_produit', targetEntity: Produit::class)]
@@ -87,4 +91,8 @@ class CategorieProduit
 
         return $this;
     }
+    public function __toString()
+{
+    return $this->type;
+}
 }

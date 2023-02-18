@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\CategorieProduit;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
@@ -14,28 +14,39 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"Please enter product name")]
+   
+    #[Assert\Length (min:2 , max:30, minMessage:"Your product name must be at least 2 caracteres", maxMessage:"Your product name characters max is 30")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"Please enter product Reference")]
+    #[Assert\Length (min:2 , max:30, minMessage:"Your product reference must be at least 2 caracteres", maxMessage:"Your product reference characters max is 30")]
     private ?string $reference = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
 
     #[ORM\Column]
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"Please enter product Color")]
+   
+    #[Assert\Length (min:2 , max:30, minMessage:"Your product color must be at least 2 caracteres", maxMessage:"Your product color characters max is 30")]
     private ?string $couleur = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank (message:"Please enter product weight")]
+    
     private ?float $poids = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message:"Please enter product description")]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?categorieproduit $id_categorie_produit = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     public function getId(): ?int
     {
@@ -65,19 +76,7 @@ class Produit
 
         return $this;
     }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
+    
     public function getPrix(): ?float
     {
         return $this->prix;
@@ -125,15 +124,27 @@ class Produit
 
         return $this;
     }
-
+    
     public function getIdCategorieProduit(): ?categorieproduit
     {
         return $this->id_categorie_produit;
     }
 
-    public function setIdCategorieProduit(?categorieproduit $id_categorie_produit): self
+    public function setIdCategorieProduit(?CategorieProduit $id_categorie_produit): self
     {
         $this->id_categorie_produit = $id_categorie_produit;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
