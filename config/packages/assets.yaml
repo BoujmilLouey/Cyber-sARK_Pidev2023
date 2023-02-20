@@ -1,0 +1,5 @@
+framework:
+    assets:
+        packages:
+            game_images_directory:
+                base_path: 'FrontOffice/assets/images'

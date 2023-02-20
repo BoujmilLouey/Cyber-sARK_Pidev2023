@@ -1,0 +1,10 @@
+{% extends 'base_BACK.html.twig' %}
+{% block title %}New GameCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new GameCategory</h1>
+
+    {{ include('game_category/_form.html.twig') }}
+
+    <a href="{{ path('app_game_category_index') }}">back to list</a>
+{% endblock %}
