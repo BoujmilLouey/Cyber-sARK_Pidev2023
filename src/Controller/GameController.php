@@ -12,12 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/game')]
+
 class GameController extends AbstractController
 {
     /**
      * @Route("/play-game", name="play_game")
      */
-    public function playGame()
+    public function playGame(): Response
     {
         $score = mt_rand(0, 100); 
         // Générer un score aléatoire entre 0 et 100
@@ -25,6 +26,7 @@ class GameController extends AbstractController
 
         return $this->render('game/result.html.twig', [
             'score' => $score,
+           
             
 
         ]);
