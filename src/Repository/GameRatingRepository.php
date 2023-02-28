@@ -2,45 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Game;
+use App\Entity\GameRating;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Game>
+ * @extends ServiceEntityRepository<GameRating>
  *
- * @method Game|null find($id, $lockMode = null, $lockVersion = null)
- * @method Game|null findOneBy(array $criteria, array $orderBy = null)
- * @method Game[]    findAll()
- * @method Game[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method GameRating|null find($id, $lockMode = null, $lockVersion = null)
+ * @method GameRating|null findOneBy(array $criteria, array $orderBy = null)
+ * @method GameRating[]    findAll()
+ * @method GameRating[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GameRepository extends ServiceEntityRepository
+class GameRatingRepository extends ServiceEntityRepository
 {
-
-public function search($query, $category)
-{
-    $qb = $this->createQueryBuilder('p');
-
-    if ($query) {
-        $qb->andWhere('p.name LIKE :query OR p.description LIKE :query')
-           ->setParameter('query', '%'.$query.'%');
-    }
-
-    if ($category) {
-        $qb->andWhere('p.category = :category')
-           ->setParameter('category', $category);
-    }
-
-    return $qb->getQuery()->getResult();
-}
-
-
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Game::class);
+        parent::__construct($registry, GameRating::class);
     }
 
-    public function save(Game $entity, bool $flush = false): void
+    public function save(GameRating $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -49,7 +30,7 @@ public function search($query, $category)
         }
     }
 
-    public function remove(Game $entity, bool $flush = false): void
+    public function remove(GameRating $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -59,7 +40,7 @@ public function search($query, $category)
     }
 
 //    /**
-//     * @return Game[] Returns an array of Game objects
+//     * @return GameRating[] Returns an array of GameRating objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -73,7 +54,7 @@ public function search($query, $category)
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Game
+//    public function findOneBySomeField($value): ?GameRating
 //    {
 //        return $this->createQueryBuilder('g')
 //            ->andWhere('g.exampleField = :val')

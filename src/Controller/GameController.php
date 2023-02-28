@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+
+use App\Entity\GameRating;
+use App\Form\GameRatingType;
 use App\Entity\Game;
 use App\Form\GameType;
 use App\Repository\GameRepository;
@@ -10,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/game')]
 
@@ -32,6 +36,33 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/games/{id}/rate", name="game_rate")
+     */
+    public function rate(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    {
+        $rating = new GameRating();
+        $form = $this->createForm(GameRatingType::class, $rating);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $rating->setGame($game);
+            $rating->setUser($this->getUser());
+            $entityManager = $this->$entityManager()->getManager();
+            $entityManager->persist($rating);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre note a été enregistrée.');
+
+            return $this->redirectToRoute('game_show', ['id' => $game->getId()]);
+        }
+
+        return $this->render('game/rate.html.twig', [
+            'game' => $game,
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/', name: 'app_game_index', methods: ['GET'])]
     public function index(GameRepository $gameRepository, GameCategoryRepository $gameCategoryRepository): Response
     {
@@ -49,6 +80,25 @@ class GameController extends AbstractController
 
         ]);
     }
+
+   # #[Route('/showallgames', name: 'show_gamee_index', methods: ['GET'])]
+   # public function gamesInCategoryAction($categorySlug): Response
+   # {
+    #    $gameCategory = $this->getDoctrine()->getRepository(GameCategory::class)->findOneBy(['slug' => $categorySlug]);
+
+   #     if (!$gameCategory) {
+    #        throw $this->createNotFoundException('La catégorie n\'existe pas.');
+    #    }
+
+       # $games = $this->getDoctrine()->getRepository(Game::class)->findBy(['game_categories' => $gameCategory]);
+
+       # return $this->render('game/index_back.html.twig', [
+      #      'game_categories' => $gameCategory,
+       #     'games' => $games,
+       # ]);
+    #} 
+
+
 
     #[Route('/new', name: 'app_game_new', methods: ['GET', 'POST'])]
     public function new(Request $request, GameRepository $gameRepository): Response

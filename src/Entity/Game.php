@@ -44,12 +44,22 @@ class Game
     private ?GameCategory $gameCategorie = null;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity=GameRating::class, mappedBy="game", orphanRemoval=true)
+     */
+    private $ratings;
 
+   
+
+    /**
+     * @return Collection|GameRating[]
+     */
 
 
     public function __construct()
     {
         $this->games = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,6 +115,47 @@ class Game
 
         return $this;
     }
+
     
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+    public function addRating(GameRating $rating): self
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setGame($this);
+        }
+
+        return $this;
+    }
+    public function removeRating(GameRating $rating): self
+    {
+        if ($this->ratings->contains($rating)) {
+            $this->ratings->removeElement($rating);
+            // set the owning side to null (unless already changed)
+            if ($rating->getGame() === $this) {
+                $rating->setGame(null);
+            }
+        }
+
+        
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getAverageRating(): ?float
+    {
+        $sum = 0;
+        $count = 0;
+        foreach ($this->ratings as $rating) {
+            $sum += $rating->getRating();
+            $count++;
+        }
+        return $count > 0 ? round($sum / $count, 1) : null;
+    }
    
 }
