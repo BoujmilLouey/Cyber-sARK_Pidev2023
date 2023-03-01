@@ -66,28 +66,28 @@
 
 
 	<!--
-																																																								    Additional Classes:
-																																																								        .nk-page-boxed
-																																																								-->
+																																																																				    Additional Classes:
+																																																																				        .nk-page-boxed
+																																																																				-->
 	<body>
 
 
 		<!--
-																																																																																																															    Additional Classes:
-																																																																																																															        .nk-header-opaque
-																																																																																																															-->
+																																																																																																																																							    Additional Classes:
+																																																																																																																																							        .nk-header-opaque
+																																																																																																																																							-->
 		<header
 			class="nk-header nk-header-opaque">
 
 
 			<!--
-																																																																																																																																																									        START: Navbar
-																																																																																																																																																									
-																																																																																																																																																									        Additional Classes:
-																																																																																																																																																									            .nk-navbar-sticky
-																																																																																																																																																									            .nk-navbar-transparent
-																																																																																																																																																									            .nk-navbar-autohide
-																																																																																																																																																									    -->
+																																																																																																																																																																																													        START: Navbar
+																																																																																																																																																																																													
+																																																																																																																																																																																													        Additional Classes:
+																																																																																																																																																																																													            .nk-navbar-sticky
+																																																																																																																																																																																													            .nk-navbar-transparent
+																																																																																																																																																																																													            .nk-navbar-autohide
+																																																																																																																																																																																													    -->
 			<nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
 				<div class="container">
 					<div class="nk-nav-table">
@@ -314,14 +314,14 @@
 
 
 		<!--
-																																																																																																											    START: Navbar Mobile
-																																																																																																											
-																																																																																																											    Additional Classes:
-																																																																																																											        .nk-navbar-left-side
-																																																																																																											        .nk-navbar-right-side
-																																																																																																											        .nk-navbar-lg
-																																																																																																											        .nk-navbar-overlay-content
-																																																																																																											-->
+																																																																																																																																			    START: Navbar Mobile
+																																																																																																																																			
+																																																																																																																																			    Additional Classes:
+																																																																																																																																			        .nk-navbar-left-side
+																																																																																																																																			        .nk-navbar-right-side
+																																																																																																																																			        .nk-navbar-lg
+																																																																																																																																			        .nk-navbar-overlay-content
+																																																																																																																																			-->
 		<div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
 			<div class="nano">
 				<div class="nano-content">
@@ -390,12 +390,7 @@
 
 
 							<!-- START: Comments --><div id="comments"> </div>
-							<h3 class="nk-decorated-h-2">
-
-								<span class="text-main-1">une fonction qui compte les commentaire
-								</span>
-
-							</h3>
+							<h3 class="nk-decorated-h-2"></h3>
 							<div class="nk-gap"></div>
 							<div
 								class="nk-comments">
@@ -413,8 +408,6 @@
 									<div class="nk-comment-text">
 										<p></p>
 									</div>
-									<button class="nk-btn nk-btn-rounded nk-btn-color-main-1">edit</button>
-									<button class="nk-btn nk-btn-rounded nk-btn-color-main-1">delete</button>
 
 								</div>
 
@@ -426,27 +419,21 @@
 									<h1>commentaire List</h1>
 
 									<table>
-										<thead>
-											<tr>
-												<th>contenue</th>
 
-												<th>Actions</th>
-											</tr>
-										</thead>
 										<tbody>
-											{% for commentaire in commentaires %}
-												<tr>
-													<td>{{ commentaire.contenu }}</td>
 
-													<td>
-														<a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}">Edit</a>
-														<form action="{{ path('app_commentaire_delete', {'id': commentaire.id}) }}" method="post">
-															<input type="hidden" name="_method" value="DELETE">
-															<button type="submit">Delete</button>
-														</form>
-													</td>
-												</tr>
-											{% endfor %}
+											<tr>
+												<td>{{ commentaire.contenu }}</td>
+
+												<td>
+													<a href="{{ path('app_commentaire_edit', {'id': commentaire.id_cours_id}) }}">Edit</a>
+													<form action="{{ path('app_commentaire_delete', {'id': commentaire.id_cours_id}) }}" method="post">
+														<input type="hidden" name="_method" value="DELETE">
+														<button type="submit">Delete</button>
+													</form>
+												</td>
+											</tr>
+
 										</tbody>
 									</table>
 
@@ -454,26 +441,7 @@
 								{% endblock %}
 								<!-- END: Comments -->
 
-								<!-- START: Reply -->
-								<div class="nk-gap-2"></div>
-								<h3 class="nk-decorated-h-2">
-									<span>
-										<span class="text-main-1">Leave</span>
-										a Reply</span>
-								</h3>
-								<div class="nk-gap"></div>
-								<div class="nk-reply">
-									<form action="#" class="nk-form" novalidate="novalidate">
-										<div class="row sm-gap vertical-gap"></div>
-										<div class="nk-gap-1"></div>
-										<textarea class="form-control required" name="message" rows="5" placeholder="Message *" aria-required="true"></textarea>
-										<div class="nk-gap-1"></div>
-										<div class="nk-form-response-success"></div>
-										<div class="nk-form-response-error"></div>
-										<button class="nk-btn nk-btn-rounded nk-btn-color-main-1">Post Comment</button>
-									</form>
-								</div>
-								<!-- END: Reply -->
+
 							</div>
 							<!-- END: Post -->
 						</div>

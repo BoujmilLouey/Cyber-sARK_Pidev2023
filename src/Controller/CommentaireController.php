@@ -25,7 +25,7 @@ class CommentaireController extends AbstractController
     #[Route('/front', name: 'commentaire', methods: ['GET'])]
     public function index_detail(CommentaireRepository $commentaireRepository): Response
     {
-        return $this->render('commentaire/blog-article.html.twig', [
+        return $this->render('commentaire/com.html.twig', [
             'commentaires' => $commentaireRepository->findAll(),
         ]);
     }
