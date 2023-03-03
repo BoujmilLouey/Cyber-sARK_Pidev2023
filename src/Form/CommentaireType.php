@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class CommentaireType extends AbstractType
 {
@@ -28,6 +29,18 @@ class CommentaireType extends AbstractType
                     new Assert\Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])/',
                         'message' => 'Le texte doit contenir des lettres majuscules et minuscules.',
+                    ]),
+                ],
+
+            ])
+            ->add('note', IntegerType::class, [
+                'label' => 'note',
+                'constraints' => [
+                    new Assert\Range([
+                        'min' => 1,
+                        'max' => 10,
+                        'minMessage' => 'Le nombre doit être supérieur ou égal à {{ 1 }}.',
+                        'maxMessage' => 'Le nombre doit être inférieur ou égal à {{ 10 }}.',
                     ]),
                 ],
             ])

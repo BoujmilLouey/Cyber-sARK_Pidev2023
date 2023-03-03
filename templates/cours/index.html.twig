@@ -19,8 +19,6 @@
 				<th>Id</th>
 				<th>Nom</th>
 				<th>Description</th>
-				<th>Note</th>
-				<th>Video</th>
 				<th>Pdf</th>
 				<th>actions</th>
 			</tr>
@@ -31,8 +29,6 @@
 					<td>{{ cour.id }}</td>
 					<td>{{ cour.nom }}</td>
 					<td>{{ cour.description }}</td>
-					<td>{{ cour.note }}</td>
-					<td>{{ cour.video }}</td>
 					<td>{{ cour.pdf }}</td>
 					<td>
 						<a href="{{ path('app_cours_show', {'id': cour.id}) }}">show</a>

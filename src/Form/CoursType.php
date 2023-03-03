@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -50,40 +50,9 @@ class CoursType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('note', IntegerType::class, [
-                'label' => 'note',
-                'constraints' => [
-                    new Assert\Range([
-                        'min' => 1,
-                        'max' => 10,
-                        'minMessage' => 'Le nombre doit être supérieur ou égal à {{ 1 }}.',
-                        'maxMessage' => 'Le nombre doit être inférieur ou égal à {{ 10 }}.',
-                    ]),
-                ],
-            ])
 
-            ->add('video', FileType::class, [
-                /* 'label' => 'cours (video file)',
 
-                // unmapped means that this field is not associated to any entity property
-                'mapped' => false,
 
-                // make it optional so you don't have to re-upload the PDF file
-                // every time you edit the Product details
-                'required' => false,
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
-                'constraints' => [
-                    new File([
-                        //'maxSize' => '1024k',
-                        //'mimeTypes' => [
-                        //  'video/quicktime',
-                        //'video/x-ms-wmv',
-                        //],
-                        'mimeTypesMessage' => 'Please upload a valid video document',
-                    ])
-                ],*/])
 
 
 

@@ -20,11 +20,9 @@ class Cours
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $note = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $video = null;
+
+
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $pdf = null;
@@ -60,29 +58,9 @@ class Cours
         return $this;
     }
 
-    public function getNote(): ?int
-    {
-        return $this->note;
-    }
 
-    public function setNote(int $note): self
-    {
-        $this->note = $note;
 
-        return $this;
-    }
 
-    public function getVideo(): ?string
-    {
-        return $this->video;
-    }
-
-    public function setVideo(string $video): self
-    {
-        $this->video = $video;
-
-        return $this;
-    }
 
     public function getPdf(): ?string
     {

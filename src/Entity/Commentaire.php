@@ -20,6 +20,9 @@ class Commentaire
     #[ORM\Column(length: 255)]
     private ?string $contenu = null;
 
+    #[ORM\Column]
+    private ?int $note = null;
+
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $id_user = null;
@@ -49,6 +52,18 @@ class Commentaire
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(int $note): self
+    {
+        $this->note = $note;
 
         return $this;
     }
