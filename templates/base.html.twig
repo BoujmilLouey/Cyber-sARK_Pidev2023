@@ -262,7 +262,7 @@
         </li>
         {% endif %}
         {% endif %}
-        
+        {% if not app.user %}
         <li>
             <a href="login">
                 Login
@@ -275,6 +275,15 @@
                 
             </a>
         </li>
+        {% else %}
+         <li>
+            <a  href="{{ path('profile', {'username': app.user.username})}}">
+                Profile
+                
+            </a>
+        </li>
+        {% endif %}
+
         <li class=" nk-drop-item">
             <a href="tournaments.html">
                 Tournaments

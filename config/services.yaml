@@ -8,6 +8,9 @@ parameters:
     
 
 services:
+    App\Security\EmailVerifier:
+        bind:
+            $emailSender: '%env(MAILER_FROM)%'
     app.validator.image_dimensions:
         class: App\Validator\Constraints\ImageDimensionsValidator
         tags:

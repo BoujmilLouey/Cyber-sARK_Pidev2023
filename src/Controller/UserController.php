@@ -3,22 +3,81 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Form\UserType;
 use App\Form\UserRoleType;
+use App\Form\SearchUserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 #[Route('/user')]
 class UserController extends AbstractController
 {
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository , PaginatorInterface $paginator , Request $request): Response
     {
+        $query = $this->getDoctrine()->getRepository(User::class)->createQueryBuilder('u');
+
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5 // items per page
+        );
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'pagination' => $pagination,
+        ]);
+    }
+    #[Route('/bymail', name: 'bymail')]
+    public function listUserByEmail(UserRepository $repo, Request $request)
+    {
+
+        $userByMail = $repo->orderByMail();
+        $searchForm = $this->createForm(SearchUserType::class);
+        $searchForm->add("Recherche", SubmitType::class);
+        $searchForm->handleRequest($request);
+
+        
+        return $this->render('user/listByMail.html.twig', [
+            "UserByMail" => $userByMail,
+        ]);
+    }
+    #[Route('/byusername', name: 'byusername')]
+    public function listUserByUsername(UserRepository $repo, Request $request)
+    {
+
+        $userByUsername = $repo->orderByUsername();
+        $searchForm = $this->createForm(SearchUserType::class);
+        $searchForm->add("Recherche", SubmitType::class);
+        $searchForm->handleRequest($request);
+
+        
+        return $this->render('user/listByUsername.html.twig', [
+            "UserByUsername" => $userByUsername,
+        ]);
+    }
+    #[Route('/listUserVerified', name: 'listUserVerified')]
+    public function listUserVerified(UserRepository $repo)
+    {
+
+        $userByVerified = $repo->findVerifiedUser();
+        return $this->render('user/listUsersVerified.html.twig', [
+            "UserByVerified" => $userByVerified,
+        ]);
+    }
+    #[Route('/listUserBanned', name: 'listUserBanned')]
+    public function listUserBanned(UserRepository $repo)
+    {
+
+        $userByBanned = $repo->findBannedUser();
+        return $this->render('user/listUsersBanned.html.twig', [
+            "UserByBanned" => $userByBanned,
         ]);
     }
 
@@ -96,4 +155,33 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/{id}/ban', name: 'user_ban', methods: ['GET', 'POST'])]   
+    public function ban(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('ban'.$user->getId(), $request->request->get('_token'))) {
+
+            $user->setIsBanned(true);
+
+
+            $entityManager->flush();
+
+
+        }
+        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/{id}/unban', name: 'user_unban', methods: ['GET', 'POST'])]   
+    public function unban(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('unban'.$user->getId(), $request->request->get('_token'))) {
+
+            $user->setIsBanned(false);
+
+
+            $entityManager->flush();
+
+
+        }
+        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+    
 }

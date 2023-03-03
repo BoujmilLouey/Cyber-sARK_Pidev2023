@@ -39,6 +39,7 @@ class ProfileController extends AbstractController
 
             return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
+    
 
         return $this->renderForm('profile/edit.html.twig', [
             'user' => $user,

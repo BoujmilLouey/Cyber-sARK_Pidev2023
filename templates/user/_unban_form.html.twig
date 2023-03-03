@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('user_unban', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to unban this User?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('unban' ~ user.id) }}">
+    <button class="btn">UnBan</button>
+</form>
