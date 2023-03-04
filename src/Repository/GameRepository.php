@@ -17,22 +17,17 @@ use Doctrine\Persistence\ManagerRegistry;
 class GameRepository extends ServiceEntityRepository
 {
 
-public function search($query, $category)
-{
-    $qb = $this->createQueryBuilder('p');
-
-    if ($query) {
-        $qb->andWhere('p.name LIKE :query OR p.description LIKE :query')
-           ->setParameter('query', '%'.$query.'%');
+    function searchQB($name)
+    {
+        $result =  $this->createQueryBuilder('game')
+            ->where('game.name LIKE ?1')
+            ->setParameter('1', '%' . $name . '%')->getQuery()->getResult();
+        
+        return $result;
     }
 
-    if ($category) {
-        $qb->andWhere('p.category = :category')
-           ->setParameter('category', $category);
-    }
 
-    return $qb->getQuery()->getResult();
-}
+
 
 
     public function __construct(ManagerRegistry $registry)
@@ -58,28 +53,28 @@ public function search($query, $category)
         }
     }
 
-//    /**
-//     * @return Game[] Returns an array of Game objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Game[] Returns an array of Game objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //            ->andWhere('g.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('g.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Game
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Game
+    //    {
+    //        return $this->createQueryBuilder('g')
+    //            ->andWhere('g.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

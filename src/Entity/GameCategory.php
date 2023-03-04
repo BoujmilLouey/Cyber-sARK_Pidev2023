@@ -76,4 +76,8 @@ class GameCategory
 
         return $this;
     }
+    public function showGamesByCategory(gameCategory $gameCategory)
+{
+    // Your DQL query to fetch games in the given category
+}
 }

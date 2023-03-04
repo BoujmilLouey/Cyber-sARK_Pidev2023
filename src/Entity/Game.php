@@ -18,19 +18,19 @@ class Game
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min:4,minMessage:"Veuillez entrer un nom de minimum 4 caractères")]
-    #[Assert\NotBlank(message:"Le nom est requis")]
-    private ?string $name = null;   
+    #[Assert\Length(min: 4, minMessage: "Veuillez entrer un nom de minimum 4 caractères")]
+    #[Assert\NotBlank(message: "Le nom est requis")]
+    private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min:5,minMessage:"Veuillez entrer un commentaire de minimum 5 caractères")]
+    #[Assert\Length(min: 5, minMessage: "Veuillez entrer un commentaire de minimum 5 caractères")]
     private ?string $description = null;
 
 
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $image = null;
 
-   
+
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'games')]
     private ?self $gameCategory = null;
@@ -39,27 +39,21 @@ class Game
     private Collection $games;
 
 
-    
+
     #[ORM\ManyToOne(inversedBy: 'games')]
     private ?GameCategory $gameCategorie = null;
 
 
-    /**
-     * @ORM\OneToMany(targetEntity=GameRating::class, mappedBy="game", orphanRemoval=true)
-     */
-    private $ratings;
+    #[ORM\OneToMany(mappedBy: 'game_id', targetEntity: Scores::class)]
+    private Collection $score;
 
-   
 
-    /**
-     * @return Collection|GameRating[]
-     */
 
 
     public function __construct()
     {
         $this->games = new ArrayCollection();
-        $this->ratings = new ArrayCollection();
+        $this->score = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,7 +96,7 @@ class Game
 
         return $this;
     }
-   
+
 
     public function getGameCategorie(): ?GameCategory
     {
@@ -116,46 +110,34 @@ class Game
         return $this;
     }
 
-    
-    public function getRatings(): Collection
+
+    /**
+     * @return Collection<int, Scores>
+     */
+    public function getScore(): Collection
     {
-        return $this->ratings;
+        return $this->score;
     }
-    public function addRating(GameRating $rating): self
+
+    public function addScore(Scores $score): self
     {
-        if (!$this->ratings->contains($rating)) {
-            $this->ratings[] = $rating;
-            $rating->setGame($this);
+        if (!$this->score->contains($score)) {
+            $this->score->add($score);
+            $score->setGameId($this);
         }
 
         return $this;
     }
-    public function removeRating(GameRating $rating): self
+
+    public function removeScore(Scores $score): self
     {
-        if ($this->ratings->contains($rating)) {
-            $this->ratings->removeElement($rating);
+        if ($this->score->removeElement($score)) {
             // set the owning side to null (unless already changed)
-            if ($rating->getGame() === $this) {
-                $rating->setGame(null);
+            if ($score->getGameId() === $this) {
+                $score->setGameId(null);
             }
         }
 
-        
         return $this;
     }
-
-    /**
-     * @return float|null
-     */
-    public function getAverageRating(): ?float
-    {
-        $sum = 0;
-        $count = 0;
-        foreach ($this->ratings as $rating) {
-            $sum += $rating->getRating();
-            $count++;
-        }
-        return $count > 0 ? round($sum / $count, 1) : null;
-    }
-   
 }

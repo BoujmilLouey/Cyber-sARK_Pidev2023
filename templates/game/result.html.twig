@@ -1,17 +1,23 @@
-{# templates/game/result.html.twig #}
-
 {% extends 'base_BACK.html.twig' %}
 
 {% block body %}
-    <h1>Félicitation, vous avez bien Jouer! </h1>
+	<h1>Félicitation, vous avez bien Jouer!
+	</h1>
 
-    <h3>Votre score est : {{ score }}</h3>
-    
-   <div class="nk-gap-2"></div>
-	<h4>Si vous voulez rejouer cliquer ici  ... <a href="{{ path('play_game') }}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Rejouer</a>!</h4>
-	</div>
-<h4>Sinon, vous pouvez <a href="{{ path('app_game_index') }}"> retourner a la liste </a> des jeux </h4>
+	<h3>Votre score est :
+		{{ score }}</h3>
 
-<p> A la prochaine..!</p>
-    {# Ajoutez ici d'autres éléments d'affichage des scores ou de liens pour jouer à nouveau #}
-{% endblock %}
+	<div class="nk-gap-2"></div>
+	<h4>Si vous voulez rejouer cliquer ici  ...
+		<a href="{{ path('play_game',{id:game.id}) }}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Rejouer</a>!</h4>
+</div>
+<h4>Sinon, vous pouvez
+	<a href="{{ path('app_game_index') }}">
+		retourner a la liste
+	</a>
+	des jeux
+</h4>
+
+<p>
+	A la prochaine..!</p>
+{# Ajoutez ici d'autres éléments d'affichage des scores ou de liens pour jouer à nouveau #}{% endblock %}

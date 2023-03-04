@@ -1,0 +1,9 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block body %}
+    <h1>Games in category {{ category.name }}</h1>
+
+    {% for game in games %}
+        <div>{{ game.name }}</div>
+    {% endfor %}
+{% endblock %}

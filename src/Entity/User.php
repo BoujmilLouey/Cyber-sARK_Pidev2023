@@ -43,9 +43,17 @@ class User
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Commande::class)]
     private Collection $commandes;
 
+    #[ORM\ManyToMany(targetEntity: Scores::class, mappedBy: 'user_id')]
+    private Collection $scores;
+
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Scores::class)]
+    private Collection $score;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->scores = new ArrayCollection();
+        $this->score = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,5 +185,40 @@ class User
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Scores>
+     */
+    public function getScores(): Collection
+    {
+        return $this->scores;
+    }
+
+    public function addScore(Scores $score): self
+    {
+        if (!$this->scores->contains($score)) {
+            $this->scores->add($score);
+            $score->addUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScore(Scores $score): self
+    {
+        if ($this->scores->removeElement($score)) {
+            $score->removeUserId($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Scores>
+     */
+    public function getScore(): Collection
+    {
+        return $this->score;
     }
 }

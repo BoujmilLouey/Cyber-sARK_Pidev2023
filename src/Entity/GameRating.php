@@ -65,7 +65,7 @@ class GameRating
 
     public function setRating(int $rating): self
     {
-        $this->rating = $rating;
+        $this->rating = $rating;    
 
         return $this;
     }

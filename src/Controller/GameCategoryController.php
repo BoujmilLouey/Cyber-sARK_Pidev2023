@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Doctrine\ORM\EntityManagerInterface;
 
 
 #[Route('/game/category')]
@@ -25,6 +25,13 @@ class GameCategoryController extends AbstractController
             'games' => $gameRepository->findAll(),
         ]);
     }
+    #[Route('/recherche', name: 'game_recherche', methods: ['GET'])]
+    public function recherche( GameCategoryRepository $gameCategoryRepository, Request $request)
+    {
+        $motcle=$request->get('motcle');
+        return $this->render('base_BACK.html.twig', [
+            'game_categories' => $gameCategoryRepository->findBy(array('name'=>$motcle)),
+        ]);}
 
     #[Route('/new', name: 'app_game_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, GameCategoryRepository $gameCategoryRepository): Response
@@ -88,4 +95,21 @@ class GameCategoryController extends AbstractController
 
         return $this->redirectToRoute('app_game_category_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/showgame', name: 'show_game_index', methods: ['GET'])]
+    public function showGamesByCategory(gameCategory $gameCategory,GameRepository $gameRepository, EntityManagerInterface $em)
+{
+    $dql = 'SELECT g FROM App\Entity\Game g
+            JOIN g.categories c
+            WHERE c.id = :gameCategoryId';
+
+    $query = $em->createQuery($dql)
+                ->setParameter('gameCategoryId', $gameCategory->getId());
+
+    $games = $query->getResult();
+
+    return $this->render('game_category/gameinC.html.twig', [
+            'games' => $gameRepository->findAll(),
+        ]);
+}
 }
