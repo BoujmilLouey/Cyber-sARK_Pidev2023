@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <h1>Commande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCommande</th>
+                <th>MontantCOmmande</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.montantCOmmande }}</td>
+                <td>
+                    <a href="{{ path('app_co_mobile_show', {'id': commande.id}) }}">show</a>
+                    <a href="{{ path('app_co_mobile_edit', {'id': commande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_co_mobile_new') }}">Create new</a>
+{% endblock %}

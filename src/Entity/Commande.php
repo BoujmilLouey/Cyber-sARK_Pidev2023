@@ -8,17 +8,20 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups("commande")]
     #[ORM\Column]
     private ?int $id = null;
-
+    #[Groups("commande")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCommande = null;
-
+    #[Groups("commande")]
     #[ORM\Column]
     private ?float $montantCOmmande = null;
 
@@ -37,7 +40,12 @@ class Commande
     {
         return $this->id;
     }
+    public function setid(int $id): self
+    {
+        $this->id = $id;
 
+        return $this;
+    }
     public function getDateCommande(): ?\DateTimeInterface
     {
         return $this->dateCommande;
@@ -106,5 +114,7 @@ class Commande
     public function __toString() {
         return $this->user;
     }
+   
+   
 
 }

@@ -38,7 +38,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataPanier", "total"));
     }
 
-    #[Route('/add/{id}', name: 'add', methods: ['GET', 'POST'])]
+    #[Route('/add/{id}', name: 'add')]
     public function add(Produit $product, SessionInterface $session)
     {
         // On récupère le panier actuel
@@ -46,18 +46,24 @@ class CartController extends AbstractController
         $id = $product->getId();
 
         if(!empty($panier[$id])){
+            if(($panier[$id] < 10)) {
             $panier[$id]++;
+            
+            $this->addFlash('success', 'Votre produit a été ajouté au panier');
+            }
+            else
+            {
+                $this->addFlash('warning', 'Vous avez atteint la limite de 10 produits pour ce produit');
+            }
         }else{
             $panier[$id] = 1;
+            $this->addFlash('success', 'Votre produit a été ajouté au panier');
         }
 
-        // On sauvegarde dans la session
+        
         $session->set("panier", $panier);
-        $this->addFlash('success', 'Votre produit a ete ajouter au panier');
-
         return $this->redirectToRoute("cart_index");
     }
-
     #[Route('/remove/{id}', name: 'remove', methods: ['GET'])]
     public function remove(Produit $product, SessionInterface $session)
     {
@@ -100,10 +106,33 @@ class CartController extends AbstractController
 
     #[Route('/delete', name: 'delete_all')]
     public function deleteAll(SessionInterface $session)
-    {
+    {  
+       
+    
         $session->remove("panier");
         $this->addFlash('success', 'Votre panier a ete vider');
-
         return $this->redirectToRoute("cart_index");
+        
+         
     }
+
+
+
+
+
+
+
+
+
+
+
+    
+    // #[Route('/detail/{id}', name: 'detail', methods: ['GET'])]
+    // public function show(LigneCommande $commande): Response
+    // {
+
+    //     return $this->render('cart/show.html.twig', [
+    //         'commande' => $commande,
+    //     ]);
+    // }
 }

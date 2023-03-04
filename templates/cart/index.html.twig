@@ -509,11 +509,23 @@
 
         </table>
     {% endblock %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+         </div>
+        {% endfor %}
+        {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning">
+            {{ message }}
+         </div>
+        {% endfor %}
 {% endblock %}
         </div>
         <div class="nk-gap-1"></div>
-        <a class="nk-btn nk-btn-rounded nk-btn-color-white float-right" href="{{path("commande")}}">Valider</a>
-
+        <a class="nk-btn nk-btn-rounded nk-btn-color-white float-right" href="{{path("commande")}}">Valider</a> <a href="/produit">Store</a>
+ 
+                
+            
         <div class="clearfix"></div>
         <div class="nk-gap-2"></div>
         <div class="row vertical-gap">

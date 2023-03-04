@@ -1,40 +1,61 @@
 {% extends 'base_BACK.html.twig' %}
     {% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  -webkit-text-decoration-color: black; /* Safari */  
+  text-decoration-color: black;
+}
 
-        <center><h1>Les commandes</h1></center>
+</style>
+</head>
+<body>
+        <center><h1>La Liste  des commandes</h1></center>
         <tr>
+         
+
+              <a href="{{path('stat')}}" class="btn btn-success" style="background-color:#008CBA;"> Statistique </a>
+                            <a href="{{path('print-pdf')}}" class="btn btn-success" style="background-color:#29293d;"> imprimer </a>
+
             
-            </a>
+            
         </tr>
         <tr>
-           
             </a>
         </tr>
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
+               
                 <th>Quantité</th>
-                <th>IdCommande</th>
-                <th>IdProduit</th>
+                <th>DateCommande</th>
+                <th>NomProduit</th>
                 <th>Price</th>
             </tr>
             </thead>
             <tbody>
             {% for commandes in commandes %}
                 <tr>
-                    <td>{{ commandes.id}}</td>
                    <td>{{ commandes.Quantite  }}</td>
-                    <td>{{ commandes.commande.id }}</td>
-                    <td>{{ commandes.produit.id }}</td>
+                    <td>{{ commandes.commande.dateCommande|date }}</td>
+                    <td>{{ commandes.produit.nom }}</td>
                     <td>{{ commandes.Price }}</td>
+                    <td>
+                    <a href="{{ path('detail', {'id': commandes.id}) }}" class="btn btn-success" style="background-color:#4CAF50;">Détails</a>
+                                        <a href="{{ path('delete', {'id': commandes.id}) }}" class="btn btn-success" style="background-color:#f44336;">Delete</a>
 
+                    </td>
                 </tr>
             {% endfor %}
 
             </tbody>
 
         </table>
+        </body>
                             </div>
                         </div>
                     </div>
