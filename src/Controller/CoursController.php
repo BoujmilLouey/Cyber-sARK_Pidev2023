@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Cours;
+use App\Entity\commentaire;
 use App\Form\CoursType;
 use App\Repository\CoursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\public\uploads;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -39,6 +41,48 @@ class CoursController extends AbstractController
     }
 
 
+    //pdf 
+
+    #[Route('/pdf', name: 'app_cours_pdf', methods: ['GET'])]
+    public function pdf(CoursRepository $coursRepository) //Response
+    {
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $cours = $coursRepository->findAll();
+
+
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('cours/pdf.html.twig', [
+            'cours' => $cours,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+    }
+
+
+
+
+
+
+
 
 
     #[Route('/new', name: 'app_cours_new', methods: ['GET', 'POST'])]
@@ -50,65 +94,7 @@ class CoursController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $coursRepository->save($cour, true);
-            //pdf start
-            /*
-            $pdf = $form->get('pdf')->getData();
 
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($pdf) {
-                $originalFilename = pathinfo($pdf->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $pdf->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $pdf->move(
-                        $this->getParameter('/uploads/pdf'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'pdfname' property to store the PDF file name
-                // instead of its contents
-                $cour->setPdf($newFilename);
-            }
-
-            //pdf end
-
-
-            //video start
-
-            $video = $form->get('video')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the video file must be processed only when a file is uploaded
-            if ($video) {
-                $originalFilename = pathinfo($video->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $video->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $video->move(
-                        $this->getParameter('/uploads/video'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'videoname' property to store the video file name
-                // instead of its contents
-                $cour->setvideo($newFilename);
-            }
-
-            //video end
-*/
 
 
 
@@ -132,23 +118,11 @@ class CoursController extends AbstractController
     #[Route('/{id}/detail', name: 'detail', methods: ['GET'])]
     public function show_detail(Cours $cour): Response
     {
-        return $this->render('cours/blog-article.html.twig', [
+        return $this->render('blog-article.html.twig', [
             'cour' => $cour,
         ]);
     }
-    //public function show_detail(EntityManagerInterface $em): Response
-    //  {
-    //      $coursRepository = $em->getRepository(Cours::class);
-    //      $cour = $coursRepository->findOneBy([], ['id' => 'ASC']); // fetch the first Cours object from the database
-    //
-    //      return $this->render(
-    //          'cours/blog-article.html.twig',
-    //          [
-    //              'cour' => $cour,
-    //          ]
-    //      );
-    //}
-    //fin de route 
+
 
 
     #[Route('/{id}/edit', name: 'app_cours_edit', methods: ['GET', 'POST'])]

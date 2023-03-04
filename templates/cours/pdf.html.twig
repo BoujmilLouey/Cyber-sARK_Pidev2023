@@ -1,0 +1,29 @@
+{% extends 'blog-article.html.twig' %}
+
+{% block body %}
+	<h1>Cours index</h1>
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Description</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for cour in cours %}
+				<tr>
+					<td>{{ cour.id }}</td>
+					<td>{{ cour.nom }}</td>
+					<td>{{ cour.description }}</td>
+				</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}

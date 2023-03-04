@@ -1,5 +1,6 @@
 {% extends 'com.html.twig' %}
 
+
 {% block title %}Commentaire
 {% endblock %}
 
@@ -15,6 +16,10 @@
 			<tr>
 				<th>Contenu</th>
 				<td>{{ commentaire.contenu }}</td>
+			</tr>
+			<tr>
+				<th>Note</th>
+				<td>{{ commentaire.note }}</td>
 			</tr>
 		</tbody>
 	</table>

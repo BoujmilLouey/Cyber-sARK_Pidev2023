@@ -24,9 +24,6 @@ class Cours
 
 
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $pdf = null;
-
 
 
     public function getId(): ?int
@@ -54,22 +51,6 @@ class Cours
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-
-
-
-
-    public function getPdf(): ?string
-    {
-        return $this->pdf;
-    }
-
-    public function setPdf(string $pdf): self
-    {
-        $this->pdf = $pdf;
 
         return $this;
     }

@@ -1,5 +1,6 @@
 {% extends 'com.html.twig' %}
 
+
 {% block title %}Commentaire index
 {% endblock %}
 
@@ -19,6 +20,7 @@
 				<tr>
 					<td>{{ commentaire.id }}</td>
 					<td>{{ commentaire.contenu }}</td>
+					<td>{{ commentaire.note }}</td>
 					<td>
 						<a href="{{ path('app_commentaire_show', {'id': commentaire.id}) }}">show</a>
 						<a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}">edit</a>

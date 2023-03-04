@@ -66,28 +66,28 @@
 
 
 	<!--
-																																																																				    Additional Classes:
-																																																																				        .nk-page-boxed
-																																																																				-->
+																																																																							    Additional Classes:
+																																																																							        .nk-page-boxed
+																																																																							-->
 	<body>
 
 
 		<!--
-																																																																																																																																							    Additional Classes:
-																																																																																																																																							        .nk-header-opaque
-																																																																																																																																							-->
+																																																																																																																																													    Additional Classes:
+																																																																																																																																													        .nk-header-opaque
+																																																																																																																																													-->
 		<header
 			class="nk-header nk-header-opaque">
 
 
 			<!--
-																																																																																																																																																																																													        START: Navbar
-																																																																																																																																																																																													
-																																																																																																																																																																																													        Additional Classes:
-																																																																																																																																																																																													            .nk-navbar-sticky
-																																																																																																																																																																																													            .nk-navbar-transparent
-																																																																																																																																																																																													            .nk-navbar-autohide
-																																																																																																																																																																																													    -->
+																																																																																																																																																																																																						        START: Navbar
+																																																																																																																																																																																																						
+																																																																																																																																																																																																						        Additional Classes:
+																																																																																																																																																																																																						            .nk-navbar-sticky
+																																																																																																																																																																																																						            .nk-navbar-transparent
+																																																																																																																																																																																																						            .nk-navbar-autohide
+																																																																																																																																																																																																						    -->
 			<nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
 				<div class="container">
 					<div class="nk-nav-table">
@@ -314,14 +314,14 @@
 
 
 		<!--
-																																																																																																																																			    START: Navbar Mobile
-																																																																																																																																			
-																																																																																																																																			    Additional Classes:
-																																																																																																																																			        .nk-navbar-left-side
-																																																																																																																																			        .nk-navbar-right-side
-																																																																																																																																			        .nk-navbar-lg
-																																																																																																																																			        .nk-navbar-overlay-content
-																																																																																																																																			-->
+																																																																																																																																									    START: Navbar Mobile
+																																																																																																																																									
+																																																																																																																																									    Additional Classes:
+																																																																																																																																									        .nk-navbar-left-side
+																																																																																																																																									        .nk-navbar-right-side
+																																																																																																																																									        .nk-navbar-lg
+																																																																																																																																									        .nk-navbar-overlay-content
+																																																																																																																																									-->
 		<div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
 			<div class="nano">
 				<div class="nano-content">
@@ -424,10 +424,11 @@
 
 											<tr>
 												<td>{{ commentaire.contenu }}</td>
+												<td>{{ commentaire.note }}</td>
 
 												<td>
-													<a href="{{ path('app_commentaire_edit', {'id': commentaire.id_cours_id}) }}">Edit</a>
-													<form action="{{ path('app_commentaire_delete', {'id': commentaire.id_cours_id}) }}" method="post">
+													<a href="{{ path('app_commentaire_edit', {'id': commentaire.id_cours}) }}">Edit</a>
+													<form action="{{ path('app_commentaire_delete', {'id': commentaire.id_cours}) }}" method="post">
 														<input type="hidden" name="_method" value="DELETE">
 														<button type="submit">Delete</button>
 													</form>

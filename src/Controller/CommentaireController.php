@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
@@ -22,13 +23,9 @@ class CommentaireController extends AbstractController
     }
 
 
-    #[Route('/front', name: 'commentaire', methods: ['GET'])]
-    public function index_detail(CommentaireRepository $commentaireRepository): Response
-    {
-        return $this->render('commentaire/com.html.twig', [
-            'commentaires' => $commentaireRepository->findAll(),
-        ]);
-    }
+
+
+
 
 
     #[Route('/new', name: 'app_commentaire_new', methods: ['GET', 'POST'])]
@@ -38,8 +35,15 @@ class CommentaireController extends AbstractController
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 
+
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             $commentaireRepository->save($commentaire, true);
+
+
+
 
             return $this->redirectToRoute('app_commentaire_index', [], Response::HTTP_SEE_OTHER);
         }
