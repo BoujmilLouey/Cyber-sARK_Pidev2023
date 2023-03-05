@@ -1,20 +1,16 @@
-{% extends 'base_BACK.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-    <h1>Notez le jeu {{ game.name }}</h1>
+{% block body %}
+	<h1>Notez le jeu
+		{{ game.name }}</h1>
 
-    {% if app.user %}
-        {{ form_start(form) }}
-        {{ form_row(form.rating) }}
-        {{ form_row(form.comment) }}
-        <button type="submit">Noter</button>
-        {{ form_end(form) }}
-    {% else %}
-        <p>Vous devez être connecté pour noter ce jeu.</p>
-    {% endif %}
+	{#  {% if app.user %}  #}
+	{{ form_start(form) }}
+	{{ form_row(form.rating) }}
+	{# {{ form_row(form.comment) }} #}
+	<button type="submit">Noter</button>
+	{{ form_end(form) }}
+	{#	{% else %} 
+				<p>Vous devez être connecté pour noter ce jeu.</p>
+			{% endif %}#}
 {% endblock %}
-
-
-
-
-

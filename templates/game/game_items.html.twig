@@ -8,22 +8,31 @@
 				<h3 class="nk-product-title h5">
 					<a>{{ game.name}}</a>
 				</h3>
-				<div class="nk-gap-1"></div>
-				<div class="nk-product-rating" data-rating="3">
+
+
+				<div class="nk-product-rating" data-rating="2">
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 					<i class="fa fa-star"></i>
 					<i class="far fa-star"></i>
 					<i class="far fa-star"></i>
+
 				</div>
-				<div class="nk-gap-1"></div>
-				<div class="nk-gap-2"></div>
-				<h6>
-					{{ game.description }}</h6>
+				<p>Note moyenne :
+					{{ game.averageRating() }}</p>
+
+				<div class="nk-gap-0.5"></div>
 
 
-				<div class="nk-gap-2"></div>
 				<a href="{{ path('play_game',{id:game.id}) }}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Jouer</a>
+				<div class="nk-gap-1"></div>
+
+				<p>
+					<a href="{{ path('game_rate', {id: game.id}) }}" onclick="return confirm('Etes vous sûr de Participer {{ game.name() }}')">
+						<button class="btn btn-primary">Noter ce jeu</button>
+					</a>
+				</p>
+
 			</div>
 		</div>
 	</div>

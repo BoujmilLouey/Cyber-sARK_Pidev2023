@@ -62,22 +62,28 @@ class GameController extends AbstractController
     /**
      * @Route("/games/{id}/rate", name="game_rate")
      */
-    public function rate(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    public function rate(Request $request, Game $game, EntityManagerInterface $entityManager, UserRepository $userRepository, $id, GameRepository $gameRepository): Response
     {
-        $rating = new GameRating();
-        $form = $this->createForm(GameRatingType::class, $rating);
+        $gameRating = new GameRating();
+        $form = $this->createForm(GameRatingType::class, $gameRating);
+        $user = $userRepository->find(1);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $rating->setGame($game);
-            $rating->setUser($this->getUser());
-            $entityManager = $this->$entityManager()->getManager();
-            $entityManager->persist($rating);
-            $entityManager->flush();
+            $game = $gameRepository->find($id);
+            $rate = $request->get("game_rating")['rating'];
+            $gameRating->setRating($rate);
+            $gameRating->setGame($game);
+            $gameRating->setUser($this->getUser());
+            $game->addRating($gameRating);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($game, $gameRating);
+            $em->flush();
 
             $this->addFlash('success', 'Votre note a été enregistrée.');
 
-            return $this->redirectToRoute('game_show', ['id' => $game->getId()]);
+            return $this->redirectToRoute('app_game_index', ['id' => $game->getId()]);
         }
 
         return $this->render('game/rate.html.twig', [
@@ -86,7 +92,7 @@ class GameController extends AbstractController
         ]);
     }
 
- 
+
 
     #[Route('/search', name: 'app_game_search', methods: ['POST'])]
     public function searchGame(gameRepository $gameRepository, Request $request, SerializerInterface $serializerInterface): Response
