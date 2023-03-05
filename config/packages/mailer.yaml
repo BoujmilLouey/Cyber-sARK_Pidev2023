@@ -1,7 +1,3 @@
 framework:
     mailer:
-        
-        transport: 'smtp://localhost:25'
-            
-                
-               
+        dsn: '%env(MAILER_DSN)%'

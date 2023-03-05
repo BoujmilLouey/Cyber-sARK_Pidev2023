@@ -64,17 +64,13 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $email = (new Email())
-            ->from('noreply@example.com')
-            ->to($user->getEmail())
-            ->subject('Please Confirm your Email')
-            ->html($this->renderView('email/confirmation.html.twig', [
-                'signedUrl' => $signedUrl,
-                'expiresAtMessageKey' => $expiresAtMessageKey,
-                'expiresAtMessageData' => $expiresAtMessageData,
-            ]));
-
-        $emailVerifier->sendEmailConfirmation('app_verify_email', $user, $email);
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email2', $user,
+            (new TemplatedEmail())
+                ->from(new Address('noreply.cyberark@gmail.com', 'CyberARK mail Bot'))
+                ->to($user->getEmail())
+                ->subject('Please Confirm your Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+        );
 
 
             return $guardHandler->authenticateUserAndHandleSuccess(

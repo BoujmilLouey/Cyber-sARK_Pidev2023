@@ -9,25 +9,21 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
-use Symfony\Component\Mailer\Transport\Smtp\SmtpTransport;
-
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Mime\Address;
 
 class EmailVerifier
 {
-    private $mailer;
     private $verifyEmailHelper;
-    private $emailSender;
+    private $mailer;
+    private $entityManager;
 
-    public function __construct(MailerInterface $mailer, VerifyEmailHelperInterface $helper)
+    public function __construct(VerifyEmailHelperInterface $helper, MailerInterface $mailer, EntityManagerInterface $manager)
     {
-        $this->mailer = $mailer;
         $this->verifyEmailHelper = $helper;
-        
+        $this->mailer = $mailer;
+        $this->entityManager = $manager;
     }
 
-    public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, Email $email): void
+    public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
@@ -41,14 +37,6 @@ class EmailVerifier
         $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
 
         $email->context($context);
-        $email->from(new Address('louey.boujmil@esprit.tn'))
-              ->to(new Address($user->getEmail()));
-
-        $transport = new SmtpTransport('smtp.gmail.com', 587);
-        $transport->setUsername('louey.boujmil');
-        $transport->setPassword('Loulou_b_2100');
-
-        $this->mailer = new Mailer($transport);
 
         $this->mailer->send($email);
     }
@@ -60,7 +48,7 @@ class EmailVerifier
     {
         $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
 
-        $user->setIsVerified(true);
+        $user->setIsVerified(1);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
