@@ -6,6 +6,7 @@ use App\Entity\Cours;
 use App\Entity\commentaire;
 use App\Form\CoursType;
 use App\Repository\CoursRepository;
+use App\Repository\CalendarRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,56 +25,76 @@ use Doctrine\ORM\EntityManagerInterface;
 class CoursController extends AbstractController
 {
     #[Route('/', name: 'app_cours_index', methods: ['GET'])]
-    public function index(coursRepository $coursRepository): Response
+    public function index(coursRepository $coursRepository, CalendarRepository $calendarRepository): Response
     {
         return $this->render('cours/index.html.twig', [
             'cours' => $coursRepository->findAll(),
+            //'calendars' => $calendarRepository->findAll(),
         ]);
     }
+
 
 
     #[Route('/front', name: 'app_cours1_index', methods: ['GET'])]
-    public function index_front(CoursRepository $coursRepository): Response
+    public function index_front(CoursRepository $coursRepository, CalendarRepository $calendarRepository): Response
     {
+
         return $this->render('cours/index_front.html.twig', [
             'cours' => $coursRepository->findAll(),
+
         ]);
     }
 
+
+
+    #[Route('/cal', name: 'app_cal_index', methods: ['GET'])]
+    public function index_cal(CoursRepository $coursRepository, CalendarRepository $calendarRepository): Response
+    {
+        $events = $calendarRepository->findAll();
+        $rdvs = [];
+
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitle(),
+                'allDay' => $event->isAllDay(),
+            ];
+        }
+        $data = json_encode($rdvs);
+
+        return $this->render('cours/cal.html.twig', [
+            'cours' => $coursRepository->findAll(),
+            'data' => $data,
+        ]);
+    }
+
+
+
+
+    // 'cours' => $coursRepository->findAll(),
 
     //pdf 
 
     #[Route('/pdf', name: 'app_cours_pdf', methods: ['GET'])]
-    public function pdf(CoursRepository $coursRepository) //Response
+
+    public function generatePdf(CoursRepository $coursRepository)
     {
+        $data = $this->getDoctrine()->getRepository(cours::class)->findAll();
 
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-        $cours = $coursRepository->findAll();
-
-
-
-        // Retrieve the HTML generated in our twig file
         $html = $this->renderView('cours/pdf.html.twig', [
-            'cours' => $cours,
+            'data' => $coursRepository->findAll(),
         ]);
 
-        // Load HTML to Dompdf
+        $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
-
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render the HTML as PDF
         $dompdf->render();
 
-        // Output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => true
+        $pdfOutput = $dompdf->output();
+
+        return new Response($pdfOutput, 200, [
+            'Content-Type' => 'application/pdf'
         ]);
     }
 

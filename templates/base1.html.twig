@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>GoodGames | Community and Store HTML Game Template</title>
+
+		<meta name="description" content="GoodGames - Bootstrap template for communities and games store">
+		<meta name="keywords" content="game, gaming, template, HTML template, responsive, Bootstrap, premium">
+		<meta name="author" content="_nK">
+
+		<link rel="icon" type="image/png" href="{{ asset('FrontOffice/assets/images/favicon.png')}}">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- START: Styles -->
+		<!-- START: calendar -->
+	</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous"> {% block stylesheets %}{% endblock %}
+		</head>
+		<body>
+			{% block body %}{% endblock %}
+
+			<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+			{% block javascripts %}{% endblock %}
+		</body>
+
+		<!-- end: calandar-->
+
+
+	</html>

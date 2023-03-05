@@ -14,7 +14,7 @@
 				<th>Id</th>
 				<th>Nom</th>
 				<th>Description</th>
-				<th>Pdf</th>
+
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -24,7 +24,7 @@
 					<td>{{ cour.id }}</td>
 					<td>{{ cour.nom }}</td>
 					<td>{{ cour.description }}</td>
-					<td>{{ cour.pdf }}</td>
+
 					<td>
 						<a href="{{ path('app_cours_show', {'id': cour.id}) }}">show</a>
 						<a href="{{ path('app_cours_edit', {'id': cour.id}) }}">edit</a>
