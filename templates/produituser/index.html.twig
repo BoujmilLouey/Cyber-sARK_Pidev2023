@@ -519,11 +519,11 @@
     {% for produit in produits %}
         <div class="col-md-6 col-lg-4">
             <div class="nk-gallery-item-box">
-            {% for item in items|paginate(10) %}
+            
                 <a href="{{ path('app_store_show', {'id': produit.id}) }}" class="nk-gallery-item">
                     <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
                     <img src="{{ asset(produit.image, 'images') }}" alt="She was bouncing"> 
-            
+                
                 </a>
                 <div class="nk-gallery-item-label">
                     <h4 class="mb-0">{{produit.reference}}</h4>
@@ -846,9 +846,6 @@
 <script src="{{ asset('FrontOffice/assets/js/goodgames-init.js')}}"></script>
 <!-- END: Scripts -->
 
-{% for item in items|paginate(10, page) %}
-    {{ item.name }}
-{% endfor %}
 
     
 </body>
