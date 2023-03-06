@@ -50,6 +50,19 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?CategorieProduit $categorie = null;
 
+    private $query;
+
+    public function getQuery(): ?string
+    {
+        return $this->query;
+    }
+
+    public function setQuery(string $query): self
+    {
+        $this->query = $query;
+
+        return $this;
+    } 
     public function getId(): ?int
     {
         return $this->id;
@@ -151,5 +164,14 @@ class Produit
         $this->categorie = $categorie;
 
         return $this;
+
     }
+
+
+    public function __toString()
+    {
+        return $this->id;
+    }
+
+
 }

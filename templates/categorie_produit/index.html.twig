@@ -14,14 +14,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for categorie_produit in categorie_produits %}
+        {% for c in categorie_produits %}
             <tr>
-                <td>{{ categorie_produit.id }}</td>
-                <td>{{ categorie_produit.type }}</td>
-                <td>{{ categorie_produit.reference }}</td>
+                <td>{{ c.id }}</td>
+                <td>{{ c.type }}</td>
+                <td>{{ c.reference }}</td>
                 <td>
-                    <a href="{{ path('app_categorie_produit_show', {'id': categorie_produit.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_produit_edit', {'id': categorie_produit.id}) }}">edit</a>
+                    <a href="{{ path('app_categorie_produit_show', {'id': c.id}) }}">show</a>
+                    <a href="{{ path('app_categorie_produit_edit', {'id': c.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

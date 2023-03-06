@@ -4,7 +4,7 @@
 {% extends 'base_BACK.html.twig' %}
 {% block body %}
     
-              
+{{form(searchProduit)}} 
     <table class="table">
         <thead>
             <tr>
@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for produit in produits %}
+        {% for produit in resultOfSearch  %}
             <tr>
                 <td>{{ produit.id }}</td>
                 <td>{{ produit.nom }}</td>
@@ -37,8 +37,11 @@
                 
                 
                 <td>
+                    <a href="{{path('stat')}}" class="btn btn-success" style="background-color:#008CBA;"> Statistique </a>
+
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
                     <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+
                      {{ include('produit/_delete_form.html.twig') }}
                 </td>
             </tr>

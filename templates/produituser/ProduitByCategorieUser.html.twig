@@ -339,20 +339,12 @@
         </li>
                     </ul>
         </li>
-        <li class="active nk-drop-item">
-            <a href"/store">
-                Store
-                
-            </a><ul class="dropdown">
+       <li><a href="/store">Store</a></li>
+       <ul class="dropdown">
                         
-        <li class="active">
-            <a href"/store">
-                Store
-                
-            </a>
-        </li>
+       <li><a href="/store">Store</a></li>
         <li>
-            <a href"store-product.html">
+            <a href"/store">
                 Product
                 
             </a>
@@ -441,13 +433,13 @@
 <div class="container">
     <ul class="nk-breadcrumbs">
         
-        
-        <li><a href"index.html">Home</a></li>
-        
+        <li class="active">
+        <li><a href"/home">Home</a></li>
+        </li>
         
         <li><span class="fa fa-angle-right"></span></li>
         
-        <li><span>Store</span></li>
+       <li><a href="/store">Store</a></li>
         
     </ul>
 </div>
@@ -497,38 +489,18 @@
     <!-- END: Categories -->
 
     <!-- START: Some Products -->
-    {% block body %}
     
-    <form method="post">
-        <div class="form-group">
-            <label for="tri_descendant">Trier par prix descendant :</label>
-            <input type="checkbox" id="tri_descendant" name="tri_descendant" value="1" {% if tri_descendant %}checked{% endif %}>
-        
-         
-            <label for="tri_ascendant">Trier par prix ascendant :</label>
-            <input type="checkbox" id="tri_ascendant" name="tri_ascendant" value="1" {% if tri_ascendant %}checked{% endif %}>
-        </div>
-        <button type="submit" class="btn btn-primary">Trier</button>
-    </form>
-    <ul>
-      
-      {% endblock %}
     <div class="nk-gap-2"></div>
     <div class="row vertical-gap">
- 
-    {% for produit in produits %}
+    {% for produit in produit %}
         <div class="col-md-6 col-lg-4">
             <div class="nk-gallery-item-box">
-            {% for item in items|paginate(10) %}
                 <a href="{{ path('app_store_show', {'id': produit.id}) }}" class="nk-gallery-item">
                     <span class="nk-gallery-item-overlay"><span><span class="nk-icon-circles"></span></span></span>
                     <img src="{{ asset(produit.image, 'images') }}" alt="She was bouncing"> 
-            
                 </a>
                 <div class="nk-gallery-item-label">
                     <h4 class="mb-0">{{produit.reference}}</h4>
-                    <h4 class="mb-0">{{produit.prix }} Dt</h4>
-
                 </div>
             </div>
         </div>
@@ -583,8 +555,8 @@
         </div>
     </div>
     <!-- END: Some Products -->
-    <div class="center">
    
+
 
 
     <!-- START: Most Popular -->
@@ -604,17 +576,24 @@
         <div class="row vertical-gap">
             <div class="col-md-6">
                 <div class="nk-widget">
-                    
+                    <h4 class="nk-widget-title"><span class="text-main-1">Contact</span> With Us</h4>
+                    <div class="nk-widget-content">
+                        <form action="php/ajax-contact-form.php" class="nk-form nk-form-ajax">
+                            <div class="row vertical-gap sm-gap">
                                 <div class="col-md-6">
-                                    <h4>Veuillez nous proposez des articles a vendres </h4>
-   </div>
-   <form action="{{ path('upload') }}" method="POST" enctype="multipart/form-data">
-    <input type="file" name="fineUploader" multiple />
-    <button type="submit">Envoyer</button>
-</form>
+                                    <input type="email" class="form-control required" name="email" placeholder="Email *">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control required" name="name" placeholder="Name *">
                                 </div>
                             </div>
-                            
+                            <div class="nk-gap"></div>
+                            <textarea class="form-control required" name="message" rows="5" placeholder="Message *"></textarea>
+                            <div class="nk-gap-1"></div>
+                            <button class="nk-btn nk-btn-rounded nk-btn-color-white">
+                                <span>Send</span>
+                                <span class="icon"><i class="ion-paper-airplane"></i></span>
+                            </button>
                             <div class="nk-form-response-success"></div>
                             <div class="nk-form-response-error"></div>
                         </form>
@@ -777,7 +756,6 @@
         </div>
     </div>
 </div>
-
 <!-- END: Login Modal -->
 
     
@@ -846,9 +824,6 @@
 <script src="{{ asset('FrontOffice/assets/js/goodgames-init.js')}}"></script>
 <!-- END: Scripts -->
 
-{% for item in items|paginate(10, page) %}
-    {{ item.name }}
-{% endfor %}
 
     
 </body>

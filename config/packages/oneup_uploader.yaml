@@ -1,0 +1,7 @@
+oneup_uploader:
+    mappings:
+        gallery:
+            storage:
+                type: filesystem
+            frontend: blueimp
+            allowed_mimetypes: []

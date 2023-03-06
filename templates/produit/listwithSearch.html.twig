@@ -4,7 +4,9 @@
 {% extends 'base_BACK.html.twig' %}
 {% block body %}
     
-              
+{{form(searchProduit)}} 
+ <a href="{{path('stat')}}" class="btn btn-success" style="background-color:#008CBA;"> Statistique </a>
+
     <table class="table">
         <thead>
             <tr>
@@ -37,6 +39,8 @@
                 
                 
                 <td>
+                   
+
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
                     <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
                      {{ include('produit/_delete_form.html.twig') }}

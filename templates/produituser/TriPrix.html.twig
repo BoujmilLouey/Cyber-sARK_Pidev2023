@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="tri_descendant">Trier par prix descendant :</label>
+            <input type="checkbox" id="tri_descendant" name="tri_descendant" value="1" {% if tri_descendant %}checked{% endif %}>
+        </div>
+        <div class="form-group">
+            <label for="tri_ascendant">Trier par prix ascendant :</label>
+            <input type="checkbox" id="tri_ascendant" name="tri_ascendant" value="1" {% if tri_ascendant %}checked{% endif %}>
+        </div>
+        <button type="submit" class="btn btn-primary">Trier</button>
+    </form>
+    <ul>
+        {% for produit in produits %}
+            <li>{{ produit.nom }} - {{ produit.prix }} €</li>
+        {% endfor %}
+     {% endblock %}

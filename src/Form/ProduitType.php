@@ -27,7 +27,14 @@ class ProduitType extends AbstractType
             ]
             )
 
-            ->add('image')
+            ->add('image',FileType::class, [
+                'label' => 'Image',
+                'mapped' => false,
+                'required' => false,
+                'data_class' => null,
+                
+                
+                ])
             ->add('prix',NumberType::class, [
                 'label' => 'Product Price',
                 

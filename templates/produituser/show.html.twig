@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-    
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -23,6 +23,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('FrontOffice/assets/vendor/bootstrap/dist/css/bootstrap.min.css')}}">
+    
 
     <!-- FontAwesome -->
     <script defer src="{{ asset('FrontOffice/assets/vendor/fontawesome-free/js/all.js')}}"></script>
@@ -340,17 +341,13 @@
                     </ul>
         </li>
         <li class="active nk-drop-item">
-            <a href="/store">
-                Store
+            <a href="{{path('app_store_index')}}" Store </a> </li>
+            
                 
-            </a><ul class="dropdown">
+            
+            {# <ul class="dropdown">
                         
-        <li>
-            <a href="/store">
-                Store
-                
-            </a>
-        </li>
+      
         <li class="active">
             <a href="store-product.html">
                 Product
@@ -383,7 +380,7 @@
         </li>
                     </ul>
         </li>
-                </ul>
+                </ul> #}
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
                     
                         <li class="single-icon d-lg-none">
@@ -442,12 +439,12 @@
     <ul class="nk-breadcrumbs">
         
         
-        <li><a href="index.html">Home</a></li>
+        <li> <a href="{{path('app_store_index')}}" Store </a> </li>
         
         
         <li><span class="fa fa-angle-right"></span></li>
         
-        <li><a href="store.html">Store</a></li>
+        <li><a href="/store">Store</a></li>
         
         
         <li><span class="fa fa-angle-right"></span></li>
@@ -537,7 +534,7 @@
             <div class="row vertical-gap">
                 
                 
-                {% for produit in produits %}
+                
                 <div class="col-md-6">
                     <div class="nk-product-cat">
                    
@@ -561,7 +558,7 @@
                         </div>
                     </div>
                 </div>
-                  {% endfor %}
+                  
                 
               
                 
@@ -600,12 +597,12 @@
 <div class="nk-widget nk-widget-highlighted">
     <h4 class="nk-widget-title"><span><span class="text-main-1">Category</span> Menu</span></h4>
     <div class="nk-widget-content">
+    
         <ul class="nk-widget-categories">
-            <li><a href="#"> Accessories and Peripherals</a></li>
-            <li><a href="#"> Laptop</a></li>
-            <li><a href="#"> Computer Component</a></li>
-             <li><a href="#">Desktop Computer</a></li>
-              <li><a href="#">Internal Disks</a></li>
+
+        {% for c in category %}
+            <li><a href="{{ path('List_By_Categorie', {'id': c.id}) }}"> {{ c.type }}</a></li>
+            {% endfor %}
             
            
         </ul>
@@ -621,7 +618,8 @@
                 data-slider-min="0"
                 data-slider-max="1800"
                 data-slider-step="1"
-                data-slider-value="[200, 1200]"
+                
+                data-slider-value=""
                 data-slider-tooltip="hide"
             >
             <div class="nk-gap"></div>
@@ -632,6 +630,7 @@
                     -
                     <strong class="text-main-1">€ <span class="nk-input-slider-value-1"></span></strong>
                 </div>
+                
                 <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white float-right">Apply</a>
             </div>
             <div class="clearfix"></div>
