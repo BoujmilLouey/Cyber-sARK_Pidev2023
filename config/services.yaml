@@ -5,9 +5,21 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     Images: '%kernel.project_dir%/public/FrontOffice/assets/images'
+    game_images_directory: '%kernel.project_dir%/public/FrontOffice/assets/images'
     
 
 services:
+    twilio.client:
+       class: Twilio\Rest\Client
+       arguments: ['%twilio_sid%', '%twilio_token%']
+    Twilio\Rest\Client: '@twilio.client'
+    App\Security\EmailVerifier:
+        bind:
+            $emailSender: '%env(MAILER_FROM)%'
+    app.validator.image_dimensions:
+        class: App\Validator\Constraints\ImageDimensionsValidator
+        tags:
+            - { name: validator.constraint_validator }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

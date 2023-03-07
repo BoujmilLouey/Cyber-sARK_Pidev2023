@@ -63,4 +63,30 @@ class UserRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function orderByMail()
+{
+    return $this->createQueryBuilder('s')
+        ->orderBy('s.email', 'ASC')
+        ->getQuery()->getResult();
+}
+public function orderByUsername()
+{
+    return $this->createQueryBuilder('s')
+        ->orderBy('s.username', 'ASC')
+        ->getQuery()->getResult();
+}
+public function findVerifiedUser(){
+
+    $qb= $this->createQueryBuilder('s');
+    $qb ->where('s.isVerified=:isVerified');
+    $qb->setParameter('isVerified',true);
+    return $qb->getQuery()->getResult();
+}
+public function findBannedUser(){
+
+    $qb= $this->createQueryBuilder('s');
+    $qb ->where('s.isBanned=:isBanned');
+    $qb->setParameter('isBanned',true);
+    return $qb->getQuery()->getResult();
+}
 }

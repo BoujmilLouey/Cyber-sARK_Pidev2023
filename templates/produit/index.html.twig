@@ -1,0 +1,54 @@
+
+
+
+{% extends 'base_BACK.html.twig' %}
+{% block body %}
+    
+              
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Reference</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th>Couleur</th>
+                <th>Poids</th>
+                <th>Categorie</th>
+                <th>Description</th>
+              
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.reference }}</td>
+                <td><img src="{{ asset(produit.image, 'images') }}" alt="My Image" width="50" height="50"></td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.couleur }}</td>
+                <td>{{ produit.poids }}</td>
+                 <td>{{ produit.categorie.type  }}</td>
+                   
+                 <td>{{ produit.description }}</td>
+                
+                
+                <td>
+                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
+                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+                     {{ include('produit/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_new') }}">Create new</a>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\CategorieProduit;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -63,4 +64,61 @@ class ProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function searchProduit($nom)
+{
+    return $this->createQueryBuilder('s')
+        ->andWhere('s.nom LIKE :nom')
+        ->setParameter('nom', '%'.$nom.'%')
+        ->getQuery()
+        ->execute();    
 }
+
+
+
+            public function findByCategory($id)
+            {
+                return $this->createQueryBuilder('p')
+                    ->join('p.categorie', 'c')
+                    ->addSelect('c')
+                    ->where('c.id=:id')
+                    ->setParameter('id',$id)
+                    ->getQuery()
+                    ->getResult();
+            }
+
+
+
+
+
+            public function countByPrix(){
+                        
+                $query = $this->getEntityManager()->createQuery("
+                    SELECT SUBSTRING(a.prix, 1, 10) as prix, COUNT(a) as count FROM App\Entity\Produit a GROUP BY prix
+                ");
+                
+                
+                return $query->getResult();
+            }
+
+
+            public function findByPriceAsc()
+{
+    return $this->createQueryBuilder('p')
+        ->orderBy('p.prix', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
+
+public function findByPriceDesc()
+{
+    return $this->createQueryBuilder('p')
+        ->orderBy('p.prix', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
+
+
+
+                }
+            

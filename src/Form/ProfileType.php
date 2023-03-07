@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use App\Validator\Constraints\ImageSize;
 
 class ProfileType extends AbstractType
 {
@@ -26,6 +27,14 @@ class ProfileType extends AbstractType
                 'label' => 'Image (JPG, PNG or GIF file)',
                 'mapped' => false,
                 'required' => true,
+                'constraints' => [
+                    new ImageSize([
+                        'minWidth' => 100,
+                        'minHeight' => 100,
+                        'maxWidth' => 800,
+                        'maxHeight' => 800,
+                    ]),
+                ],
             ])
             ->add('naissance',DateType::class, [
                 'widget' => 'choice',

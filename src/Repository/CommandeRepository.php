@@ -38,6 +38,28 @@ class CommandeRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function countByDate(){
+
+        $query = $this->getEntityManager()->createQuery("
+            SELECT SUBSTRING(a.dateCommande, 1, 10) as dateCommande, COUNT(a) as count FROM App\Entity\Commande a GROUP BY dateCommande
+        ");
+        return $query->getResult();
+    }
+
+    // public function findByCommande($com)
+    // {
+    //     $entityManager = $this->getEntityManager();
+    //     $query = $entityManager->createQuery(
+    //         'SELECT p
+    //         FROM App\Entity\Produit p
+    //         JOIN p.commande c
+    //         WHERE c.id = :com
+    //         ORDER BY p.Nom ASC'
+    //     )->setParameter('com', $com);
+
+    //     return $query->getResult();
+    // }  
+   
 
 //    /**
 //     * @return Commande[] Returns an array of Commande objects

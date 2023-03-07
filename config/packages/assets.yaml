@@ -3,3 +3,5 @@ framework:
         packages:
             images:
                 base_path: 'FrontOffice/assets/images'
+            game_images_directory:
+                base_path: 'FrontOffice/assets/images'

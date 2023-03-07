@@ -13,38 +13,70 @@ class Commentaire
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $contenue = null;
+    //#[ORM\ManyToOne]
+    //#[ORM\JoinColumn(nullable: false)]
+    //private ?Cours $id_cours = null;
 
-    #[ORM\ManyToOne(inversedBy: 'id_commentaire')]
-    private ?Cours $cours = null;
+    #[ORM\Column(length: 255)]
+    private ?string $contenu = null;
+
+    #[ORM\Column]
+    private ?int $note = null;
+    //
+    // #[ORM\ManyToOne]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?User $id_user = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContenue(): ?string
+    // public function getIdCours(): ?Cours
+    // {
+    //     return $this->id_cours;
+    // }
+
+    // public function setIdCours(?Cours $id_cours): self
+    // {
+    //     $this->id_cours = $id_cours;
+    //
+    //     return $this;
+    // }
+
+    public function getContenu(): ?string
     {
-        return $this->contenue;
+        return $this->contenu;
     }
 
-    public function setContenue(string $contenue): self
+    public function setContenu(string $contenu): self
     {
-        $this->contenue = $contenue;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
-    public function getCours(): ?Cours
+    public function getNote(): ?int
     {
-        return $this->cours;
+        return $this->note;
     }
 
-    public function setCours(?Cours $cours): self
+    public function setNote(int $note): self
     {
-        $this->cours = $cours;
+        $this->note = $note;
 
         return $this;
     }
+
+    //public function getIdUser(): ?User
+    //{
+    //    return $this->id_user;
+    //}
+    //
+    //public function setIdUser(?User $id_user): self
+    //{
+    //    $this->id_user = $id_user;
+    //
+    //    return $this;
+    //}
 }

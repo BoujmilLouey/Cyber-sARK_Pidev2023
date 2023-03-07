@@ -1,0 +1,30 @@
+
+
+{% extends 'base_BACK.html.twig' %}
+
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+    <table class="table">
+        <tbody>
+           {# {% for commande in commande %}#}
+            <tr>
+                <th>Quantite Commande</th>
+                <td>{{commande.Quantite}}</td>
+            </tr>
+            <tr>
+              <th>Nom Produit</th>
+               {# {% for produit in commande.getProduit() %}#}
+                <td>{{ commande.produit.nom }}</td> 
+                {# {% endfor %}  #}
+               </tr>
+                <tr>
+                <th>Total</th>
+                <td>{{ commande.Price }}</td>  
+            </tr>
+            
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block manel %}
+	<h1>Notez le jeu
+		{{ game.name }}</h1>
+
+     {% if app.user %}
+		{{ form_start(form) }}
+		{{ form_row(form.rating) }}
+		<button type="submit">Noter</button>
+		{{ form_end(form) }}
+	{% else %}
+		<p>Vous devez être connecté pour noter ce jeu.</p>
+	{% endif %}
+{% endblock %}

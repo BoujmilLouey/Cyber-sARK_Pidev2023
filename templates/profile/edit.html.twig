@@ -117,56 +117,23 @@
         <div class="nk-contacts-right">
             <ul class="nk-contacts-icons">
                 
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#modalSearch">
-                        <span class="fa fa-search"></span>
-                    </a>
-                </li>
                 
                 
+                {% if app.user %}
                 <li>
-                    <a href="login" data-toggle="modal" data-target="#modalLogin">
+                    <a href="{{ path('profile', {'username': app.user.username})}}" data-toggle="modal" data-target="#modalLogin"> 
                         <span class="fa fa-user"></span>
                     </a>
                 </li>
+                {% endif %}
                 
                 
                 <li>
-                    <span class="nk-cart-toggle">
+                     <a href="/cart" class="nk-cart-toggle">
                         <span class="fa fa-shopping-cart"></span>
-                        <span class="nk-badge">27</span>
-                    </span>
-                    <div class="nk-cart-dropdown">
                         
-                        <div class="nk-widget-post">
-                            <a href="store-product.html" class="nk-post-image">
-                                <img src="{{ asset('FrontOffice/assets/images/product-5-xs.jpg')}}" alt="In all revolutions of">
-                            </a>
-                            <h3 class="nk-post-title">
-                                <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                <a href="store-product.html">In all revolutions of</a>
-                            </h3>
-                            <div class="nk-gap-1"></div>
-                            <div class="nk-product-price">€ 23.00</div>
-                        </div>
-                        
-                        <div class="nk-widget-post">
-                            <a href="store-product.html" class="nk-post-image">
-                                <img src="{{ asset('FrontOffice/assets/images/product-7-xs.jpg')}}" alt="With what mingled joy">
-                            </a>
-                            <h3 class="nk-post-title">
-                                <a href="#" class="nk-cart-remove-item"><span class="ion-android-close"></span></a>
-                                <a href="store-product.html">With what mingled joy</a>
-                            </h3>
-                            <div class="nk-gap-1"></div>
-                            <div class="nk-product-price">€ 14.00</div>
-                        </div>
-                        
-                        <div class="nk-gap-2"></div>
-                        <div class="text-center">
-                            <a href="store-checkout.html" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white">Proceed to Checkout</a>
-                        </div>
-                    </div>
+                    </a>
+                    
                 </li>
                 
             </ul>
@@ -189,203 +156,87 @@
         <div class="container">
             <div class="nk-nav-table">
                 
-                <a href="/home" class="nk-nav-logo">
+                <a href="/" class="nk-nav-logo">
                     <img src="{{ asset('FrontOffice/assets/images/logo.png')}}" alt="GoodGames" width="199">
                 </a>
                 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
                     
+        <li>
+            <a href="/contact">
+                 Contact
+                
+            </a>
+        </li>
+       
         <li class=" nk-drop-item">
-            <a href="elements.html">
-                Features
-                
-            </a><ul class="dropdown">
-                        
+            <a href="/game">
+                Games
+            </a>
+        </li>
+        
+        {% if app.user %}
+        {% if 'ROLE_ADMIN' in app.user.roles %}
         <li>
-            <a href="elements.html">
-                Elements (Shortcodes)
+            <a href="/admin">
+                AdminTab
                 
             </a>
         </li>
-        <li class=" nk-drop-item">
-            <a href="forum.html">
-                Forum
-                
-            </a><ul class="dropdown">
-                        
+        {% endif %}
+        {% if 'ROLE_COACH' in app.user.roles %}
         <li>
-            <a href="forum.html">
-                Forum
+            <a href="">
+                CoachingTAB
                 
             </a>
         </li>
+        {% endif %}
+        {% endif %}
+        {% if not app.user %}
         <li>
-            <a href="forum-topics.html">
-                Topics
-                
-            </a>
-        </li>
-        <li>
-            <a href="forum-single-topic.html">
-                Single Topic
-                
-            </a>
-        </li>
-                    </ul>
-        </li>
-        <li>
-            <a href="widgets.html">
-                Widgets
-                
-            </a>
-        </li>
-        <li>
-            <a href="coming-soon.html">
-                Coming Soon
-                
-            </a>
-        </li>
-        <li>
-            <a href="offline.html">
-                Offline
-                
-            </a>
-        </li>
-        <li>
-            <a href="404.html">
-                404
-                
-            </a>
-        </li>
-                    </ul>
-        </li>
-        <li class=" nk-drop-item">
-            <a href="blog-list.html">
-                Blog
-                
-            </a><ul class="dropdown">
-                        
-        <li>
-            <a href="news.html">
-                News
-                
-            </a>
-        </li>
-        <li class=" nk-drop-item">
-            <a href="blog-grid.html">
-                Blog With Sidebar
-                
-            </a><ul class="dropdown">
-                        
-        <li>
-            <a href="blog-grid.html">
-                Blog Grid
-                
-            </a>
-        </li>
-        <li>
-            <a href="blog-list.html">
-                Blog List
-                
-            </a>
-        </li>
-                    </ul>
-        </li>
-        <li>
-            <a href="blog-fullwidth.html">
-                Blog Fullwidth
-                
-            </a>
-        </li>
-        <li>
-            <a href="blog-article.html">
-                Blog Article
-                
-            </a>
-        </li>
-                    </ul>
-        </li>
-        <li>
-            <a href="/login">
+            <a href="login">
                 Login
                 
             </a>
         </li>
+        <li>
+            <a href="register">
+                Join Us
+                
+            </a>
+        </li>
+        {% else %}
          <li>
-            <a href="/register">
-                Join Us 
+            <a  href="{{ path('profile', {'username': app.user.username})}}">
+                Profile
+                
+            </a>
+        </li>
+        {% endif %}
+
+        <li class=" nk-drop-item">
+            <a href="/cours/front">
+                Cours
                 
             </a>
         </li>
         <li class=" nk-drop-item">
-            <a href="tournaments.html">
-                Tournaments
-                
-            </a><ul class="dropdown">
-                        
-        <li>
-            <a href="tournaments.html">
-                Tournament
-                
-            </a>
-        </li>
-        <li>
-            <a href="tournaments-teams.html">
-                Teams
-                
-            </a>
-        </li>
-        <li>
-            <a href="tournaments-teammate.html">
-                Teammate
-                
-            </a>
-        </li>
-                    </ul>
-        </li>
-        <li class=" nk-drop-item">
-            <a href="store.html">
-                Store
-                
-            </a><ul class="dropdown">
-                        
-        <li>
-            <a href="store.html">
+            <a href="/store">
                 Store
                 
             </a>
+
         </li>
+
+        {% if app.user %}
         <li>
-            <a href="store-product.html">
-                Product
+            <a href="logout">
+                Logout 
                 
             </a>
         </li>
-        <li>
-            <a href="store-catalog.html">
-                Catalog
-                
-            </a>
-        </li>
-        <li>
-            <a href="store-catalog-alt.html">
-                Catalog Alt
-                
-            </a>
-        </li>
-        <li>
-            <a href="store-checkout.html">
-                Checkout
-                
-            </a>
-        </li>
-        <li>
-            <a href="store-cart.html">
-                Cart
-                
-            </a>
-        </li>
-                    </ul>
+        {% endif %}
         </li>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">

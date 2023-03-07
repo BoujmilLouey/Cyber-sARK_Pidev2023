@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('user_ban', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to ban this User?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('ban' ~ user.id) }}">
+    <button class="btn">Ban</button>
+</form>

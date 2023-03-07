@@ -1,0 +1,13 @@
+{% extends 'base_BACK.html.twig' %}
+
+{% block title %}Edit GameCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit GameCategory</h1>
+
+    {{ include('game_category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_game_category_index') }}">back to list</a>
+
+    {{ include('game_category/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,74 @@
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  -webkit-text-decoration-color: red; /* Safari */  
+  text-decoration-color: red;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+    <h1>Liste Des Commandes</h1>
+  
+
+        <table id="customers">
+
+            <thead>
+            <tr>
+               
+                <th>Quantité</th>
+                <th>DateCommande</th>
+                <th>NomProduit</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for commandes in data %}
+                <tr>
+                   <td>{{ commandes.Quantite  }}</td>
+                    <td>{{ commandes.commande.dateCommande|date }}</td>
+                    <td>{{ commandes.produit.nom }}</td>
+                    <td>{{ commandes.Price }}</td>
+                   
+                </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+             </body>
+</html>   
+{% endblock %}
+
+
+
+
+
