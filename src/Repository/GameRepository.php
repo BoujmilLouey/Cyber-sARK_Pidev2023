@@ -22,7 +22,7 @@ class GameRepository extends ServiceEntityRepository
         $result =  $this->createQueryBuilder('game')
             ->where('game.name LIKE ?1')
             ->setParameter('1', '%' . $name . '%')->getQuery()->getResult();
-        
+
         return $result;
     }
 
@@ -51,6 +51,16 @@ class GameRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+
+    function searchByCategorie($idcate)
+    {
+        $result =  $this->createQueryBuilder('game')
+            ->where('game.gameCategorie=:idcat')
+            ->setParameter('idcat', $idcate)->getQuery()->getResult();
+
+        return $result;
     }
 
     //    /**

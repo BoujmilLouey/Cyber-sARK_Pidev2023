@@ -8,27 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: GameRatingRepository::class)]
 class GameRating
 {
-     /**
-     * @ORM\ManyToOne(targetEntity=Game::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-
-     private $game;
-
-     public function getGame(): ?Game
-     {
-         return $this->game;
-     }
- 
-     public function setGame(?Game $game): self
-     {
-         $this->game = $game;
- 
-         return $this;
-     }
 
 
-      /**
+
+    /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
@@ -53,6 +36,9 @@ class GameRating
     #[ORM\Column]
     private ?int $rating = null;
 
+    #[ORM\ManyToOne(inversedBy: 'rating')]
+    private ?Game $game = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -65,7 +51,19 @@ class GameRating
 
     public function setRating(int $rating): self
     {
-        $this->rating = $rating;    
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): self
+    {
+        $this->game = $game;
 
         return $this;
     }

@@ -1,4 +1,5 @@
 {% for game in games %}
+	<script src="{{ asset('js/jquery.barrating.min.js') }}"></script>
 	<div class="col-lg-4">
 		<div class="nk-product-cat" style="padding: 10px;margin:bottom 30px;margin: left 50px;">
 			<a class="nk-product-image" href="store-product.html">
@@ -10,26 +11,39 @@
 				</h3>
 
 
-				<div class="nk-product-rating" data-rating="2">
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="fa fa-star"></i>
-					<i class="far fa-star"></i>
-					<i class="far fa-star"></i>
+				<!--<div class="nk-product-rating" data-rating="2">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="far fa-star"></i>
+													<i class="far fa-star"></i>
+								
+												</div>-->
 
+				<div class="nk-product-rating" data-rating="{{ game.averageRating }}">
+					{% for i in 1..5 %}
+						{% if i <= game.averageRating %}
+							<i class="fa fa-star"></i>
+						{% else %}
+							<i class="far fa-star"></i>
+						{% endif %}
+					{% endfor %}
 				</div>
+
 				<p>Note moyenne :
 					{{ game.averageRating() }}</p>
 
 				<div class="nk-gap-0.5"></div>
 
 
-				<a href="{{ path('play_game',{id:game.id}) }}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Jouer</a>
+				<a href="{{ path('play_game',{id:game.id}) }}" onclick="return confirm('Merci pour votre participation .. si vous voulez consulter votre score cliquer OK {{ game.name() }}')">
+					<button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Jouer</button>
+				</a>
 				<div class="nk-gap-1"></div>
 
 				<p>
-					<a href="{{ path('game_rate', {id: game.id}) }}" onclick="return confirm('Etes vous sûr de Participer {{ game.name() }}')">
-						<button class="btn btn-primary">Noter ce jeu</button>
+					<a href="{{ path('game_rate', {id: game.id}) }}" onclick="return confirm('Etes vous sûr de noter ce jeux {{ game.name() }}')">
+						<button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Noter ce jeu</button>
 					</a>
 				</p>
 

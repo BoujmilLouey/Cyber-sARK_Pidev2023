@@ -47,18 +47,16 @@ class Game
     #[ORM\OneToMany(mappedBy: 'game_id', targetEntity: Scores::class)]
     private Collection $score;
 
+    #[ORM\OneToMany(mappedBy: 'game', targetEntity: GameRating::class)]
+    private Collection $rating;
 
-    /**
-     * @ORM\OneToMany(targetEntity=GameRating::class, mappedBy="games")
-     */
-    private $ratings;
 
 
     public function __construct()
     {
         $this->games = new ArrayCollection();
         $this->score = new ArrayCollection();
-        $this->ratings = new ArrayCollection();
+        $this->rating = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,37 +144,12 @@ class Game
         return $this;
     }
 
-    public function getRatings(): Collection
-    {
-        return $this->ratings ?: new ArrayCollection();
-    }
-
-    public function addRating(GameRating $rating): self
-    {
-        $this->ratings[] = $rating;
-        $rating->setGame($this);
-
-        return $this;
-    }
-
-    public function removeRating(GameRating $rating): self
-    {
-        if ($this->ratings->removeElement($rating)) {
-            // set the owning side to null (unless already changed)
-            if ($rating->getGame() === $this) {
-                $rating->setGame(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function averageRating(): float
     {
         $sum = 0;
         $count = 0;
 
-        foreach ($this->getRatings() as $rating) {
+        foreach ($this->getRating() as $rating) {
             $sum += $rating->getRating();
             $count++;
         }
@@ -186,5 +159,35 @@ class Game
         } else {
             return 0;
         }
+    }
+
+    /**
+     * @return Collection<int, GameRating>
+     */
+    public function getRating(): Collection
+    {
+        return $this->rating;
+    }
+
+    public function addRating(GameRating $rating): self
+    {
+        if (!$this->rating->contains($rating)) {
+            $this->rating->add($rating);
+            $rating->setGame($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(GameRating $rating): self
+    {
+        if ($this->rating->removeElement($rating)) {
+            // set the owning side to null (unless already changed)
+            if ($rating->getGame() === $this) {
+                $rating->setGame(null);
+            }
+        }
+
+        return $this;
     }
 }

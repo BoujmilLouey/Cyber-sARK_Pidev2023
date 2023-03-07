@@ -10,6 +10,7 @@ use App\Entity\Scores;
 use App\Form\GameType;
 use App\Repository\GameRepository;
 use App\Repository\GameCategoryRepository;
+use App\Repository\GameRatingRepository;
 use App\Repository\ScoresRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,7 +49,7 @@ class GameController extends AbstractController
         $scoresRepository->save($score, true);
 
 
-        //  dd($score);
+
 
 
         return $this->render('game/result.html.twig', [
@@ -62,24 +63,30 @@ class GameController extends AbstractController
     /**
      * @Route("/games/{id}/rate", name="game_rate")
      */
-    public function rate(Request $request, Game $game, EntityManagerInterface $entityManager, UserRepository $userRepository, $id, GameRepository $gameRepository): Response
+    public function rate(Request $request, Game $game, EntityManagerInterface $entityManager, UserRepository $userRepository, $id, GameRepository $gameRepository, GameRatingRepository $gameRatingRepository): Response
     {
         $gameRating = new GameRating();
         $form = $this->createForm(GameRatingType::class, $gameRating);
         $user = $userRepository->find(1);
         $form->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
             $game = $gameRepository->find($id);
             $rate = $request->get("game_rating")['rating'];
             $gameRating->setRating($rate);
-            $gameRating->setGame($game);
-            $gameRating->setUser($this->getUser());
-            $game->addRating($gameRating);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($game, $gameRating);
+            //$gameRating->setGame($game);
+            $gameRating->setUser($user);
+            $em->persist($gameRating);
             $em->flush();
+            $game->addRating($gameRating);
+            $em->persist($game);
+            $em->flush();
+            //dd($game);
+
+            //$em->persist($game);
+            // dd($gameRating);
+            //$em->flush();
 
             $this->addFlash('success', 'Votre note a été enregistrée.');
 
@@ -142,22 +149,22 @@ class GameController extends AbstractController
         ]);
     }
 
-    # #[Route('/showallgames', name: 'show_gamee_index', methods: ['GET'])]
-    # public function gamesInCategoryAction($categorySlug): Response
-    # {
-    #    $gameCategory = $this->getDoctrine()->getRepository(GameCategory::class)->findOneBy(['slug' => $categorySlug]);
+    // #[Route('/showallgames', name: 'show_gameINc_index', methods: ['GET'])]
+    // public function gamesInCategoryAction($categorySlug): Response
+    // {
+    //     $gameCategory = $this->getDoctrine()->getRepository(GameCategory::class)->findOneBy(['slug' => $categorySlug]);
 
-    #     if (!$gameCategory) {
-    #        throw $this->createNotFoundException('La catégorie n\'existe pas.');
-    #    }
+    //     if (!$gameCategory) {
+    //         throw $this->createNotFoundException('La catégorie n\'existe pas.');
+    //     }
 
-    # $games = $this->getDoctrine()->getRepository(Game::class)->findBy(['game_categories' => $gameCategory]);
+    //     $games = $this->getDoctrine()->getRepository(Game::class)->findBy(['game_categories' => $gameCategory]);
 
-    # return $this->render('game/index_back.html.twig', [
-    #      'game_categories' => $gameCategory,
-    #     'games' => $games,
-    # ]);
-    #} 
+    //     return $this->render('game/gamincategorie.html.twig', [
+    //         'game_categories' => $gameCategory,
+    //         'games' => $games,
+    //     ]);
+    // }
 
 
 
@@ -251,6 +258,19 @@ class GameController extends AbstractController
 
         return $this->render('game/index.html.twig', [
             'pagination' => $pagination,
+        ]);
+    }
+
+
+
+    //////////////////////////////////
+
+    #[Route('/showbyCategorie/{idCate}', name: 'showbyCategorie', methods: ['GET'])]
+    public function showByCat($idCate, GameRepository $gameRepository, GameCategoryRepository $gameCategoryRepository): Response
+    {
+        return $this->render('game/gamincategorie.html.twig', [
+            'games' => $gameRepository->searchByCategorie($idCate),
+
         ]);
     }
 }
