@@ -157,7 +157,7 @@ private void handleEditOperation(){
           try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/AdminPanel.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
             closeStage();

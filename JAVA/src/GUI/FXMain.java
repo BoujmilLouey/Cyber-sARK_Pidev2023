@@ -106,7 +106,7 @@ public class FXMain extends Application {
             Scene scene = new Scene(p);
            
             primaryStage.getIcons().add(new Image("./Images/5edma.png"));
-            primaryStage.setTitle("5EDMA");
+            primaryStage.setTitle("Cyber'sARK");
             primaryStage.setFullScreen(false);
             primaryStage.setScene(scene);
             primaryStage.show();

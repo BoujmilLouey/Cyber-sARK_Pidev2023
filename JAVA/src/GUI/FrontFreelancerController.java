@@ -165,7 +165,7 @@ public class FrontFreelancerController  implements Initializable {
     }
 
     private Stage getStage() {
-        return (Stage) ButtonAnnonce.getScene().getWindow();
+        return (Stage) image_view.getScene().getWindow();
     }
  private void closeStage(ActionEvent event) {
         getStage().close();
@@ -175,9 +175,10 @@ public class FrontFreelancerController  implements Initializable {
   try {       
             Parent root=FXMLLoader.load(getClass().getResource("login.fxml"));
              Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("5edma");
-             closeStage(event);
+            stage.setTitle("Cyber'sARK");
+             
             stage.setScene(new Scene(root));
+            closeStage(event);
             stage.show();
             
               

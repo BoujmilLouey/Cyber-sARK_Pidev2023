@@ -69,12 +69,12 @@ public class ForgottenPassController{
         //String bb = generateVerificationCode();
 String lien = "http://127.0.0.1:8000 " ;
         String to = Email.getText();
-        String from = "kkhedma1@gmail.com";
+        String from = "louey.boujmil1@esprit.tn";
         String host = "smtp.gmail.com"; // replace with your SMTP server address
-        final String username = "kkhedma1@gmail.com";
-        final String password = "attrirnlkuijatin";
+        final String username = "louey.boujmil@esprit.tn";
+        final String password = "Loulou_b_2100";
         final String subject = "Password Reset Verification Code";
-        final String content = "Dear User,\n\nPlease use the following verification code to reset your password: %s\n\nYou can reset your password by clicking on the following link: %s\n\nRegards,\nYour Website Team";
+        final String content = "Dear User,\n\nPlease use the following verification code to reset your password: %s\n\nYour Website Team";
 
 
         // Set the email properties

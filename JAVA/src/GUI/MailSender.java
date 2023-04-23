@@ -60,8 +60,8 @@ public class MailSender {
              p.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         p.put("mail.smtp.port", "587");
         
-        String myAccountEmail = "kkhedma1@gmail.com";
-        String password = "attrirnlkuijatin";
+        String myAccountEmail = "louey.boujmil@esprit.tn";
+        String password = "Loulou_b_2100";
         
         Session session = Session.getInstance(p , new Authenticator() {
         @Override 

@@ -40,7 +40,7 @@ public class mainf extends Application {
             
             primaryStage.initStyle(StageStyle.DECORATED);
             primaryStage.getIcons().add(new Image("./Images/5edma.png"));
-            primaryStage.setTitle("5EDMA");
+            primaryStage.setTitle("Cyber'sARK");
             primaryStage.setFullScreen(false);
             primaryStage.setScene(scene);
             primaryStage.show();

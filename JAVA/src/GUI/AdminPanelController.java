@@ -54,7 +54,7 @@ public class AdminPanelController implements Initializable {
         try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/AddAdmin.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
             closeStage();
@@ -69,7 +69,7 @@ public class AdminPanelController implements Initializable {
                 try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/AdminList.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
              closeStage();
@@ -82,7 +82,7 @@ public class AdminPanelController implements Initializable {
                 try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/AddFreelancer.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
              closeStage();
@@ -96,7 +96,7 @@ public class AdminPanelController implements Initializable {
                 try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/FreelancerList.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
              closeStage();
@@ -109,7 +109,7 @@ public class AdminPanelController implements Initializable {
                         try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/AddClient.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
              stage.show();
@@ -123,7 +123,7 @@ public class AdminPanelController implements Initializable {
                         try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/ClientList.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {
@@ -152,7 +152,7 @@ public class AdminPanelController implements Initializable {
                                 try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/inscription.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {
@@ -164,7 +164,7 @@ public class AdminPanelController implements Initializable {
           try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/ClientList.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {
@@ -176,7 +176,7 @@ public class AdminPanelController implements Initializable {
         try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/FreelancerList.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException ex) {

@@ -50,7 +50,7 @@ public class SignInAsController implements Initializable {
                                 try {
             Parent root=FXMLLoader.load(getClass().getResource("/User/GUI/AddClient1.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
             closeStage();
@@ -64,7 +64,7 @@ public class SignInAsController implements Initializable {
                                         try {
             Parent root=FXMLLoader.load(getClass().getResource("/User/GUI/AddFreelancer1.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
             closeStage();

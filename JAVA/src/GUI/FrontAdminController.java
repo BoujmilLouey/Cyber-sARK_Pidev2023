@@ -34,7 +34,7 @@ public class FrontAdminController {
           try {
                Parent root=FXMLLoader.load(getClass().getResource("/GUI/Metier.fxml"));
                Stage stage = new Stage(StageStyle.DECORATED);
-               stage.setTitle("khedma");
+               stage.setTitle("Cyber'sARK");
                stage.setScene(new Scene(root));
                stage.show();
                closeStage();
@@ -48,7 +48,7 @@ public class FrontAdminController {
           try {
                Parent root=FXMLLoader.load(getClass().getResource("/GUI/Metier.fxml"));
                Stage stage = new Stage(StageStyle.DECORATED);
-               stage.setTitle("khedma");
+               stage.setTitle("Cyber'sARK");
                stage.setScene(new Scene(root));
                stage.show();
                closeStage();
@@ -69,7 +69,7 @@ public class FrontAdminController {
            try {
                Parent root=FXMLLoader.load(getClass().getResource("/GUI/AdminPanel.fxml"));
                Stage stage = new Stage(StageStyle.DECORATED);
-               stage.setTitle("khedma");
+               stage.setTitle("Cyber'sARK");
                stage.setScene(new Scene(root));
                stage.show();
                closeStage();
@@ -83,7 +83,7 @@ public class FrontAdminController {
                       try {
             Parent root=FXMLLoader.load(getClass().getResource("/GUI/login.fxml"));
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("khedma");
+            stage.setTitle("Cyber'sARK");
             stage.setScene(new Scene(root));
             stage.show();
              closeStage();
@@ -97,7 +97,7 @@ public class FrontAdminController {
          try {
                Parent root=FXMLLoader.load(getClass().getResource("Evenement.fxml"));
                Stage stage = new Stage(StageStyle.DECORATED);
-               stage.setTitle("khedma");
+               stage.setTitle("Cyber'sARK");
                stage.setScene(new Scene(root));
                stage.show();
                closeStage();

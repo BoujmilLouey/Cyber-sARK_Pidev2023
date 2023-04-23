@@ -19,7 +19,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="58.0" prefWidth="641.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="345.0" text="Inscription" textFill="#0888d6">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="345.0" text="Inscription" textFill="#d408a9">
                            <font>
                               <Font name="Arial Bold Italic" size="36.0" />
                            </font>
@@ -70,7 +70,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="96.0" prefWidth="707.0">
                            <children>
-                              <JFXButton fx:id="insert_image" onAction="#insertImage" prefHeight="64.0" prefWidth="433.0" styleClass="image-Buuton" text="Insert Image" textFill="#0888d6">
+                              <JFXButton fx:id="insert_image" onAction="#insertImage" prefHeight="64.0" prefWidth="433.0" styleClass="image-Buuton" text="Insert Image" textFill="#d408be">
                                  <font>
                                     <Font name="Arial Bold Italic" size="27.0" />
                                  </font>
@@ -102,12 +102,12 @@
                      <children>
                         <HBox prefHeight="77.0" prefWidth="707.0">
                            <children>
-                              <JFXButton onAction="#LoadCancel" prefHeight="64.0" prefWidth="360.0" styleClass="image-Buuton" text="Annuler" textFill="#0888d6">
+                              <JFXButton onAction="#LoadCancel" prefHeight="64.0" prefWidth="360.0" styleClass="image-Buuton" text="Annuler" textFill="#d408b6">
                                  <font>
                                     <Font name="Arial Bold Italic" size="27.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton onAction="#LoadAddAdmin" prefHeight="69.0" prefWidth="360.0" styleClass="image-Buuton" text="Ajouter" textFill="#0888d6">
+                              <JFXButton onAction="#LoadAddAdmin" prefHeight="69.0" prefWidth="360.0" styleClass="image-Buuton" text="Ajouter" textFill="#d408a5">
                                  <font>
                                     <Font name="Arial Bold Italic" size="27.0" />
                                  </font>
