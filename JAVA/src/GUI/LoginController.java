@@ -118,7 +118,7 @@ User ua = new User();
             alert.setContentText("email ou mot de passe incorrect");
             alert.show();
         }
-        if (su.validate(mail, pswd) == true) {
+        if (su.validate(mail, pswd) == true ) {
             try {
                 SingleMail smail = SingleMail.getInstance();
                 smail.setMail(mail);

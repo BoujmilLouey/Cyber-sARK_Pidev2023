@@ -16,6 +16,7 @@ public class User {
     private String nom, prenom, adresse, role, email, mdp;
     private String Image;
     private String GUserName;
+    private int archive;
 
     public User() {
     }

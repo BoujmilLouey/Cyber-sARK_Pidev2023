@@ -125,7 +125,7 @@ public class AdminListController implements Initializable {
 
     private void loadData() {
         list.clear();
-        String req = "SELECT * FROM user ";
+        String req = "SELECT * FROM `user`  WHERE `archive`='" + 0 + "' ";
 
         PreparedStatement pst;
         try {
