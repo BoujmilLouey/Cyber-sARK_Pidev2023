@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Form;
+<<<<<<< Updated upstream
 
+=======
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+>>>>>>> Stashed changes
 use App\Entity\Produit;
 
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -19,6 +23,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('nom',TextType::class, [
                 'label' => 'Product Name',
+<<<<<<< Updated upstream
                 
             ])
             ->add('reference',null,[
@@ -27,10 +32,41 @@ class ProduitType extends AbstractType
 
             ->add('image', FileType::class, [
                 'label' => 'Image (JPG, PNG or GIF file)',
+=======
+                'required' => true,
+                
+                'constraints' => [
+                    
+                    new Length([
+                        'min' => 2,
+                        'max' => 50,
+                    ]),
+                ],
+                'empty_data' => 'Default name',
+            ])
+            ->add('reference',TextType::class, [
+                'label' => 'Product Reference',
+                'required' => true,
+                
+                'constraints' => [
+                    
+                    new Length([
+                        'min' => 3,
+                        'max' => 50,
+                    ]),
+                ],
+                'empty_data' => 'Default reference',
+            ])
+            ->add('image',FileType::class, [
+                'label' => 'Image',
+                'mapped' => false,
+                'required' => false,
+>>>>>>> Stashed changes
                
             ])
             ->add('prix',NumberType::class, [
                 'label' => 'Product Price',
+<<<<<<< Updated upstream
                 
             ])
             ->add('couleur',TextType::class, [
@@ -46,6 +82,41 @@ class ProduitType extends AbstractType
             ->add('description',TextType::class, [
                 'label' => 'Product Description',
                
+=======
+                'required' => false,
+                'scale' => 2,
+            ])
+            ->add('couleur',TextType::class, [
+                'label' => 'Product Color',
+                'required' => true,
+                
+                'constraints' => [
+                    
+                    new Length([
+                        'min' => 3,
+                        'max' => 50,
+                    ]),
+                ],
+                'empty_data' => 'Default Color',
+            ])
+            ->add('poids',NumberType::class, [
+                'label' => 'Product Weight',
+                'required' => false,
+                'scale' => 2,
+            ])
+            ->add('description',TextType::class, [
+                'label' => 'Product Color',
+                'required' => true,
+                
+                'constraints' => [
+                    
+                    new Length([
+                        'min' => 3,
+                        'max' => 50,
+                    ]),
+                ],
+                'empty_data' => 'Default Decription',
+>>>>>>> Stashed changes
             ])
             ->add('id_categorie_produit',null,[
                 'label' => 'Categorie'])
