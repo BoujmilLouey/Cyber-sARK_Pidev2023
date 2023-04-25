@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="849.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanierController">
+   <children>
+      <HBox layoutY="-4.0" prefHeight="107.0" prefWidth="165.0">
+         <children>
+            <ImageView fitHeight="107.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="128.0" layoutY="64.0" prefHeight="47.0" prefWidth="774.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="113.0" text=" FEATURES">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="113.0" text="BLOG">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="113.0" text="LOGIN">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="113.0" text="JOI US">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#cart" prefHeight="46.0" prefWidth="113.0" text="CART">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#Store" prefHeight="74.0" prefWidth="100.0" text="STORE">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#panier" prefHeight="46.0" prefWidth="113.0" text="PANIER">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      
+      <Label fx:id="cart" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="123.0" prefHeight="36.0" prefWidth="86.0" text="PRODUIT" textFill="#0d0d0d">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Line endX="650.0000610351562" endY="-1.52587890625E-5" layoutX="274.0" layoutY="141.0" startX="-180.40000915527344" startY="-1.52587890625E-5" stroke="#ea2005" />
+      <TableView fx:id="textcart" layoutX="37.0" layoutY="165.0" prefHeight="202.0" prefWidth="875.0" style="-fx-background-color: ea2005;">
+        <columns>
+          <TableColumn fx:id="nomcol" prefWidth="123.19998550415039" text="Nom Produit" />
+            <TableColumn fx:id="refcol" minWidth="0.0" prefWidth="155.9999237060547" text="Reference" />
+            <TableColumn fx:id="prixcol" minWidth="0.0" prefWidth="99.20001220703125" text="Prix" />
+            <TableColumn fx:id="coulcol" minWidth="0.0" prefWidth="134.39996337890625" text="Couleur" />
+            <TableColumn fx:id="poidscol" minWidth="0.0" prefWidth="99.20013427734375" text="Poids" />
+            <TableColumn fx:id="desccol" minWidth="0.0" prefWidth="252.8000366210938" text="Description" />
+        </columns>
+      </TableView>
+      <HBox layoutX="655.0" layoutY="502.0" prefHeight="36.0" prefWidth="258.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="+" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="-" />
+            <Button mnemonicParsing="false" onAction="#EffacesProduit" style="-fx-background-color: ea2005;" text="Effacer Produit" textFill="#fcfbfb" />
+         </children>
+      </HBox>
+      <HBox layoutX="37.0" layoutY="776.0" prefHeight="36.0" prefWidth="467.0">
+         <children>
+            <Label text="Totale">
+               <font>
+                  <Font name="Algerian" size="23.0" />
+               </font>
+            </Label>
+            <TextField fx:id="totaltext" alignment="CENTER" style="-fx-translate-x: 50;" />
+            <Button mnemonicParsing="false" onAction="#calculer" prefHeight="32.0" prefWidth="90.0" style="-fx-translate-x: 100; -fx-background-color: #75cef4;" text="Calculer">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill></Button>
+         </children>
+      </HBox>
+      <Button layoutX="554.0" layoutY="425.0" mnemonicParsing="false" onAction="#addtoPanier" prefHeight="32.0" prefWidth="151.0" style="-fx-translate-x: 200; -fx-background-color: #597330;" text="add to Panier">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+      <TableView fx:id="panier" layoutX="37.0" layoutY="538.0" prefHeight="202.0" prefWidth="875.0" style="-fx-background-color: ea2005;">
+         <columns>
+            <TableColumn fx:id="prodid" prefWidth="350.4000053405762" text=" Produit" />
+            <TableColumn fx:id="qp" minWidth="0.0" prefWidth="319.20001220703125" text="quantité" />
+            <TableColumn fx:id="prix" minWidth="0.0" prefWidth="196.0" text="prix" />
+         </columns>
+      </TableView>
+      <Label fx:id="cart1" alignment="CENTER" contentDisplay="CENTER" layoutX="44.0" layoutY="471.0" prefHeight="36.0" prefWidth="76.0" text="PANIER" textFill="#121213">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Line endX="620.7999877929688" endY="-3.0517578125E-5" layoutX="304.0" layoutY="489.0" startX="-183.99998474121094" startY="-1.52587890625E-5" stroke="#ea2005" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="784.0" layoutY="770.0" mnemonicParsing="false" onAction="#Valider" prefHeight="34.0" prefWidth="139.0" style="-fx-background-color: #597330;" text="Valider Commande">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+      <Button layoutX="411.0" layoutY="770.0" mnemonicParsing="false" onAction="#Vider" prefHeight="32.0" prefWidth="151.0" style="-fx-translate-x: 200; -fx-background-color: fc8888;" text="Vider Panier" textFill="#ece8e8" />
+   </children>
+</AnchorPane>

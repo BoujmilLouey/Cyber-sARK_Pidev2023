@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="liste" prefHeight="430.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommandeController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="23.0" text="Liste Commande">
+         <font>
+            <Font name="System Bold Italic" size="44.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableview" layoutX="144.0" layoutY="113.0" prefHeight="237.0" prefWidth="626.0" style="-fx-background-color: fc8888;">
+        <columns>
+          <TableColumn fx:id="datecol" prefWidth="308.0" text="DateCommande" />
+            <TableColumn fx:id="montant" prefWidth="303.20001220703125" text="MontantCommande" />
+        </columns>
+      </TableView>
+      <VBox layoutY="62.0" prefHeight="374.0" prefWidth="144.0">
+         <children>
+            <ScrollPane prefHeight="381.0" prefWidth="144.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="144.0">
+                     <children>
+                        <Button layoutX="-1.0" mnemonicParsing="false" onAction="#user" prefHeight="26.0" prefWidth="144.0" text="List utilisateur" textFill="#ea2005" />
+                        <Button layoutY="26.0" mnemonicParsing="false" onAction="#commande" prefHeight="26.0" prefWidth="144.0" text="List commande" textFill="#ea2005" />
+                        <Button layoutY="52.0" mnemonicParsing="false" onAction="#cart" prefHeight="26.0" prefWidth="144.0" text="back To cart" textFill="#ea2005" />
+                        <Button layoutX="-1.0" layoutY="78.0" mnemonicParsing="false" onAction="#store" prefHeight="26.0" prefWidth="144.0" text="back to store" textFill="#ea2005" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <Label layoutX="695.0" layoutY="14.0" prefHeight="18.0" prefWidth="62.0" text="Cyber'ARK" textFill="#ea2005">
+         <font>
+            <Font name="Onyx" size="23.0" />
+         </font>
+      </Label>
+      <Button layoutX="11.0" layoutY="368.0" mnemonicParsing="false" onAction="#pdf" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: ea2005; -fx-translate-x: 150;" text="Print PDF">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+      <Button layoutX="375.0" layoutY="368.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: ea2005; -fx-translate-x: 300;" text="Supprimer">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+      <Button layoutX="486.0" layoutY="62.0" mnemonicParsing="false" onAction="#statistiques" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: ea2005; -fx-translate-x: 150;" text="Statistiques">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill></Button>
+      <ImageView fitHeight="44.0" fitWidth="48.0" layoutX="40.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Ressources/sonia.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
