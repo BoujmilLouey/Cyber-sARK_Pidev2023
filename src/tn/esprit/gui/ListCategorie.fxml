@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="655.0" prefWidth="876.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.ListCategorieController">
+   <children>
+      <TableView fx:id="tableCAT" layoutX="7.0" layoutY="124.0" prefHeight="376.0" prefWidth="561.0">
+        <columns>
+          <TableColumn fx:id="TableTy" prefWidth="237.5999816894531" text="Type" />
+          <TableColumn fx:id="TableRef" prefWidth="247.2000366449356" text="Reference" />
+        </columns>
+      </TableView>
+      <Line endX="-100.00003051757812" endY="350.0" layoutX="674.0" layoutY="326.0" startX="-100.00003051757812" startY="-326.0" />
+      <Label layoutX="208.0" layoutY="78.0" prefHeight="27.0" prefWidth="194.0" text="List Des Catégories">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="638.0" layoutY="194.0" text="Type">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="623.0" layoutY="273.0" text="Reference">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="champType" layoutX="691.0" layoutY="190.0" />
+      <TextField fx:id="ChampRef" layoutX="691.0" layoutY="269.0" />
+      <Button fx:id="BtnEnregistrer" layoutX="723.0" layoutY="355.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="96.0" text="Enregistrer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="BtnModifier" layoutX="85.0" layoutY="563.0" mnemonicParsing="false" onAction="#initierReclamation" prefHeight="26.0" prefWidth="81.0" text="Modifier">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSuprimer" layoutX="233.0" layoutY="561.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="82.0" text="Suprimer">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="393.0" layoutY="561.0" mnemonicParsing="false" onAction="#AjoutCatRoute" prefHeight="26.0" prefWidth="121.0" text="Ajouter Categorie">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="248.0" layoutY="609.0" mnemonicParsing="false" onAction="#afficherProduitRoute" prefHeight="26.0" prefWidth="106.0" text="Afficher Produit">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
