@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: #f5f5e6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pimomo.AffCours">
+    <children>
+        <TableView fx:id="table" layoutX="30.0" layoutY="119.0" prefHeight="264.0" prefWidth="541.0">
+            <columns>
+
+                <TableColumn fx:id="colnom" minWidth="5.0" prefWidth="140.0" text="nom" />
+                <TableColumn fx:id="coldesc" minWidth="1.0" prefWidth="341.0" text="description" />
+            <TableColumn fx:id="noteM" minWidth="1.0" prefWidth="59.0" text="note" />
+            </columns>
+        </TableView>
+        <AnchorPane layoutX="-3.0" layoutY="43.0" prefHeight="48.0" prefWidth="607.0" style="-fx-background-color: #8f00ff;">
+            <children>
+                <Label layoutX="280.0" layoutY="11.0" text="cours" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Button fx:id="home" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#onhome" text="Home" textAlignment="CENTER" textFill="RED">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button fx:id="Btele" layoutX="399.0" layoutY="399.0" mnemonicParsing="false" onAction="#ontele" prefHeight="27.0" prefWidth="88.0" text="telecharger" />
+
+    </children>
+</AnchorPane>

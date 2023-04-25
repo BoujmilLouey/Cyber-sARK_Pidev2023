@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pimomo.FXMLcomController">
+   <children>
+      <HBox layoutX="62.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="400.0" prefWidth="276.0">
+               <children>
+            
+                  <HBox prefHeight="52.0" prefWidth="406.0">
+                  </HBox>
+                 
+                  <HBox prefHeight="52.0" prefWidth="270.0">
+                     <children>
+                        <Label text="DESC" />
+                        <TextField fx:id="DESC" />
+                     </children>
+                  </HBox>
+                 
+                  <HBox prefHeight="29.0" prefWidth="406.0">
+                     <children>
+                        <Label text="NOTE" />
+                        <TextField fx:id="NOTE" />
+                     </children>
+                  </HBox>
+                
+                  <HBox>
+                     <children>
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addItem" text="add" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteItem" text="del" />
+                        <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateItem" text="update" />
+                        <Button fx:id="home" mnemonicParsing="false" onAction="#onhome" text="home" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <TableView fx:id="tableview" prefHeight="400.0" prefWidth="326.0">
+              <columns>
+                  <TableColumn fx:id="Ncours" prefWidth="95.0" text="cours" />
+                  <TableColumn fx:id="coldesc" prefWidth="199.00003051757812" text="desc" />
+                 
+                  <TableColumn fx:id="colnote" prefWidth="32.0" text="note" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="270.0">
+         <children>
+            <Label text="le cours" />
+            <ComboBox fx:id="scrollCours" onAction="#chooseCours" prefWidth="150.0" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
