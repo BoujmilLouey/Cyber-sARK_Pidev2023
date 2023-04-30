@@ -12,7 +12,12 @@ import javafx.stage.FileChooser;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,8 +102,18 @@ public class FXMLDocumentController implements Initializable {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
         fileChooser.getExtensionFilters().add(extFilter);
         File selectedFile = fileChooser.showOpenDialog(null);
+        Path destinationPath = null;
         if (selectedFile != null) {
             pdf = selectedFile.getAbsolutePath();
+            // Move the PDF file to the specified directory
+            Path sourcePath = selectedFile.toPath();
+            destinationPath = Paths.get("/Applications/XAMPP/xamppfiles/htdocs/pdf", selectedFile.getName());
+            try {
+                Files.move(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
         }
 
         // Vérifier que les champs ne sont pas vides
@@ -131,7 +146,7 @@ public class FXMLDocumentController implements Initializable {
             return;
         }
 
-        Cours cours = new Cours(nom, des, pdf);
+        Cours cours = new Cours(nom, des, destinationPath.toString());
 
         try {
             dao.ajouter(cours);
@@ -165,7 +180,8 @@ public class FXMLDocumentController implements Initializable {
 
 
 
-     @FXML
+
+    @FXML
 private void deleteItem() {
     CoursService dao = new CoursService();
     Cours selectedEvent = tableview.getSelectionModel().getSelectedItem();

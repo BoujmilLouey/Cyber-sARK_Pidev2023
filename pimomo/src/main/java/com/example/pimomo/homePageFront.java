@@ -56,12 +56,8 @@ public class homePageFront {
 
 
     @FXML
-    void handleCommentaireHomeButton() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLcom.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) (CommentaireHomeButton.getScene().getWindow());
-        stage.setScene(scene);
-        stage.show();
+    void handleCommentaireHomeButton() {
+
     }
 
 
@@ -76,16 +72,7 @@ public class homePageFront {
 
 
 
-        /*
-        Stage stage = (Stage) (Bcalendrier.getScene().getWindow());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fullCalendar.fxml"));
-        stage.setScene(new Scene(loader.load()));
-         Get the controller and add the calendar view to it
-        Controller controller = loader.getController();
-        controller.calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
-        stage.show();
 
- */
 
     }
 

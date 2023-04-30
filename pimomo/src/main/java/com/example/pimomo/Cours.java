@@ -15,7 +15,7 @@ public class Cours {
     private String nom;
 
 
-
+    private Double NoteMoyenne;
 
     private String des;
    
@@ -32,6 +32,17 @@ public class Cours {
         this.des = des;
         
         this.pdf = pdf;
+
+    }
+
+
+    public Cours(int id, String nom, String des,  String pdf,Double NoteMoyenne) {
+        this.id = id;
+        this.nom = nom;
+        this.des = des;
+
+        this.pdf = pdf;
+        this.NoteMoyenne=NoteMoyenne;
     }
 
     public Cours(String nom, String des, String pdf) {
@@ -74,11 +85,11 @@ public class Cours {
 
    
 
-    public String getpdf() {
+    public String getPdf() {
         return pdf;
     }
 
-    public void setpdf(String pdf) {
+    public void setPdf(String pdf) {
         this.pdf = pdf;
     }
 
@@ -89,5 +100,12 @@ public class Cours {
         return "Cours{" + "id=" + id + ", nom=" + nom + '}';
     }
 
-   
+
+    public Double getNoteMoyenne() {
+        return NoteMoyenne;
+    }
+
+    public void setNoteMoyenne(Double noteMoyenne) {
+        NoteMoyenne = noteMoyenne;
+    }
 }

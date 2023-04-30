@@ -1,14 +1,24 @@
 package com.example.pimomo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -27,6 +37,35 @@ public class CalendarController implements Initializable {
 
     @FXML
     private FlowPane calendar;
+
+    @FXML
+    private Button home;
+
+    @FXML
+    private Button add;
+
+    //crud calendrier
+    @FXML
+    private TextField title;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private TableView<?> tableview;
+
+    @FXML
+    private TableColumn<?, ?> nomEvent;
+
+    @FXML
+    private TableColumn<?, ?> calDate;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -166,10 +205,48 @@ public class CalendarController implements Initializable {
     }
 
 
+    @FXML
+    void onhome() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("homepageFront.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) (home.getScene().getWindow());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void onadd() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Addevent.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(add.getScene().getWindow());
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
+    @FXML
+    void addItem() {
 
+    }
 
+    @FXML
+    void deleteItem() {
+
+    }
+
+    @FXML
+    void updateItem() {
+
+    }
 
 
 

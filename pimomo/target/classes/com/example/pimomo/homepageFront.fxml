@@ -144,7 +144,7 @@
                                     <Image url="@../img/parkingIcon.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="commentaire">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="???">
                                  <font>
                                     <Font name="Rockwell Bold" size="24.0" />
                                  </font>

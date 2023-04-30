@@ -18,9 +18,9 @@ public class CommentaireService {
     private Connection con = MyConnection.getInstance().getConnection();
 
     public void ajouter(Commentaire c) throws SQLException {
-        String requete = "INSERT INTO commentaire (description, note, id_cours) VALUES (?, ?, ?)";
+        String requete = "INSERT INTO commentaire (contenu, note, id_cours) VALUES (?, ?, ?)";
         PreparedStatement pst = con.prepareStatement(requete);
-        pst.setString(1, c.getDescription());
+        pst.setString(1, c.getContenu());
         pst.setInt(2, c.getNote());
         pst.setInt(3, c.getId_cours());
 
@@ -37,9 +37,9 @@ public class CommentaireService {
 
 
     public void update(Commentaire c) throws SQLException {
-        String requete = "UPDATE commentaire SET description=?, note=? WHERE id=?";
+        String requete = "UPDATE commentaire SET contenu=?, note=? WHERE id=?";
         PreparedStatement pst = con.prepareStatement(requete);
-        pst.setString(1, c.getDescription());
+        pst.setString(1, c.getContenu());
         pst.setInt(2, c.getNote());
         pst.setInt(3, c.getId());
         pst.executeUpdate();
@@ -54,9 +54,9 @@ public class CommentaireService {
         System.out.println("Commentaire supprimé avec succès !");
     }
 
-    public ArrayList<Commentaire> afficherAll() throws SQLException {
+    public ArrayList<Commentaire> afficherAllC() throws SQLException {
         ArrayList<Commentaire> commentaires = new ArrayList<>();
-        String requete = "SELECT commentaire.id, commentaire.description, commentaire.note, cours.nom AS Ncours "
+        String requete = "SELECT commentaire.id, commentaire.contenu, commentaire.note, cours.nom AS Ncours "
                 + "FROM commentaire "
                 + "INNER JOIN cours ON commentaire.id_cours = cours.id";
         PreparedStatement pst = con.prepareStatement(requete);
@@ -65,7 +65,7 @@ public class CommentaireService {
             Commentaire c = new Commentaire();
             Cours m = new Cours();
             c.setId(rs.getInt("id"));
-            c.setDescription(rs.getString("description"));
+            c.setContenu(rs.getString("contenu"));
             c.setNote(rs.getInt("note"));
             m.setNom(rs.getString("Ncours"));
             c.setCours(m);
@@ -86,10 +86,33 @@ public class CommentaireService {
             cours.setId(resultSet.getInt("id"));
             cours.setNom(resultSet.getString("nom"));
             cours.setDes(resultSet.getString("Des"));
-            cours.setpdf(resultSet.getString("pdf"));
+            cours.setPdf(resultSet.getString("pdf"));
         }
         return cours;
     }
+
+
+    public ArrayList<Commentaire> rechercherCommentairesParCours(int idCours) throws SQLException {
+        ArrayList<Commentaire> commentairesList = new ArrayList<>();
+
+        String query = "SELECT * FROM commentaire WHERE id_cours = ?";
+
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setInt(1, idCours);
+        ResultSet resultSet = pst.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String contenu = resultSet.getString("contenu");
+            int note = resultSet.getInt("note");
+            int id_cours = resultSet.getInt("id_cours");
+            Commentaire commentaire = new Commentaire(id, contenu, note, idCours);
+            commentairesList.add(commentaire);
+        }
+
+        return commentairesList;
+    }
+
 
 
 

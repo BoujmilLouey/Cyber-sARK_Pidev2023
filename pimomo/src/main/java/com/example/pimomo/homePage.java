@@ -32,6 +32,9 @@ public class homePage {
     private Button produitHomeButton;
 
     @FXML
+    private Button Bevent;
+
+    @FXML
     private Button CoursHomeButton;
 
     @FXML
@@ -47,6 +50,17 @@ public class homePage {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    @FXML
+    void handleEventHomeButton() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Addevent.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) (Bevent.getScene().getWindow());
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
     @FXML

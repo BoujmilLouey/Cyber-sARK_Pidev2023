@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: #f5f5e6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pimomo.AffCours">
+<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="935.0" style="-fx-background-color: #f5f5e6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pimomo.AffCours">
     <children>
         <TableView fx:id="table" layoutX="30.0" layoutY="119.0" prefHeight="264.0" prefWidth="541.0">
             <columns>
 
-                <TableColumn fx:id="colnom" minWidth="5.0" prefWidth="140.0" text="nom" />
-                <TableColumn fx:id="coldesc" minWidth="1.0" prefWidth="341.0" text="description" />
-            <TableColumn fx:id="noteM" minWidth="1.0" prefWidth="59.0" text="note" />
+                <TableColumn fx:id="colnom" minWidth="5.0" prefWidth="172.0" text="nom" />
+                <TableColumn fx:id="coldesc" minWidth="1.0" prefWidth="247.0" text="description" />
+            <TableColumn fx:id="noteM" minWidth="1.0" prefWidth="121.0" text="note" />
             </columns>
         </TableView>
-        <AnchorPane layoutX="-3.0" layoutY="43.0" prefHeight="48.0" prefWidth="607.0" style="-fx-background-color: #8f00ff;">
+        <AnchorPane layoutX="-3.0" layoutY="43.0" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #8f00ff;">
             <children>
-                <Label layoutX="280.0" layoutY="11.0" text="cours" textAlignment="CENTER">
+                <Label layoutX="456.0" layoutY="12.0" text="cours" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
@@ -31,7 +35,55 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-      <Button fx:id="Btele" layoutX="399.0" layoutY="399.0" mnemonicParsing="false" onAction="#ontele" prefHeight="27.0" prefWidth="88.0" text="telecharger" />
+      <Button fx:id="Btele" layoutX="425.0" layoutY="392.0" mnemonicParsing="false" onAction="#ontele" prefHeight="27.0" prefWidth="88.0" text="telecharger" />
+      <Label layoutX="43.0" layoutY="393.0" prefHeight="17.0" prefWidth="67.0" text="recherche" />
+      <TextField fx:id="recherche" layoutX="90.0" layoutY="385.0" onAction="#onrecherche" />
+      <AnchorPane layoutX="228.0" layoutY="514.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox layoutX="62.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="270.0" />
+         </children>
+      </AnchorPane>
+      <VBox layoutX="641.0" layoutY="130.0" prefHeight="400.0" prefWidth="276.0">
+         <children>
+      
+                        <HBox prefHeight="52.0" prefWidth="406.0">
+               <children>
+                  <Label text="le cours" />
+                  <ComboBox fx:id="scrollCours" onAction="#chooseCours" prefWidth="150.0" />
+               </children>
+            </HBox>
+           
+                        <HBox prefHeight="52.0" prefWidth="270.0">
+               <children>
+                  <Label text="DESC" />
+                  <TextField fx:id="DESC" />
+               </children>
+            </HBox>
+           
+                        <HBox prefHeight="29.0" prefWidth="406.0">
+               <children>
+                  <Label text="NOTE" />
+                  <TextField fx:id="NOTE" />
+               </children>
+            </HBox>
+          
+                        <HBox>
+               <children>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addItem" text="add" />
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteItem" text="del" />
+                  <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateItem" text="update" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <TableView fx:id="tableview" layoutX="2.0" layoutY="420.0" prefHeight="488.0" prefWidth="942.0">
+        <columns>
+            <TableColumn fx:id="Ncours" maxWidth="682.0" minWidth="154.0" prefWidth="154.0" text="cours" />
+            <TableColumn fx:id="descC" prefWidth="614.0" text="contenu" />
+            <TableColumn fx:id="noteC" prefWidth="249.0" text="note" />
+        </columns>
+      </TableView>
 
     </children>
 </AnchorPane>

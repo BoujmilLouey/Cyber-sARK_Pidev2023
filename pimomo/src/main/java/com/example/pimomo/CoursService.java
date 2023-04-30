@@ -22,7 +22,7 @@ public class CoursService {
         pst.setString(1, E.getNom());
         
         pst.setString(2, E.getDes());
-        pst.setString(3, E.getpdf());
+        pst.setString(3, E.getPdf());
        
         
         pst.executeUpdate();
@@ -35,7 +35,7 @@ public class CoursService {
         pst.setString(1, E.getNom());
         
         pst.setString(2, E.getDes());
-        pst.setString(3, E.getpdf());
+        pst.setString(3, E.getPdf());
        
         pst.setInt(4, E.getId());
         pst.executeUpdate();
@@ -66,7 +66,7 @@ public class CoursService {
             
             cours.setDes(rs.getString("Des"));
             
-            cours.setpdf(rs.getString("pdf"));
+            cours.setPdf(rs.getString("pdf"));
             CoursList.add(cours);
         }
         return CoursList;
@@ -78,7 +78,7 @@ public class CoursService {
         PreparedStatement pst = con.prepareStatement(requete);
         pst.setString(1, cours.getNom());
         pst.setString(2, cours.getDes());
-        pst.setString(3, cours.getpdf());
+        pst.setString(3, cours.getPdf());
         pst.setInt(4, cours.getId());
         pst.executeUpdate();
     }
@@ -120,6 +120,49 @@ public class CoursService {
     }
 
     */
+
+
+    public ArrayList<Cours> rechercherParNom(String nomCoursRecherche) throws SQLException {
+        ArrayList<Cours> CoursList = new ArrayList<>();
+
+        String query = "SELECT * FROM cours WHERE nom LIKE ?;";
+
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setString(1, "%" + nomCoursRecherche + "%");
+        ResultSet resultSet = pst.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nomCours = resultSet.getString("nom");
+            String description = resultSet.getString("des");
+            String pdf = resultSet.getString("pdf");
+            Cours cours = new Cours(id, nomCours, description, pdf);
+            CoursList.add(cours);
+        }
+
+        return CoursList;
+    }
+
+/*
+    public Cours getCoursById(int id) throws SQLException {
+
+        String query = "SELECT * FROM cours WHERE id = ?";
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setInt(1, id);
+        ResultSet rs = pst.executeQuery();
+        Cours cours = null;
+        if (rs.next()) {
+            cours = new Cours(rs.getInt("id"), rs.getString("nom"), rs.getString("description"), rs.getInt("credit"));
+        }
+        rs.close();
+        pst.close();
+        return cours;
+    }
+
+
+ */
+
+
 
 
 

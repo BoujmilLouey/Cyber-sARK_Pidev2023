@@ -135,7 +135,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="237.0" prefWidth="1030.0" spacing="120.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="197.0" prefWidth="209.0" styleClass="menuButton" stylesheets="@homePage.css">
+                  <Button fx:id="Bevent" mnemonicParsing="false" onAction="#handleEventHomeButton" prefHeight="197.0" prefWidth="209.0" styleClass="menuButton" stylesheets="@homePage.css">
                      <graphic>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
@@ -144,7 +144,7 @@
                                     <Image url="@../img/parkingIcon.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="???">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="event">
                                  <font>
                                     <Font name="Rockwell Bold" size="24.0" />
                                  </font>

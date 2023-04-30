@@ -19,7 +19,7 @@ public class fxmlMarche extends Application{
 
    @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("homepageFront.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         
         Scene scene = new Scene(root);
