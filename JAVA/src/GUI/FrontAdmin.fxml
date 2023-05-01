@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anch" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontAdminController">
+   <children>
+      <AnchorPane prefHeight="720.0" prefWidth="319.0" style="-fx-background-color: #a8058b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="241.0" fitWidth="206.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutY="671.0" onAction="#signout" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Sign Out" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton layoutY="262.0" onAction="#handleUser1" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Users" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Event1" layoutY="304.0" onAction="#handleEventHomeButton" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Event" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Produit" layoutY="349.0" onAction="#ListProd" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Product" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Categorie" layoutY="397.0" onAction="#ListCat" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Product Category" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="AddGcategory" layoutY="580.0" onAction="#AddGcate" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Add Game Category" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="AllG" layoutY="484.0" onAction="#AllG" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="All Games" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="CategoryG" layoutY="439.0" onAction="#CateG" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Game Category" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="AddG" layoutY="536.0" onAction="#AddG" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Add Games " textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
+         </children></AnchorPane>
+      <TextField fx:id="txt_id" layoutX="367.0" layoutY="159.0" opacity="0.0" visible="false" />
+   </children>
+</AnchorPane>

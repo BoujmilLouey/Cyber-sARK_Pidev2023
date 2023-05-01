@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterController">
+   <children>
+      <AnchorPane prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #030307; -fx-background-radius: 15;">
+         <children>
+            <VBox prefHeight="544.0" prefWidth="74.0" style="-fx-background-color: #131022; -fx-background-radius: 15 0 0 15;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane prefHeight="79.0" prefWidth="74.0" style="-fx-background-radius: 15 0 15 15;" />
+                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css" text="Profile" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/PIDEV-3A5/PIDEV-3A5-Limitless-gestion_reclamation/src/resources/cat.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css" text="Activity" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/PIDEV-3A5/PIDEV-3A5-Limitless-gestion_reclamation/src/resources/time.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css" text="Goals" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/PIDEV-3A5/PIDEV-3A5-Limitless-gestion_reclamation/src/resources/flag.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="142.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css" text="Mentors" textFill="#a868a0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/PIDEV-3A5/PIDEV-3A5-Limitless-gestion_reclamation/src/resources/group.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <AnchorPane layoutX="135.0" layoutY="81.0" prefHeight="497.0" prefWidth="548.0" style="-fx-background-color: #131022; -fx-background-radius: 10;" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css">
+               <children>
+                  <Label layoutX="39.0" layoutY="34.0" text="Ajouter" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="133.0" layoutY="35.0" text="Jeux" textFill="#fff600">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="-15.0" layoutY="82.0" prefHeight="368.0" prefWidth="367.0" style="-fx-background-radius: 20;" styleClass="linear-grad" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css">
+                     <children>
+                        <TextField fx:id="tfImage" layoutX="149.0" layoutY="288.0" promptText="URL de l'image choisie" />
+                        <TextField fx:id="tfNom" layoutX="149.0" layoutY="14.0" promptText="nom du jeu" />
+                        <Label layoutX="21.0" layoutY="278.0" prefHeight="38.0" prefWidth="68.0" text="Image" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btmAjouter" layoutX="179.0" layoutY="345.0" mnemonicParsing="false" onAction="#addGames" prefHeight="25.0" prefWidth="149.0" styleClass="button4" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css" text="Ajouter" textFill="#140101">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="imageB" layoutX="302.0" layoutY="288.0" mnemonicParsing="false" onAction="#chooseImageButton" text="choisir une image" />
+                        <Label layoutX="21.0" layoutY="45.0" prefHeight="38.0" prefWidth="106.0" text="Categorie" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="7.0" prefHeight="38.0" prefWidth="68.0" text="Nom" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboBox" editable="true" layoutX="149.0" layoutY="52.0" opacity="0.99" prefHeight="25.0" prefWidth="175.0" promptText="choisir nom categorie" />
+                     </children>
+                  </Pane>
+                  <Line endX="100.0" layoutX="445.0" layoutY="54.0" startX="100.0" startY="418.0" stroke="#b9b1b1" strokeDashOffset="2.0" />
+                  <BorderPane layoutX="645.0" layoutY="407.0" prefHeight="66.0" prefWidth="106.0" />
+                  <TextArea fx:id="tfDesc" layoutX="133.0" layoutY="181.0" prefHeight="158.0" prefWidth="211.0" promptText="Description du jeu" />
+                  <Label layoutX="3.0" layoutY="190.0" prefHeight="38.0" prefWidth="106.0" text="Description" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="470.0" layoutY="-48.0" prefHeight="105.0" prefWidth="474.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@../../../../../NetBeansProjects/GamingDev/src/css/fullpackstyling.css" />
+                  <Button fx:id="Home" layoutX="814.0" layoutY="418.0" mnemonicParsing="false" onAction="#onhome" text="Home" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
