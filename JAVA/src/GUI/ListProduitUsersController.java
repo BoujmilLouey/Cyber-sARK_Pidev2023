@@ -61,7 +61,7 @@ public class ListProduitUsersController implements Initializable {
                 produit a = new produit();
                 a.setId(rs.getInt(1));
                 a.setNom(rs.getString(2));
-                a.setPrix(rs.getString(4));
+                a.setPrix(rs.getFloat(4));
                 a.setImage(rs.getString(8));
 
                 produit.add(a);

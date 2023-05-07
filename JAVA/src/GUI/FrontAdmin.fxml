@@ -136,6 +136,19 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </JFXButton>
+            <JFXButton layoutY="624.0" onAction="#Commande" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #f2ceec;" text="Commande" textAlignment="JUSTIFY" textFill="WHITE">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#ffffff33" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </JFXButton>
          </children></AnchorPane>
       <TextField fx:id="txt_id" layoutX="367.0" layoutY="159.0" opacity="0.0" visible="false" />
    </children>

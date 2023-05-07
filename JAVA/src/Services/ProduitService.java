@@ -31,10 +31,11 @@ Connection cnx = MyDB.getInstance().getCnx();
 
             pr.setString(1, p.getNom());
             pr.setString(2, p.getReference());
-            pr.setString(3, p.getPrix());
+            pr.setFloat(3, p.getPrix());
             pr.setString(4, p.getCouleur());
-            pr.setString(5, p.getPoids());
-            pr.setString(6, p.getDescription());
+            pr.setString(5, p.getDescription());
+            pr.setFloat(6, p.getPoids());
+           
             
             if (p.getImage()!=null)
                pr.setString(7, p.getImage());
@@ -66,9 +67,9 @@ Connection cnx = MyDB.getInstance().getCnx();
                         rs.getInt("id"),
                         rs.getString("nom"),
                         rs.getString("reference"),
-                        rs.getString("prix"),
+                        rs.getFloat("prix"),
                         rs.getString("couleur"),
-                        rs.getString("poids"),
+                        rs.getFloat("poids"),
                         rs.getString("description"),
                         rs.getString("image"),
                         rs.getInt("categorie_id"));
@@ -114,7 +115,7 @@ Connection cnx = MyDB.getInstance().getCnx();
         ResultSet result = ste.executeQuery(req);
         System.out.println(result);
         while (result.next()) {
-            produit resultPerson = new produit(result.getInt("id"), result.getString("nom"), result.getString("reference"),result.getString("prix"),result.getString("couleur"),result.getString("poids"),result.getString("description"),result.getString("image"),result.getInt("categorie_id"));
+            produit resultPerson = new produit(result.getInt("id"), result.getString("nom"), result.getString("reference"),result.getFloat("prix"),result.getString("couleur"),result.getFloat("poids"),result.getString("description"),result.getString("image"),result.getInt("categorie_id"));
             pers.add(resultPerson);
         }
         System.out.println(pers);

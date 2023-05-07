@@ -135,7 +135,7 @@ public class ListProduitController implements Initializable {
         }
         else{
         int idRec=listproduit.getSelectionModel().getSelectedItem().getId();
-        produit r = new produit(idRec,champNom.getText(), ChampRef.getText(),ChampPrix.getText(),ChampCouleur.getText(),ChampPoid.getText(),ChampsDesc.getText(),ChampImage.getText());
+        produit r = new produit(idRec,champNom.getText(), ChampRef.getText(),Float.parseFloat(ChampPrix.getText()),ChampCouleur.getText(),Float.parseFloat(ChampPoid.getText()),ChampsDesc.getText(),ChampImage.getText());
         ProduitService crud = new ProduitService();
         crud.updateProduit(r);
         champNom.clear();
@@ -175,8 +175,8 @@ public class ListProduitController implements Initializable {
         ChampImage.setText(listproduit.getSelectionModel().getSelectedItem().getImage());
         champNom.setText(listproduit.getSelectionModel().getSelectedItem().getNom());
         ChampRef.setText(listproduit.getSelectionModel().getSelectedItem().getReference());
-        ChampPrix.setText(listproduit.getSelectionModel().getSelectedItem().getPrix());
-        ChampPoid.setText(listproduit.getSelectionModel().getSelectedItem().getPoids());
+        ChampPrix.setText(Float.toString(listproduit.getSelectionModel().getSelectedItem().getPrix()));
+        ChampPoid.setText(Float.toString(listproduit.getSelectionModel().getSelectedItem().getPoids()));
         ChampsDesc.setText(listproduit.getSelectionModel().getSelectedItem().getDescription());
         ChampCouleur.setText(listproduit.getSelectionModel().getSelectedItem().getCouleur());
         

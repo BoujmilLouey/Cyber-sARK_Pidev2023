@@ -27,4 +27,10 @@ public class SingleUser {
   public User getUser() {
     return this.user;
   }
+  public int getUserID() {
+    return this.user.getId();
+  }
+  public String getUserEmail() {
+    return this.user.getEmail();
+  }
 }

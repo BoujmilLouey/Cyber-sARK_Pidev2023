@@ -98,7 +98,7 @@
                </font>
             </JFXButton>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="ButtonEvenement1" layoutY="513.0" onAction="#redirecttoevenement" prefHeight="35.0" prefWidth="319.0" style="-fx-background-color: #d9b0d2;" text="test" textFill="WHITE">
+            <JFXButton fx:id="ButtonCart" layoutY="269.0" onAction="#Cart" prefHeight="35.0" prefWidth="319.0" style="-fx-background-color: #d9b0d2;" text="Cart" textFill="WHITE">
                <ripplerFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>

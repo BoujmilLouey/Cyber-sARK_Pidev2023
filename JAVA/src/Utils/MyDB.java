@@ -18,7 +18,7 @@ public class MyDB {
     public static Object getInsatnce() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    final String URL ="jdbc:mysql://127.0.0.1:3306/khedma";
+    final String URL ="jdbc:mysql://127.0.0.1:3306/bdpidev";
     final String USERNAME="root";
     final String PWD ="";
    private  Connection cnx;

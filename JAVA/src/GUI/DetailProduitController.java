@@ -72,9 +72,9 @@ public class DetailProduitController implements Initializable {
         e = es.ReadByNVid(idProduit);
         nomtxt.setText(e.getNom());
         refertxt.setText(e.getReference());
-        prixtxt.setText(e.getPrix());
+        prixtxt.setText(Float.toString(e.getPrix()));
         couleurtxt.setText(e.getCouleur());
-        poidstxt.setText(e.getPoids());
+        poidstxt.setText(Float.toString(e.getPoids()));
         desctxt.setText(e.getDescription().toString());
         
         

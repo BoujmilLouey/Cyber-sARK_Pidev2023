@@ -231,6 +231,15 @@ public class FrontClientController implements Initializable{
         stage.show();
         
     }
+     @FXML
+    void Cart() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FrontMainWindow.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) (Bgames.getScene().getWindow());
+        stage.setScene(scene);
+        stage.show();
+        
+    }
     
     
     

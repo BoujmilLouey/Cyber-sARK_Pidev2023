@@ -118,9 +118,9 @@ public class AjouterProduitController implements Initializable {
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
         String getNom = champNom.getText();
         String getReference = ChampRef.getText();
-        String getPrix = ChampPrix.getText();
+        float getPrix = Float.parseFloat(ChampPrix.getText());
         String getCouleur = ChampCouleur.getText();
-        String getPoids = ChampPoid.getText();
+        float getPoids = Float.parseFloat(ChampPoid.getText());
         String getDescription =ChampsDesc .getText();
         String getImage = ChampImage.getText();
         String nomCat = ChampCategorie.getValue();

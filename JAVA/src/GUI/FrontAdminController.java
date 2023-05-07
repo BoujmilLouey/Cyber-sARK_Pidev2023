@@ -199,7 +199,14 @@ public class FrontAdminController {
         stage.setScene(scene);
         stage.show();
     }
-    
+    @FXML
+    void Commande() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("BackMainWindow.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) (AddGcategory.getScene().getWindow());
+        stage.setScene(scene);
+        stage.show();
+    }
     
     
 }

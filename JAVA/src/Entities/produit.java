@@ -12,11 +12,12 @@ package Entities;
 public class produit {
    
     private int id;
-    private String nom,reference,prix,couleur,poids,description,image;
+    private String nom,reference,couleur,description,image;
+    private float prix , poids ;
     private categorie_produit categorie;
     private int categorie_id;
 
-    public produit(int id, String nom, String reference, String prix, String couleur, String poids, String description, String image, categorie_produit categorie, int categorie_id) {
+    public produit(int id, String nom, String reference, float prix, String couleur, float poids, String description, String image, categorie_produit categorie, int categorie_id) {
         this.id = id;
         this.nom = nom;
         this.reference = reference;
@@ -29,7 +30,7 @@ public class produit {
         this.categorie_id = categorie_id;
     }
 
-    public produit(String nom, String reference, String prix, String couleur, String poids, String description, String image, categorie_produit categorie, int categorie_id) {
+    public produit(String nom, String reference, float prix, String couleur, float poids, String description, String image, categorie_produit categorie, int categorie_id) {
         this.nom = nom;
         this.reference = reference;
         this.prix = prix;
@@ -41,7 +42,7 @@ public class produit {
         this.categorie_id = categorie_id;
     }
 
-    public produit(int id, String nom, String reference, String prix, String couleur, String poids, String description, String image, int categorie_id) {
+    public produit(int id, String nom, String reference, float prix, String couleur, float poids, String description, String image, int categorie_id) {
         this.id = id;
         this.nom = nom;
         this.reference = reference;
@@ -53,7 +54,7 @@ public class produit {
         this.categorie_id = categorie_id;
     }
 
-    public produit(String nom, String reference, String prix, String couleur, String poids, String description, String image, int categorie_id) {
+    public produit(String nom, String reference, float prix, String couleur, String description, float poids, String image, int categorie_id) {
         this.nom = nom;
         this.reference = reference;
         this.prix = prix;
@@ -64,7 +65,7 @@ public class produit {
         this.categorie_id = categorie_id;
     }
 
-    public produit(int id, String nom, String reference, String prix, String couleur, String poids, String description, String image) {
+    public produit(int id, String nom, String reference, float prix, String couleur, float poids, String description, String image) {
         this.id = id;
         this.nom = nom;
         this.reference = reference;
@@ -74,7 +75,7 @@ public class produit {
         this.description = description;
         this.image = image;
     }
-
+    
    
 
     public produit() {
@@ -120,11 +121,11 @@ public class produit {
         this.reference = reference;
     }
 
-    public String getPrix() {
+    public float getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
+    public void setPrix(float prix) {
         this.prix = prix;
     }
 
@@ -136,11 +137,11 @@ public class produit {
         this.couleur = couleur;
     }
 
-    public String getPoids() {
+    public float getPoids() {
         return poids;
     }
 
-    public void setPoids(String poids) {
+    public void setPoids(float poids) {
         this.poids = poids;
     }
 

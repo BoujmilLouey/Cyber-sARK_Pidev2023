@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainComponent" minHeight="-Infinity" prefHeight="60.0" prefWidth="418.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontTopBarController">
+    <HBox layoutX="16.0" prefHeight="30.0" spacing="15.0" stylesheets="@../../utils/MainStyle.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="15.0">
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ShoppingCart" wrappingWidth="200.0">
+            <font>
+                <Font name="System Bold" size="26.0" />
+            </font>
+        </Text>
+
+        <Button fx:id="btnProductss" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherProductss" text="Productss" textFill="WHITE">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+            <font>
+                <Font name="Segoe UI Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+
+        <Button fx:id="btnLigne_commandes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherLigne_commandes" text="Panier" textFill="WHITE">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+            <font>
+                <Font name="Segoe UI Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+
+    </HBox>
+    
+
+     <Button fx:id="btnCommandes" layoutX="411.0" layoutY="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherCommandes" prefHeight="31.0" prefWidth="101.0" text="Commandes" textFill="WHITE">
+         <font>
+             <Font name="Segoe UI Bold" size="15.0" />
+         </font>
+         <cursor>
+             <Cursor fx:constant="HAND" />
+         </cursor>
+     </Button>
+</AnchorPane>

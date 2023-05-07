@@ -56,7 +56,7 @@ public class OneProduitController implements Initializable {
         this.produit=produit;
 
         nomProduit.setText(produit.getNom());
-        prixProduit.setText(produit.getPrix());
+        prixProduit.setText(Float.toString(produit.getPrix()));
                 
 //get image from root directory and databse
         
