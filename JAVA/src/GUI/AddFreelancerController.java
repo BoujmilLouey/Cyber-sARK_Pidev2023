@@ -140,11 +140,11 @@ private void handleEditOperation(){
 }
 
     void infalteUI(coach place) {
-        nom.setText(place.getNom());
-        prenom.setText(place.getPrenom());
+        nom.setText(place.getFullname());
+        prenom.setText(place.getUsername());
         cin.setText(String.valueOf(place.getCin()));
         mail.setText(place.getEmail());
-        mdp.setText(place.getMdp());
+        mdp.setText(place.getPassword());
         adresse.setText(place.getAdresse());
         phone.setText(String.valueOf(place.getTelephone()));
                 metier.setText(place.getMetier());

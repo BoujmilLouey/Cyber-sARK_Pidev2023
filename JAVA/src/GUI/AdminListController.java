@@ -106,11 +106,11 @@ public class AdminListController implements Initializable {
     }
 
     private void initCol() {
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+        prenomCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         cinCol.setCellValueFactory(new PropertyValueFactory<>("cin"));
         mailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        mdpCol.setCellValueFactory(new PropertyValueFactory<>("mdp"));
+        mdpCol.setCellValueFactory(new PropertyValueFactory<>("password"));
         adresseCol.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("telephone"));
@@ -132,7 +132,7 @@ public class AdminListController implements Initializable {
             pst = cnx.prepareStatement(req);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-                list.add(new User(result.getInt("id"), result.getString("nom"), result.getString("prenom"), result.getInt("cin"), result.getString("role"), result.getString("adresse"),  result.getString("email"), result.getString("mdp"),result.getInt("telephone"), result.getString("Image"), result.getString("Github_UserName")));
+                list.add(new User(result.getInt("id"), result.getString("fullname"), result.getString("username"), result.getInt("cin"), result.getString("role"), result.getString("adresse"),  result.getString("email"), result.getString("password"),result.getInt("telephone"), result.getString("Image"), result.getString("Github_UserName")));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -154,7 +154,7 @@ public class AdminListController implements Initializable {
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 				
-				if (Place.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+				if (Place.getFullname().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
 					return true; // Filter matches first name.
 				} else if (Place.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
@@ -192,7 +192,7 @@ public class AdminListController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting USER");
-        alert.setContentText("Are you sure want to delete " + selectedForDeletion.getNom() + " ?");
+        alert.setContentText("Are you sure want to delete " + selectedForDeletion.getFullname() + " ?");
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get() == ButtonType.OK) {
             su.supprimer(selectedForDeletion);
@@ -245,15 +245,15 @@ public class AdminListController implements Initializable {
     @FXML
     private void exportAsPDF(ActionEvent event) {
                         List<List> printData = new ArrayList<>();
-        String[] headers = {"   Name   ", "  Prenom ", "  CIN  ", "  Email ", "  Mot De Passe  ","   Adresse   ", "  role ","   Telephone   ","   Github Username   " };
+        String[] headers = {"   Fullname   ", "  username ", "  CIN  ", "  Email ", "  Mot De Passe  ","   Adresse   ", "  role ","   Telephone   ","   Github Username   " };
         printData.add(Arrays.asList(headers));
         for (User place : list) {
             List<String> row = new ArrayList<>();
-            row.add(place.getNom());
-            row.add(place.getPrenom());
+            row.add(place.getFullname());
+            row.add(place.getUsername());
             row.add(String.valueOf(place.getCin()));
             row.add(place.getEmail());
-            row.add(place.getMdp());
+            row.add(place.getPassword());
              row.add(place.getAdresse());
              row.add(place.getRole());
             row.add(String.valueOf(place.getTelephone()));

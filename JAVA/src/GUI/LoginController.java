@@ -98,7 +98,7 @@ User ua = new User();
     @FXML
     private void login(ActionEvent event) {
 
-        String pswd = doHashing(password.getText());
+        String pswd = password.getText();
         String mail = email.getText();
         coach fre = new coach();
         Servicecoach sf = new Servicecoach();
@@ -110,12 +110,7 @@ User ua = new User();
         }
         String role = su.check(mail, pswd);
                 ua = su.takout(mail, pswd);
-       // if (ua.getArchive() == 1) {
-       // Alert alert = new Alert(Alert.AlertType.ERROR);
-       // alert.setHeaderText(null);
-       // alert.setContentText("Votre compte est archivé. Vous ne pouvez pas vous connecter.");
-       // alert.show();}
-        
+       
         
 
         System.out.println(role);
@@ -126,6 +121,13 @@ User ua = new User();
             alert.show();
         }
         if (su.validate(mail, pswd) == true ) {
+            if (ua.getIs_banned()== 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Désolé, vous avez été banni. Veuillez contacter notre équipe de support pour plus d'informations.");
+            alert.show();
+            return;
+        }
             
             try {
                 SingleMail smail = SingleMail.getInstance();
@@ -135,10 +137,14 @@ User ua = new User();
                 cli=cl.getUserByEmail(sm);
                 SingleUser holder = SingleUser.getInstance();
                 holder.setUser(ua);
-                Globals.currentUser = new CurrentUser(ua.getNom(), ua.getEmail(), ua.getGUserName());
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                System.out.println(role);
+                Globals.currentUser = new CurrentUser(ua.getFullname(), ua.getEmail(), ua.getGUserName());
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 //CurrentUser currentUser = new CurrentUser(ua.getNom(),ua.getEmail(),ua.getGUserName());
                 //System.out.println(Globals.currentUser);
                 Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front" + role + ".fxml"));
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 Stage stage = new Stage(StageStyle.DECORATED);
                 stage.setTitle("Cyber'sARK");
                 

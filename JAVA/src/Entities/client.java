@@ -26,22 +26,22 @@ public class client extends User {
 
     @Override
     public String toString() {
-                return "Client{" + "id=" + getId() +  ", telephone=" + getTelephone() + ", cin=" + getCin() + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + getAdresse() + ", email=" + getEmail() +", domaine="+domaine+ '}';
+                return "Client{" + "id=" + getId() +  ", telephone=" + getTelephone() + ", cin=" + getCin() + ", fullname=" + getFullname() + ", username=" + getUsername() + ", adresse=" + getAdresse() + ", email=" + getEmail() +", domaine="+domaine+ '}';
 
     }
 
-    public client(String domaine, String nom, String prenom, int cin, String role, String email, String mdp, String adresse, int telephone , String img,String gname) {
-        super(nom, prenom, cin, role, email, mdp, adresse, telephone,img , gname);
+    public client(String domaine, String fullname, String username, int cin, String role, String email, String password, String adresse, int telephone , String img,String gname) {
+        super(fullname, username, cin, role, email, password, adresse, telephone,img , gname);
         this.domaine = domaine;
     }
 
-    public client(String domaine, int id, String nom, String prenom, int cin, String email, String mdp, String adresse, int telephone, String img,String gname) {
-        super(id, nom, prenom, cin, email, mdp, adresse, telephone,img , gname);
+    public client(String domaine, int id, String fullname, String username, int cin, String email, String password, String adresse, int telephone, String img,String gname) {
+        super(id, fullname, username, cin, email, password, adresse, telephone,img , gname);
         this.domaine = domaine;
     }
 
- public client(String domaine, int id, String nom, String prenom, int cin, String email, String mdp, String adresse, int telephone) {
-        super(id, nom, prenom, cin, email, mdp, adresse, telephone);
+ public client(String domaine, int id, String fullname, String username, int cin, String email, String password, String adresse, int telephone) {
+        super(id, fullname, username, cin, email, password, adresse, telephone);
         this.domaine = domaine;
     }
     
@@ -49,13 +49,13 @@ public class client extends User {
     public client() {
     }
 
-    public client( int id, String nom, String prenom, int cin,String domaine, String email, String mdp, String adresse, int telephone, String img,String gname) {
-        super(id, nom, prenom, cin, email, mdp, adresse, telephone,  img, gname);
+    public client( int id, String fullname, String username, int cin,String domaine, String email, String password, String adresse, int telephone, String img,String gname) {
+        super(id, fullname, username, cin, email, password, adresse, telephone,  img, gname);
         this.domaine = domaine;
     }
 
-    public client( int id, String nom, String prenom, int cin,String domaine, String role, String email, String mdp, String adresse, int telephone, String img,String gname) {
-        super(id, nom, prenom, cin, role, email, mdp, adresse, telephone,  img, gname);
+    public client( int id, String fullname, String username, int cin,String domaine, String role, String email, String password, String adresse, int telephone, String img,String gname) {
+        super(id, fullname, username, cin, role, email, password, adresse, telephone,  img, gname);
         this.domaine = domaine;
     }
 
@@ -64,18 +64,18 @@ public class client extends User {
     }
 
     
-     public client( int id, String nom, String prenom, int cin,String domaine, String role, String email, String mdp, String adresse, int telephone) {
-        super(id, nom, prenom, cin, role, email, mdp, adresse, telephone);
+     public client( int id, String fullname, String username, int cin,String domaine, String role, String email, String password, String adresse, int telephone) {
+        super(id, fullname, username, cin, role, email, password, adresse, telephone);
         this.domaine = domaine;
     }
     
-       public client(  String nom, String prenom, int cin,String domaine, String role, String email, String mdp, String adresse, int telephone) {
-        super( nom, prenom, cin, role, email, mdp, adresse, telephone);
+       public client(  String fullname, String username, int cin,String domaine, String role, String email, String password, String adresse, int telephone) {
+        super( fullname, username, cin, role, email, password, adresse, telephone);
         this.domaine = domaine;
     }
     
-    public client( String nom, String prenom, int cin, String domaine,String role, String email, String mdp, String adresse, int telephone, String img,String gname) {
-        super(nom, prenom, cin, role, email, mdp, adresse, telephone,  img, gname);
+    public client( String fullname, String username, int cin, String domaine,String role, String email, String password, String adresse, int telephone, String img,String gname) {
+        super(fullname, username, cin, role, email, password, adresse, telephone,  img, gname);
         this.domaine = domaine;
     }
     

@@ -4,6 +4,7 @@
  */
 package Entities;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,11 +13,36 @@ import java.util.Objects;
  */
 public class User {
 
-    private int id, telephone, cin;
-    private String nom, prenom, adresse, role, email, mdp;
+    private int id, telephone, cin, is_banned;
+    private String fullname, username, adresse, role, email, password;
+    private List<String>roles;
     private String Image;
     private String GUserName;
     private int archive;
+
+    public User(int id, int telephone, int cin, int is_banned, String fullname, String username, String adresse, String role, String email, String password, String Image, String GUserName, int archive) {
+        this.id = id;
+        this.telephone = telephone;
+        this.cin = cin;
+        this.is_banned = is_banned;
+        this.fullname = fullname;
+        this.username = username;
+        this.adresse = adresse;
+        this.role = role;
+        this.email = email;
+        this.password = password;
+        this.Image = Image;
+        this.GUserName = GUserName;
+        this.archive = archive;
+    }
+
+    public int getIs_banned() {
+        return is_banned;
+    }
+
+    public void setIs_banned(int is_banned) {
+        this.is_banned = is_banned;
+    }
 
     public User() {
     }
@@ -33,85 +59,85 @@ public class User {
         this.id = id;
     }
 
-    public User(String nom, String prenom, int cin, String role, String email, String mdp, String adresse, int telephone, String Image, String GUserName) {
+    public User(String fullname, String username, int cin, String role, String email, String password, String adresse, int telephone, String Image, String GUserName) {
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.role = role;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
         this.Image = Image;
         this.GUserName = GUserName;
     }
 
-    public User(int id, String nom, String prenom, int cin, String role, String adresse, String email, String mdp, int telephone, String Image, String GUserName) {
+    public User(int id, String fullname, String prenom, int cin, String role, String adresse, String email, String password, int telephone, String Image, String GUserName) {
         this.id = id;
 
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.role = role;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
         this.Image = Image;
         this.GUserName = GUserName;
     }
 
-    public User(int id, String nom, String prenom, int cin, String adresse, String email, String mdp, int telephone, String Image, String GUserName) {
+    public User(int id, String fullname, String username, int cin, String adresse, String email, String password, int telephone, String Image, String GUserName) {
         this.id = id;
 
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.role = role;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
         this.Image = Image;
         this.GUserName = GUserName;
     }
 
-    public User(int id, String nom, String prenom, int cin, String adresse, String email, String mdp, int telephone) {
+    public User(int id, String fullname, String username, int cin, String adresse, String email, String password, int telephone) {
         this.id = id;
 
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.role = role;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
 
     }
-        public User(String nom, String prenom, int cin,String role , String email, String mdp, String adresse,int telephone) {
+        public User(String fullname, String username, int cin,String role , String email, String password, String adresse,int telephone) {
 
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.role = role;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
 
     }
-                public User(int id ,String nom, String prenom, int cin,String role , String email, String mdp, String adresse,int telephone) {
+                public User(int id ,String fullname, String username, int cin,String role , String email, String password, String adresse,int telephone) {
         this.id = id;
 
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.role = role;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
 
     }
 
@@ -139,20 +165,20 @@ public class User {
         this.cin = cin;
     }
 
-    public String getNom() {
-        return nom;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getAdresse() {
@@ -179,12 +205,12 @@ public class User {
         this.email = email;
     }
 
-    public String getMdp() {
-        return mdp;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getImage() {
@@ -230,10 +256,10 @@ public class User {
         if (this.cin != other.cin) {
             return false;
         }
-        if (!Objects.equals(this.nom, other.nom)) {
+        if (!Objects.equals(this.fullname, other.fullname)) {
             return false;
         }
-        if (!Objects.equals(this.prenom, other.prenom)) {
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         if (!Objects.equals(this.adresse, other.adresse)) {
@@ -245,7 +271,7 @@ public class User {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.mdp, other.mdp)) {
+        if (!Objects.equals(this.password, other.password)) {
             return false;
         }
         if (!Objects.equals(this.Image, other.Image)) {
@@ -257,19 +283,19 @@ public class User {
         return true;
     }
 
-    public User(  String nom, String prenom,int cin, String email,String mdp,  String adresse,int telephone) {
+    public User(  String fullname, String username,int cin, String email,String password,  String adresse,int telephone) {
         this.telephone = telephone;
         this.cin = cin;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.fullname = fullname;
+        this.username = username;
         this.adresse = adresse;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "User{" + ", telephone=" + telephone + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", role=" + role + ", email=" + email + ", mdp=" + mdp + ", Image=" + Image + ", GUserName=" + GUserName + '}';
+        return "User{" + ", telephone=" + telephone + ", cin=" + cin + ", fullname=" + fullname + ", username=" + username + ", adresse=" + adresse + ", role=" + role + ", email=" + email + ", password=" + password + ", Image=" + Image + ", GUserName=" + GUserName + '}';
     }
 
 }

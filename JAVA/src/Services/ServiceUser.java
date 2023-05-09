@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class ServiceUser implements IServices<User> {
 
@@ -30,15 +31,16 @@ public class ServiceUser implements IServices<User> {
             if (rs.next()) {
                 user = new User();
                 user.setId(rs.getInt(1));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
+                user.setFullname(rs.getString("fullname"));
+                user.setUsername(rs.getString("username"));
                 user.setTelephone(rs.getInt("telephone"));
                 user.setAdresse(rs.getString("adresse"));
-                user.setMdp(rs.getString("mdp"));
+                user.setPassword(rs.getString("password"));
                 user.setCin(rs.getInt("cin"));
                 user.setEmail(rs.getString("email"));
                                user.setImage(rs.getString("Image"));
                user.setGUserName(rs.getString("GUserName"));
+               user.setIs_banned(rs.getInt("is_banned"));
 
             }
 
@@ -84,7 +86,7 @@ public class ServiceUser implements IServices<User> {
 
     public void updateUserPassword(String mail, String newPassword) {
         try {
-            String qry = "UPDATE user SET `mdp`='" + newPassword + "' WHERE email = '" + mail + "';";
+            String qry = "UPDATE user SET `password`='" + newPassword + "' WHERE email = '" + mail + "';";
             ste = cnx.createStatement();
             ste.executeUpdate(qry);
         } catch (SQLException ex) {
@@ -95,7 +97,7 @@ public class ServiceUser implements IServices<User> {
     @Override
     public void add(User t) {
         try {
-            String qry = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `role`,`email`, `mdp` , `adresse`, `telephone`,'Image','Github_UserName')  VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getCin() + "','" + t.getRole() + "','" + t.getEmail() + "','" + t.getMdp() + "','" + t.getAdresse() + "','" + t.getTelephone() + "'"+t.getImage()+"','"+ t.getGUserName()+"')";
+            String qry = "INSERT INTO `user`( `fullname`, `username`, `cin`, `role`,`email`, `password` , `adresse`, `telephone`,'Image','Github_UserName')  VALUES ('" + t.getFullname() + "','" + t.getUsername() + "','" + t.getCin() + "','" + t.getRole() + "','" + t.getEmail() + "','" + t.getPassword() + "','" + t.getAdresse() + "','" + t.getTelephone() + "'"+t.getImage()+"','"+ t.getGUserName()+"')";
             cnx = MyDB.getInstance().getCnx();
 
             Statement stm = cnx.createStatement();
@@ -120,17 +122,18 @@ public class ServiceUser implements IServices<User> {
             while (rs.next()) {
                 User p = new User();
                 p.setId(rs.getInt(1));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
+                p.setFullname(rs.getString("fullname"));
+                p.setUsername(rs.getString("username"));
 
                 p.setTelephone(rs.getInt("telephone"));
                 p.setAdresse(rs.getString("adresse"));
                 p.setRole(rs.getString("role"));
-                p.setMdp(rs.getString("mdp"));
+                p.setPassword(rs.getString("password"));
                 p.setCin(rs.getInt("cin"));
                 p.setEmail(rs.getString("email"));
                 p.setImage(rs.getString("Image"));
                 p.setGUserName(rs.getString("Github_UserName"));
+                p.setIs_banned(rs.getInt("is_banned"));
 
                 users.add(p);
             }
@@ -147,7 +150,7 @@ public class ServiceUser implements IServices<User> {
     public void modifier(User t) {
 
         try {
-            String qry = "UPDATE user SET nom = '" + t.getNom() + "',prenom='" + t.getPrenom() + "', cin='" + t.getCin() + "', role='" + t.getRole() + "', email='" + t.getEmail() + "', mdp =' " + t.getMdp() + " ' , adresse='" + t.getAdresse() + "' ,telephone='" + t.getTelephone() + "',Image="+t.getImage()+"',Github_UserName="+t.getGUserName()+"' WHERE id=" + t.getId() + ";";
+            String qry = "UPDATE user SET fullname = '" + t.getFullname() + "',username='" + t.getUsername() + "', cin='" + t.getCin() + "', role='" + t.getRole() + "', email='" + t.getEmail() + "', password =' " + t.getPassword() + " ' , adresse='" + t.getAdresse() + "' ,telephone='" + t.getTelephone() + "',Image="+t.getImage()+"',Github_UserName="+t.getGUserName()+"' WHERE id=" + t.getId() + ";";
 
             cnx = MyDB.getInstance().getCnx();
 
@@ -179,64 +182,90 @@ public class ServiceUser implements IServices<User> {
 
     }
 
-    public boolean validate(String Uname, String Upassword) {
-
-        String vd = "SELECT * FROM user WHERE email='" + Uname + "' and mdp='" + Upassword + "' ;";
-        try {
-            cnx = MyDB.getInstance().getCnx();
-            Statement stm = cnx.createStatement();
-            ResultSet rs = stm.executeQuery(vd);
-            if (rs.next()) {
-                return true;
+    public boolean validate(String email, String password) {
+    try {
+        cnx = MyDB.getInstance().getCnx();
+        PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM user WHERE email=?");
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            String hashedPassword = rs.getString("password");
+            // Check if password matches using bcrypt
+            if (BCrypt.verifyer().verify(password.toCharArray(), hashedPassword).verified) {
+                return true ;
             }
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());;
         }
-        return false;
+        
+       
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    
+    return  false;
+}
 
-    public String check(String Uname, String Upassword) {
-        String vd = "SELECT * FROM user WHERE email='" + Uname + "' and mdp='" + Upassword + "' ;";
-        try {
-            cnx = MyDB.getInstance().getCnx();
-            Statement stm = cnx.createStatement();
-            ResultSet rs = stm.executeQuery(vd);
-            if (rs.next()) {
+   
+    public String check(String email, String password) {
+    try {
+        cnx = MyDB.getInstance().getCnx();
+        PreparedStatement stmt = cnx.prepareStatement("SELECT * FROM user WHERE email=?");
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            
+            String hashedPassword = rs.getString("password");
+            // Check if password matches using bcrypt
+         
+            BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
+            if (result.verified) {
+                
                 return rs.getString("role");
             }
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());;
         }
-        return " rubish ";
+        
+        // Password didn't match or user not found
+        return "lehna el la9ta ";
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    
+    return "invalid";
+}
     public User takout(String Uname, String Upassword) {
-        String vd = "SELECT * FROM user WHERE email='" + Uname + "' and mdp='" + Upassword + "' ;";
-        try {
-            cnx = MyDB.getInstance().getCnx();
-            Statement stm = cnx.createStatement();
-            ResultSet rs = stm.executeQuery(vd);
-            if (rs.next()) {
-               User p = new User();
-                p.setId(rs.getInt(1));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
-
-                p.setTelephone(rs.getInt("telephone"));
-                p.setAdresse(rs.getString("adresse"));
-                p.setRole(rs.getString("role"));
-                p.setMdp(rs.getString("mdp"));
-                p.setCin(rs.getInt("cin"));
-                p.setEmail(rs.getString("email"));
-                p.setImage(rs.getString("Image"));
-                p.setGUserName(rs.getString("Github_UserName")); 
-            return p ;
-            }
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());;
+        String vd = "SELECT * FROM user WHERE email='" + Uname + "';";
+User user = null;
+try {
+    cnx = MyDB.getInstance().getCnx();
+    PreparedStatement stmt = cnx.prepareStatement(vd);
+    ResultSet rs = stmt.executeQuery();
+    if (rs.next()) {
+        String hashedPassword = rs.getString("password");
+        // Check if password matches using bcrypt
+        if (BCrypt.verifyer().verify(Upassword.toCharArray(), hashedPassword).verified) {
+            User p = new User();
+            p.setId(rs.getInt(1));
+            p.setFullname(rs.getString("fullname"));
+            p.setUsername(rs.getString("username"));
+            p.setTelephone(rs.getInt("telephone"));
+            p.setAdresse(rs.getString("adresse"));
+            p.setRole(rs.getString("role"));
+            p.setPassword(rs.getString("password"));
+            p.setCin(rs.getInt("cin"));
+            p.setEmail(rs.getString("email"));
+            p.setImage(rs.getString("Image"));
+            p.setGUserName(rs.getString("Github_UserName"));
+            p.setIs_banned(rs.getInt("is_banned"));
+            user = p;
         }
-        return  null;
     }
-
+} catch (SQLException ex) {
+    System.err.println(ex.getMessage());
+}
+return user;}
     @Override
     public void modifierr(int id, User entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -245,7 +274,7 @@ public class ServiceUser implements IServices<User> {
     public void addU(User u) {
      
         try {
-            String qry = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `role`,`email`, `mdp` , `adresse`, `telephone`)  VALUES ('" + u.getNom() + "','" + u.getPrenom() + "','" + u.getCin() + "','" + u.getRole() + "','" + u.getEmail() + "','" + u.getMdp() + "','" + u.getAdresse() + "','" + u.getTelephone() + "')";
+            String qry = "INSERT INTO `user`( `fullname`, `username`, `cin`, `role`,`email`, `password` , `adresse`, `telephone`)  VALUES ('" + u.getFullname() + "','" + u.getUsername() + "','" + u.getCin() + "','" + u.getRole() + "','" + u.getEmail() + "','" + u.getPassword() + "','" + u.getAdresse() + "','" + u.getTelephone() + "')";
             cnx = MyDB.getInstance().getCnx();
 
             Statement stm = cnx.createStatement();
@@ -260,7 +289,7 @@ public class ServiceUser implements IServices<User> {
     public void modifierr(User t) {
 
         try {
-            String qry = "UPDATE user SET nom = '" + t.getNom() + "',prenom='" + t.getPrenom() + "', cin='" + t.getCin() + "', role='" + t.getRole() + "', email='" + t.getEmail() + "', mdp =' " + t.getMdp() + " ' , adresse='" + t.getAdresse() + "' ,telephone='" + t.getTelephone() + "' WHERE id=" + t.getId() + ";";
+            String qry = "UPDATE user SET fullname = '" + t.getFullname() + "',username='" + t.getUsername() + "', cin='" + t.getCin() + "', role='" + t.getRole() + "', email='" + t.getEmail() + "', password =' " + t.getPassword() + " ' , adresse='" + t.getAdresse() + "' ,telephone='" + t.getTelephone() + "' WHERE id=" + t.getId() + ";";
 
             cnx = MyDB.getInstance().getCnx();
 
@@ -273,6 +302,64 @@ public class ServiceUser implements IServices<User> {
         }
 
     }
+   public void banUser(int userId) {
+    try {
+        // Get the database connection from your database utility class
+        Connection cnx = MyDB.getInstance().getCnx();
+
+        // Prepare an update statement to set the "is_banned" field for the user to 1
+        String qry = "UPDATE user SET is_banned = 1 WHERE id = " + userId;
+        Statement stm = cnx.createStatement();
+
+        // Execute the update statement
+        int rowsUpdated = stm.executeUpdate(qry);
+
+        // Check if the update was successful
+        if (rowsUpdated == 0) {
+            // Handle the case where the user ID was not found in the database
+            System.out.println("Could not ban user with ID " + userId + " - user not found.");
+        } else {
+            // Log the ban action
+            System.out.println("User with ID " + userId + " has been banned.");
+        }
+    } catch (SQLException ex) {
+        // Handle any exceptions that may occur while connecting to or interacting with the database
+        System.out.println(ex.getMessage());
+    }
+}
+   public void unbanUser(int userId) {
+    try {
+        // Get the database connection from your database utility class
+        Connection cnx = MyDB.getInstance().getCnx();
+
+        // Prepare an update statement to set the "is_banned" field for the user to 0
+        String qry = "UPDATE user SET is_banned = 0 WHERE id = " + userId;
+        Statement stm = cnx.createStatement();
+
+        // Execute the update statement
+        int rowsUpdated = stm.executeUpdate(qry);
+
+        // Check if the update was successful
+        if (rowsUpdated == 0) {
+            // Handle the case where the user ID was not found in the database
+            System.out.println("Could not unban user with ID " + userId + " - user not found.");
+        } else {
+            // Log the unban action
+            System.out.println("User with ID " + userId + " has been unbanned.");
+        }
+    } catch (SQLException ex) {
+        // Handle any exceptions that may occur while connecting to or interacting with the database
+        System.out.println(ex.getMessage());
+    }
+}
+
+
+
+
+
+
+
+
 
     
     

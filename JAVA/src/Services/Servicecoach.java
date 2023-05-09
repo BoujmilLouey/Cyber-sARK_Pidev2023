@@ -41,13 +41,13 @@ public class Servicecoach implements IServices<coach> {
             if (rs.next()) {
                 freelancer = new coach();
                 freelancer.setId(rs.getInt(1));
-                freelancer.setNom(rs.getString("nom"));
-                freelancer.setPrenom(rs.getString("prenom"));
+                freelancer.setFullname(rs.getString("fullname"));
+                freelancer.setUsername(rs.getString("username"));
                 freelancer.setCin(rs.getInt("cin"));
                 freelancer.setMetier(rs.getString("metier"));
                 freelancer.setRole(rs.getString("role"));
                 freelancer.setEmail(rs.getString("email"));
-                freelancer.setMdp(rs.getString("mdp"));
+                freelancer.setPassword(rs.getString("password"));
                 freelancer.setAdresse(rs.getString("adresse"));
                 freelancer.setTelephone(rs.getInt("telephone"));
                 freelancer.setImage(rs.getString("Image"));
@@ -62,7 +62,7 @@ public class Servicecoach implements IServices<coach> {
 
     public void add(coach t) {
         try {
-            String qry = "INSERT INTO `user`( `nom`, `prenom`, `cin`, `telephone`, `adresse`, `role`,`email`, `mdp`,`metier`, `Image`,`Github_Username`)  VALUES ('" + t.getNom() + "','" + t.getPrenom() + "','" + t.getCin() + "','" + t.getTelephone() + "','" + t.getAdresse() + "','" + t.getRole() + "','" + t.getEmail() + "','" + t.getMdp() + "','" + t.getMetier() + "','" + t.getImage()+ "','" + t.getGUserName()+ "')";
+            String qry = "INSERT INTO `user`( `fullname`, `username`, `cin`, `telephone`, `adresse`, `role`,`email`, `password`,`metier`, `Image`,`Github_Username`)  VALUES ('" + t.getFullname() + "','" + t.getUsername() + "','" + t.getCin() + "','" + t.getTelephone() + "','" + t.getAdresse() + "','" + t.getRole() + "','" + t.getEmail() + "','" + t.getPassword() + "','" + t.getMetier() + "','" + t.getImage()+ "','" + t.getGUserName()+ "')";
             cnx = (Connection) MyDB.getInstance().getCnx();
             System.out.println(t.getImage());
             Statement stm = cnx.createStatement();
@@ -85,12 +85,12 @@ public class Servicecoach implements IServices<coach> {
             while (rs.next()) {
                 coach p = new coach();
                 p.setId(rs.getInt(1));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
+                p.setFullname(rs.getString("fullname"));
+                p.setUsername(rs.getString("username"));
                 p.setTelephone(rs.getInt("telephone"));
                 p.setAdresse(rs.getString("adresse"));
                 p.setRole(rs.getString("role"));
-                p.setMdp(rs.getString("mdp"));
+                p.setPassword(rs.getString("password"));
                 p.setCin(rs.getInt("cin"));
                 p.setEmail(rs.getString("email"));
                 p.setMetier(rs.getString("metier"));
@@ -107,16 +107,16 @@ public class Servicecoach implements IServices<coach> {
   @Override
     public void modifier(coach t) {
         String role = "freelancer";
-        String qry = "UPDATE user SET nom=?,prenom=?,cin=?,metier=?,role=?,email=?,mdp=?,adresse=?,telephone=? WHERE id=?";
+        String qry = "UPDATE user SET fullname=?,username=?,cin=?,metier=?,role=?,email=?,password=?,adresse=?,telephone=? WHERE id=?";
             cnx = MyDB.getInstance().getCnx();
         try {
             
             PreparedStatement pst = cnx.prepareStatement(qry);
 
-            pst.setString(1, t.getNom());
-            System.out.println(" Nom "+ t.getNom());
-            pst.setString(2, t.getPrenom());
-             System.out.println(" prrr "+t.getPrenom());
+            pst.setString(1, t.getFullname());
+            System.out.println(" Nom "+ t.getFullname());
+            pst.setString(2, t.getUsername());
+             System.out.println(" prrr "+t.getUsername());
             pst.setInt(3, t.getCin());
             System.out.println(" cin "+ t.getCin());
             pst.setString(4, t.getMetier());
@@ -125,8 +125,8 @@ public class Servicecoach implements IServices<coach> {
             System.out.println(" role "+ role);
             pst.setString(6, t.getEmail());
             System.out.println(" mail "+ t.getEmail());
-            pst.setString(7, t.getMdp());
-            System.out.println(" mdp "+ t.getMdp());
+            pst.setString(7, t.getPassword());
+            System.out.println(" password "+ t.getPassword());
             pst.setString(8, t.getAdresse());
             System.out.println(" adr "+ t.getAdresse());
             pst.setInt(9, t.getTelephone());
@@ -143,13 +143,13 @@ public class Servicecoach implements IServices<coach> {
      
  
         String req = "UPDATE `user` SET "
-                +"`nom`=?,`prenom`=?,`cin`=?,`metier`=?,`email`=?,`mdp`=?,`adresse`=?,`telephone`=?"
+                +"`fullname`=?,`username`=?,`cin`=?,`metier`=?,`email`=?,`password`=?,`adresse`=?,`telephone`=?"
                 + "WHERE idu = '" + id+ "'";
     
         try {
             pste = cnx.prepareStatement(req);
-           pste.setString(1, t.getNom());
-            pste.setString(2, t.getPrenom());
+           pste.setString(1, t.getFullname());
+            pste.setString(2, t.getUsername());
           
             pste.setInt(3, t.getCin());
      
@@ -157,7 +157,7 @@ public class Servicecoach implements IServices<coach> {
 
             pste.setString(5, t.getEmail());
       
-            pste.setString(6, t.getMdp());
+            pste.setString(6, t.getPassword());
         
             pste.setString(7, t.getAdresse());
        

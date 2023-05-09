@@ -99,7 +99,7 @@ public class FreelancerListController implements Initializable {
     }
 
     private void initCol() {
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("fullname"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         cinCol.setCellValueFactory(new PropertyValueFactory<>("cin"));
         mailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -124,7 +124,7 @@ public class FreelancerListController implements Initializable {
             pst = cnx.prepareStatement(req);
             ResultSet result = pst.executeQuery();
             while(result.next()) {
-                list.add(new coach(result.getString("metier"),result.getInt("id"), result.getString("nom"), result.getString("prenom"),result.getInt("cin"), result.getString("email"), result.getString("mdp"), result.getString("adresse"), result.getInt("telephone")));    
+                list.add(new coach(result.getString("metier"),result.getInt("id"), result.getString("fullname"), result.getString("prenom"),result.getInt("cin"), result.getString("email"), result.getString("mdp"), result.getString("adresse"), result.getInt("telephone")));    
             }
     } catch (SQLException ex) {
             System.out.println(ex.getMessage());        }
@@ -143,7 +143,7 @@ public class FreelancerListController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting freelancer");
-        alert.setContentText("Are you sure want to delete " + selectedForDeletion.getNom()+ " ?");
+        alert.setContentText("Are you sure want to delete " + selectedForDeletion.getFullname()+ " ?");
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get() == ButtonType.OK) {
             su.supprimer(selectedForDeletion);

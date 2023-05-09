@@ -7,6 +7,7 @@ package GUI;
 
 import Services.ServiceUser;
 import Utils.MyDB;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -103,7 +104,7 @@ private String getEmailCode(List<String> emails, String code) {
 }
 public void updatepassword(String email) {
     try {
-        String query = "UPDATE user SET mdp=? WHERE email=?";
+        String query = "UPDATE user SET password=? WHERE email=?";
         String pa = passwordfiled1.getText();
         cnx = MyDB.getInstance().getCnx();
         pst = cnx.prepareStatement(query);
@@ -115,28 +116,10 @@ public void updatepassword(String email) {
         System.out.println(ex.getMessage());
     }
 }
- public static String doHashing(String password) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-
-            messageDigest.update(password.getBytes());
-
-            byte[] resultByteArray = messageDigest.digest();
-
-            StringBuilder sb = new StringBuilder();
- 
-            for (byte b : resultByteArray) {
-                sb.append(String.format("%02x", b));
-            }
-
-            return sb.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
+  public static String doHashing(String password) {
+    int costFactor = 13;
+    return BCrypt.withDefaults().hashToString(costFactor, password.toCharArray());
+}
 
 public boolean verife(String codeEmail) {
     List<String> emails1 = new ArrayList<>();

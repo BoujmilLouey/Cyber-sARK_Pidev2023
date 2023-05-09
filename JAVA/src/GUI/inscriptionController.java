@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -246,28 +247,10 @@ String res="nodata";
   }
   
   }
-     public static String doHashing(String password) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-
-            messageDigest.update(password.getBytes());
-
-            byte[] resultByteArray = messageDigest.digest();
-
-            StringBuilder sb = new StringBuilder();
- 
-            for (byte b : resultByteArray) {
-                sb.append(String.format("%02x", b));
-            }
-
-            return sb.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
+    public static String doHashing(String password) {
+    int costFactor = 13;
+    return BCrypt.withDefaults().hashToString(costFactor, password.toCharArray());
+}
 String path="";
       @FXML
    public void insertImage(){
@@ -295,11 +278,11 @@ String path="";
     }
 
     void infalteUI(User place) {
-        nom.setText(place.getNom());
-        prenom.setText(place.getPrenom());
+        nom.setText(place.getFullname());
+        prenom.setText(place.getUsername());
         cin.setText(String.valueOf(place.getCin()));
         mail.setText(place.getEmail());
-        mdp.setText(place.getMdp());
+        mdp.setText(place.getPassword());
         adresse.setText(place.getAdresse());
         phone.setText(String.valueOf(place.getTelephone()));
         id = place.getId() ;

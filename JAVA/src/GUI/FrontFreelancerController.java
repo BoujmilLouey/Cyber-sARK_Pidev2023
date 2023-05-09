@@ -211,7 +211,7 @@ SingleUser hold = SingleUser.getInstance();
     public void initialize(URL location, ResourceBundle resources) {
         SingleUser hold = SingleUser.getInstance();
                   User u = hold.getUser(); 
-                  label_name.setText(u.getPrenom()+" "+u.getNom());
+                  label_name.setText(u.getUsername());
                   String picture = "file:"+u.getImage();
                     Image image = new Image(picture, 110, 110, false, true);
             

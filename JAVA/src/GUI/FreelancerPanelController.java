@@ -112,13 +112,13 @@ coach fr =new coach();
 
     private void initCol() {
 mail.setText(fr.getEmail());
-nom.setText(fr.getNom());
-prenom.setText(fr.getPrenom());
+nom.setText(fr.getFullname());
+prenom.setText(fr.getUsername());
 cin.setText(String.valueOf(fr.getCin()));
 Tel.setText(String.valueOf(fr.getTelephone()));
 metier.setText(fr.getMetier());
 adresse.setText(fr.getAdresse());
-mdp.setText(fr.getMdp());
+mdp.setText(fr.getPassword());
     }
 
     private Stage getStage() {
@@ -174,7 +174,7 @@ coach us = sf.getUserByEmail(mial);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting freelancer");
-        alert.setContentText("Are you sure want to delete " + us.getNom()+ " ?");
+        alert.setContentText("Are you sure want to delete " + us.getFullname()+ " ?");
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get() == ButtonType.OK) {
             su.supprimer(us);

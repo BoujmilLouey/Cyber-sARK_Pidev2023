@@ -33,61 +33,61 @@ public class coach extends User  {
 
     
     
-  public coach( int id, String nom, String prenom, int cin , String metier, String email, String mdp, String adresse, int telephone) {
-        super(id ,nom, prenom, cin,  email, mdp, adresse, telephone);
+  public coach( int id, String fullname, String prenom, int cin , String metier, String email, String password, String adresse, int telephone) {
+        super(id ,fullname, prenom, cin,  email, password, adresse, telephone);
         this.metier = metier;
     }
-    public coach(  String nom, String prenom, int cin , String metier,String role, String email, String mdp, String adresse, int telephone) {
-        super(nom, prenom, cin,role,  email, mdp, adresse, telephone);
-        this.metier = metier;
-    }
-  
-  
-  
-  
-    public coach( int id, String nom, String prenom, int cin , String metier,String role, String email, String mdp, String adresse, int telephone) {
-        super(id ,nom, prenom, cin,role,  email, mdp, adresse, telephone);
+    public coach(  String fullname, String prenom, int cin , String metier,String role, String email, String password, String adresse, int telephone) {
+        super(fullname, prenom, cin,role,  email, password, adresse, telephone);
         this.metier = metier;
     }
   
-    public coach(String metier, String nom, String prenom, int cin, String role, String email, String mdp, String adresse, int telephone,String img , String gname) {
-        super(nom, prenom, cin, role, email, mdp, adresse, telephone,img , gname);
+  
+  
+  
+    public coach( int id, String fullname, String prenom, int cin , String metier,String role, String email, String password, String adresse, int telephone) {
+        super(id ,fullname, prenom, cin,role,  email, password, adresse, telephone);
         this.metier = metier;
     }
-    
   
-  public coach(String metier, String nom, String prenom, int cin, String role, String email, String mdp, String adresse, int telephone) {
-        super(nom, prenom, cin, role, email, mdp, adresse, telephone);
+    public coach(String metier, String fullname, String prenom, int cin, String role, String email, String password, String adresse, int telephone,String img , String gname) {
+        super(fullname, prenom, cin, role, email, password, adresse, telephone,img , gname);
         this.metier = metier;
     }
     
-    public coach(String metier, int id, String nom, String prenom, int cin, String role, String email, String mdp, String adresse, int telephone,String img , String gname) {
-        super(id,nom, prenom, cin, role, email, mdp, adresse, telephone,img , gname);
+  
+  public coach(String metier, String fullname, String prenom, int cin, String role, String email, String password, String adresse, int telephone) {
+        super(fullname, prenom, cin, role, email, password, adresse, telephone);
+        this.metier = metier;
+    }
+    
+    public coach(String metier, int id, String fullname, String prenom, int cin, String role, String email, String password, String adresse, int telephone,String img , String gname) {
+        super(id,fullname, prenom, cin, role, email, password, adresse, telephone,img , gname);
         this.metier = metier;
     }   
     
     
-       public coach(String metier, int id, String nom, String prenom, int cin, String role, String email, String mdp, String adresse, int telephone) {
-        super(id,nom, prenom, cin, role, email, mdp, adresse, telephone);
+       public coach(String metier, int id, String fullname, String prenom, int cin, String role, String email, String password, String adresse, int telephone) {
+        super(id,fullname, prenom, cin, role, email, password, adresse, telephone);
         this.metier = metier;
     }   
     
     
     
-    public coach(String metier, int id, String nom, String prenom, int cin, String email, String mdp, String adresse, int telephone,String img , String gname) {
-        super(id,nom, prenom, cin, email, mdp, adresse, telephone,img , gname);
+    public coach(String metier, int id, String fullname, String prenom, int cin, String email, String password, String adresse, int telephone,String img , String gname) {
+        super(id,fullname, prenom, cin, email, password, adresse, telephone,img , gname);
         this.metier = metier;
     }
     
-  public coach(String metier, int id, String nom, String prenom, int cin, String email, String mdp, String adresse, int telephone) {
-        super(id,nom, prenom, cin, email, mdp, adresse, telephone);
+  public coach(String metier, int id, String fullname, String prenom, int cin, String email, String password, String adresse, int telephone) {
+        super(id,fullname, prenom, cin, email, password, adresse, telephone);
         this.metier = metier;
     }
   
 
    
-    public coach( int id, String nom, String prenom, int cin, String metier ,String email, String mdp, String adresse, int telephone,String img , String gname) {
-        super(id,nom, prenom, cin,  email, mdp, adresse, telephone,img , gname);
+    public coach( int id, String fullname, String prenom, int cin, String metier ,String email, String password, String adresse, int telephone,String img , String gname) {
+        super(id,fullname, prenom, cin,  email, password, adresse, telephone,img , gname);
         this.metier = metier;
     }
 

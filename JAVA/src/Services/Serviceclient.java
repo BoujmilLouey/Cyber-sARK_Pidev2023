@@ -38,14 +38,14 @@ import java.util.logging.Logger;
             if (rs.next()) {
                 client = new client();
                 client.setId(rs.getInt(1));
-                client.setNom(rs.getString("nom"));
-                client.setPrenom(rs.getString("prenom"));
+                client.setFullname(rs.getString("fullname"));
+                client.setUsername(rs.getString("username"));
                 client.setCin(rs.getInt("cin"));
                 client.setDomaine(rs.getString("domaine"));
                 client.setRole(rs.getString("role"));
 
                 client.setEmail(rs.getString("email"));
-                client.setMdp(rs.getString("mdp"));
+                client.setPassword(rs.getString("password"));
                 client.setAdresse(rs.getString("adresse"));
                 client.setTelephone(rs.getInt("telephone"));
 
@@ -91,7 +91,7 @@ import java.util.logging.Logger;
  
     public void add(client t) {
          try {
-        String qry ="INSERT INTO `user`( `nom`, `prenom`, `cin`, `telephone`, `adresse`, `role`,`email`, `mdp`,`domaine`, `Image`,`Github_Username`)  VALUES ('"+t.getNom()+"','"+t.getPrenom()+"','"+t.getCin()+"','"+t.getTelephone()+"','"+t.getAdresse()+"','"+t.getRole()+"','"+t.getEmail()+"','"+t.getMdp()+"','"+t.getDomaine()+"','" + t.getImage()+ "','" + t.getGUserName()+ "')";
+        String qry ="INSERT INTO `user`( `fullname`, `username`, `cin`, `telephone`, `adresse`, `role`,`email`, `password`,`domaine`, `Image`,`Github_Username`)  VALUES ('"+t.getFullname()+"','"+t.getUsername()+"','"+t.getCin()+"','"+t.getTelephone()+"','"+t.getAdresse()+"','"+t.getRole()+"','"+t.getEmail()+"','"+t.getPassword()+"','"+t.getDomaine()+"','" + t.getImage()+ "','" + t.getGUserName()+ "')";
       cnx = (Connection) MyDB.getInstance().getCnx();
       
             Statement stm =cnx.createStatement();
@@ -115,13 +115,13 @@ import java.util.logging.Logger;
             while(rs.next()){
                 client p =new client();
                 p.setId(rs.getInt(1));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
+                p.setFullname(rs.getString("fullname"));
+                p.setUsername(rs.getString("username"));
                
                 p.setTelephone(rs.getInt("telephone"));
                 p.setAdresse(rs.getString("adresse"));
                 p.setRole(rs.getString("role"));
-                   p.setMdp(rs.getString("mdp"));
+                   p.setPassword(rs.getString("password"));
                     p.setCin(rs.getInt("cin"));
                 p.setEmail(rs.getString("email"));
                 p.setDomaine(rs.getString("domaine"));
@@ -145,8 +145,8 @@ import java.util.logging.Logger;
             while(rs.next()){
                 client p =new client();
                 p.setId(rs.getInt(1));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
+                p.setFullname(rs.getString("fullname"));
+                p.setUsername(rs.getString("username"));
                 p.setTelephone(rs.getInt("telephone"));
                 p.setAdresse(rs.getString("adresse"));
                     p.setCin(rs.getInt("cin"));
@@ -166,7 +166,7 @@ import java.util.logging.Logger;
     @Override
     public void modifier(client t) {
          try {
-       String qry = "UPDATE user SET nom  ='  " + t.getNom() + " ', prenom='" + t.getPrenom() + "', cin='" + t.getCin() + "', telephone='" + t.getTelephone() +  "', adresse='" + t.getAdresse() + "', role='" + t.getRole() + "', email='" + t.getEmail() + "', mdp='" + t.getMdp() +  "', domaine='" + t.getDomaine() + "' WHERE id=" + t.getId() +  ";";
+       String qry = "UPDATE user SET fullname  ='  " + t.getFullname() + " ', username='" + t.getUsername() + "', cin='" + t.getCin() + "', telephone='" + t.getTelephone() +  "', adresse='" + t.getAdresse() + "', role='" + t.getRole() + "', email='" + t.getEmail() + "', password='" + t.getPassword() +  "', domaine='" + t.getDomaine() + "' WHERE id=" + t.getId() +  ";";
 
       cnx = MyDB.getInstance().getCnx();
       
